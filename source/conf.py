@@ -37,8 +37,11 @@ sys.path.insert(0, os.path.abspath('.'))
 # ones.
 autosummary_generate=True
 autoclass_content='class' # http://www.sphinx-doc.org/en/stable/ext/autodoc.html#confval-autoclass_content
-import IPython.sphinxext
 import numpydoc
+
+import IPython.sphinxext
+# sys.path.insert(0, os.path.abspath('./sphinxext/ipython_sphinxext'))
+
 
 # these needed to be set to False to avoid redundant toctree being created from autosummary (fml...wasted so much time on this...)
 # https://github.com/numpy/numpydoc, https://github.com/sphinx-doc/sphinx/issues/99
@@ -54,6 +57,8 @@ extensions = [
     'IPython.sphinxext.ipython_directive',
     'numpydoc', # used to parse numpy-style docstrings for autodoc    
 ]
+
+ipython_savefig_dir = '_static'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -105,7 +110,10 @@ language = None
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = [
-'missing_data.rst',
+# 'groupby*',
+# 'missing*',
+# 'computation*',
+# 'advanced*',
 # 'demo_autoclass.rst',
 # 'demo_automodule.rst',
 # 'demo_automodule.rst',

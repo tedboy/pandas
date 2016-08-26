@@ -16,4 +16,6 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
 
    missing.rst
    groupby.rst
+   computation.rst
+   advanced.rst
 

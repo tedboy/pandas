@@ -11,4 +11,5 @@ rm -r ./source/generated*
 # cp -r ./source/_templates ./source/generated/
 # cp -r ./source/_templates ./source/generated/generated/
 make html
+# mv $(find *.png -maxdepth 1) ./build/html/_static/
 # rsync -r build/html/ bs4doc/

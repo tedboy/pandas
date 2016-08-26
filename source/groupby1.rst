@@ -1,3 +1,17 @@
+.. ipython:: python
+   :suppress::
+   
+   import numpy as np
+   np.random.seed(123456)
+   np.set_printoptions(precision=4, suppress=True)
+   import pandas as pd
+   pd.options.display.max_rows = 8
+   import matplotlib
+   matplotlib.style.use('ggplot')
+   import matplotlib.pyplot as plt
+   plt.close('all')
+   from collections import OrderedDict
+
 Introduction
 ------------
 By "group by" we are referring to a process involving one or more of the following

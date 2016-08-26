@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 .. _indexing.index_types:
 
 Index Types

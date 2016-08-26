@@ -35,7 +35,7 @@ See the :ref:`cookbook<cookbook.missing_data>` for some advanced strategies
 
    import numpy as np
    import pandas as pd
-   pd.options.display.max_rows=15
+   pd.options.display.max_rows=8
    import matplotlib
    matplotlib.style.use('ggplot')
    import matplotlib.pyplot as plt
