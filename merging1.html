@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1. Concatenating objects &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="5. Merge, join, and concatenate" href="merging.html"/>
+        <link rel="next" title="5.2. Database-style DataFrame joining/merging" href="merging2.html"/>
+        <link rel="prev" title="5. Merge, join, and concatenate" href="merging.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing5.html">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="missing5.html#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="computation.html">3. Computational tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="computation1.html">3.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#percent-change">3.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#covariance">3.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#correlation">3.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#data-ranking">3.1.4. Data ranking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation2.html">3.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#method-summary">3.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#rolling-windows">3.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling">3.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling-vs-resampling">3.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#centering-windows">3.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#binary-window-functions">3.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#computing-rolling-pairwise-covariances-and-correlations">3.2.7. Computing rolling pairwise covariances and correlations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation3.html">3.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-multiple-functions-at-once">3.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-different-functions-to-dataframe-columns">3.3.2. Applying different functions to DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation4.html">3.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation4.html#method-summary">3.4.1. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation5.html">3.5. Exponentially Weighted Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">4. MultiIndex / Advanced Indexing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced1.html">4.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#creating-a-multiindex-hierarchical-index-object">4.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#reconstructing-the-level-labels">4.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#basic-indexing-on-axis-with-multiindex">4.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#data-alignment-and-using-reindex">4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced2.html">4.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#using-slicers">4.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#cross-section">4.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#advanced-reindexing-and-alignment">4.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#swapping-levels-with-swaplevel">4.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#reordering-levels-with-reorder-levels">4.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced3.html">4.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced4.html">4.4. Take Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced5.html">4.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#categoricalindex">4.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#int64index-and-rangeindex">4.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#float64index">4.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="merging.html">5. Merge, join, and concatenate</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.1. Concatenating objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-logic-on-the-other-axes">5.1.1. Set logic on the other axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concatenating-using-append">5.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ignoring-indexes-on-the-concatenation-axis">5.1.3. Ignoring indexes on the concatenation axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concatenating-with-mixed-ndims">5.1.4. Concatenating with mixed ndims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-concatenating-with-group-keys">5.1.5. More concatenating with group keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appending-rows-to-a-dataframe">5.1.6. Appending rows to a DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging2.html">5.2. Database-style DataFrame joining/merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#brief-primer-on-merge-methods-relational-algebra">5.2.1. Brief primer on merge methods (relational algebra)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#the-merge-indicator">5.2.2. The merge indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-on-index">5.2.3. Joining on index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-key-columns-on-an-index">5.2.4. Joining key columns on an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-a-single-index-to-a-multi-index">5.2.5. Joining a single Index to a Multi-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-with-two-multi-indexes">5.2.6. Joining with two multi-indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#overlapping-value-columns">5.2.7. Overlapping value columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-multiple-dataframe-or-panel-objects">5.2.8. Joining multiple DataFrame or Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#merging-together-values-within-series-or-dataframe-columns">5.2.9. Merging together values within Series or DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging3.html">5.3. Timeseries friendly merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-ordered-data">5.3.1. Merging Ordered Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-asof">5.3.2. Merging AsOf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="merging.html">5. Merge, join, and concatenate</a> &raquo;</li>
+        
+      <li>5.1. Concatenating objects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/merging1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="concatenating-objects">
+<span id="merging-concat"></span><h1>5.1. Concatenating objects<a class="headerlink" href="#concatenating-objects" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">concat</span></code> function (in the main pandas namespace) does all of the heavy
+lifting of performing concatenation operations along an axis while performing
+optional set logic (union or intersection) of the indexes (if any) on the other
+axes. Note that I say &#8220;if any&#8221; because there is only a single possible axis of
+concatenation for Series.</p>
+<p>Before diving into all of the details of <code class="docutils literal"><span class="pre">concat</span></code> and what it can do, here is
+a simple example:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A0&#39;</span><span class="p">,</span> <span class="s1">&#39;A1&#39;</span><span class="p">,</span> <span class="s1">&#39;A2&#39;</span><span class="p">,</span> <span class="s1">&#39;A3&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B0&#39;</span><span class="p">,</span> <span class="s1">&#39;B1&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D0&#39;</span><span class="p">,</span> <span class="s1">&#39;D1&#39;</span><span class="p">,</span> <span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">]},</span>
+<span class="gp">   ...: </span>                    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A4&#39;</span><span class="p">,</span> <span class="s1">&#39;A5&#39;</span><span class="p">,</span> <span class="s1">&#39;A6&#39;</span><span class="p">,</span> <span class="s1">&#39;A7&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B5&#39;</span><span class="p">,</span> <span class="s1">&#39;B6&#39;</span><span class="p">,</span> <span class="s1">&#39;B7&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="s1">&#39;C6&#39;</span><span class="p">,</span> <span class="s1">&#39;C7&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="s1">&#39;D5&#39;</span><span class="p">,</span> <span class="s1">&#39;D6&#39;</span><span class="p">,</span> <span class="s1">&#39;D7&#39;</span><span class="p">]},</span>
+<span class="gp">   ...: </span>                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [3]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A8&#39;</span><span class="p">,</span> <span class="s1">&#39;A9&#39;</span><span class="p">,</span> <span class="s1">&#39;A10&#39;</span><span class="p">,</span> <span class="s1">&#39;A11&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B8&#39;</span><span class="p">,</span> <span class="s1">&#39;B9&#39;</span><span class="p">,</span> <span class="s1">&#39;B10&#39;</span><span class="p">,</span> <span class="s1">&#39;B11&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C8&#39;</span><span class="p">,</span> <span class="s1">&#39;C9&#39;</span><span class="p">,</span> <span class="s1">&#39;C10&#39;</span><span class="p">,</span> <span class="s1">&#39;C11&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>                    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D8&#39;</span><span class="p">,</span> <span class="s1">&#39;D9&#39;</span><span class="p">,</span> <span class="s1">&#39;D10&#39;</span><span class="p">,</span> <span class="s1">&#39;D11&#39;</span><span class="p">]},</span>
+<span class="gp">   ...: </span>                    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [4]: </span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
+
+<span class="gp">In [5]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_basic.png" src="_images/merging_concat_basic.png" />
+<p>Like its sibling function on ndarrays, <code class="docutils literal"><span class="pre">numpy.concatenate</span></code>, <code class="docutils literal"><span class="pre">pandas.concat</span></code>
+takes a list or dict of homogeneously-typed objects and concatenates them with
+some configurable handling of &#8220;what to do with the other axes&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">join_axes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">keys</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">objs</span></code>: a sequence or mapping of Series, DataFrame, or Panel objects. If a
+dict is passed, the sorted keys will be used as the <cite>keys</cite> argument, unless
+it is passed, in which case the values will be selected (see below). Any None
+objects will be dropped silently unless they are all None in which case a
+ValueError will be raised.</li>
+<li><code class="docutils literal"><span class="pre">axis</span></code>: {0, 1, ...}, default 0. The axis to concatenate along.</li>
+<li><code class="docutils literal"><span class="pre">join</span></code>: {&#8216;inner&#8217;, &#8216;outer&#8217;}, default &#8216;outer&#8217;. How to handle indexes on
+other axis(es). Outer for union and inner for intersection.</li>
+<li><code class="docutils literal"><span class="pre">join_axes</span></code>: list of Index objects. Specific indexes to use for the other
+n - 1 axes instead of performing inner/outer set logic.</li>
+<li><code class="docutils literal"><span class="pre">keys</span></code>: sequence, default None. Construct hierarchical index using the
+passed keys as the outermost level. If multiple levels passed, should
+contain tuples.</li>
+<li><code class="docutils literal"><span class="pre">levels</span></code> : list of sequences, default None. Specific levels (unique values)
+to use for constructing a MultiIndex. Otherwise they will be inferred from the
+keys.</li>
+<li><code class="docutils literal"><span class="pre">names</span></code>: list, default None. Names for the levels in the resulting
+hierarchical index.</li>
+<li><code class="docutils literal"><span class="pre">verify_integrity</span></code>: boolean, default False. Check whether the new
+concatenated axis contains duplicates. This can be very expensive relative
+to the actual data concatenation.</li>
+<li><code class="docutils literal"><span class="pre">ignore_index</span></code> : boolean, default False. If True, do not use the index
+values on the concatenation axis. The resulting axis will be labeled 0, ...,
+n - 1. This is useful if you are concatenating objects where the
+concatenation axis does not have meaningful indexing information. Note
+the index values on the other axes are still respected in the join.</li>
+<li><code class="docutils literal"><span class="pre">copy</span></code> : boolean, default True. If False, do not copy data unnecessarily.</li>
+</ul>
+<p>Without a little bit of context and example many of these arguments don&#8217;t make
+much sense. Let&#8217;s take the above example. Suppose we wanted to associate
+specific keys with each of the pieces of the chopped up DataFrame. We can do
+this using the <code class="docutils literal"><span class="pre">keys</span></code> argument:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.figure.Figure at 0x2b8c53d691d0&gt;</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_keys.png" src="_images/merging_concat_keys.png" />
+<p>As you can see (if you&#8217;ve read the rest of the documentation), the resulting
+object&#8217;s index has a <a class="reference internal" href="advanced1.html#advanced-hierarchical"><span>hierarchical index</span></a>. This
+means that we can now do stuff like select out each chunk by key:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">result</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="gh">Out[9]: </span><span class="go"></span>
+<span class="go">    A   B   C   D</span>
+<span class="go">4  A4  B4  C4  D4</span>
+<span class="go">5  A5  B5  C5  D5</span>
+<span class="go">6  A6  B6  C6  D6</span>
+<span class="go">7  A7  B7  C7  D7</span>
+</pre></div>
+</div>
+<p>It&#8217;s not a stretch to see how this can be very useful. More detail on this
+functionality below.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is worth noting however, that <code class="docutils literal"><span class="pre">concat</span></code> (and therefore <code class="docutils literal"><span class="pre">append</span></code>) makes
+a full copy of the data, and that constantly reusing this function can
+create a significant performance hit. If you need to use the operation over
+several datasets, use a list comprehension.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">process_your_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="set-logic-on-the-other-axes">
+<h2>5.1.1. Set logic on the other axes<a class="headerlink" href="#set-logic-on-the-other-axes" title="Permalink to this headline">¶</a></h2>
+<p>When gluing together multiple DataFrames (or Panels or...), for example, you
+have a choice of how to handle the other axes (other than the one being
+concatenated). This can be done in three ways:</p>
+<ul class="simple">
+<li>Take the (sorted) union of them all, <code class="docutils literal"><span class="pre">join='outer'</span></code>. This is the default
+option as it results in zero information loss.</li>
+<li>Take the intersection, <code class="docutils literal"><span class="pre">join='inner'</span></code>.</li>
+<li>Use a specific index (in the case of DataFrame) or indexes (in the case of
+Panel or future higher dimensional objects), i.e. the <code class="docutils literal"><span class="pre">join_axes</span></code> argument</li>
+</ul>
+<p>Here is a example of each of these methods. First, the default <code class="docutils literal"><span class="pre">join='outer'</span></code>
+behavior:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B6&#39;</span><span class="p">,</span> <span class="s1">&#39;B7&#39;</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">,</span> <span class="s1">&#39;D6&#39;</span><span class="p">,</span> <span class="s1">&#39;D7&#39;</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;F2&#39;</span><span class="p">,</span> <span class="s1">&#39;F3&#39;</span><span class="p">,</span> <span class="s1">&#39;F6&#39;</span><span class="p">,</span> <span class="s1">&#39;F7&#39;</span><span class="p">]},</span>
+<span class="gp">   ....: </span>                <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [11]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_axis1.png" src="_images/merging_concat_axis1.png" />
+<p>Note that the row indexes have been unioned and sorted. Here is the same thing
+with <code class="docutils literal"><span class="pre">join='inner'</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_axis1_inner.png" src="_images/merging_concat_axis1_inner.png" />
+<p>Lastly, suppose we just wanted to reuse the <em>exact index</em> from the original
+DataFrame:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join_axes</span><span class="o">=</span><span class="p">[</span><span class="n">df1</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+
+<span class="gp">In [17]: </span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_axis1_join_axes.png" src="_images/merging_concat_axis1_join_axes.png" />
+</div>
+<div class="section" id="concatenating-using-append">
+<span id="merging-concatenation"></span><h2>5.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code><a class="headerlink" href="#concatenating-using-append" title="Permalink to this headline">¶</a></h2>
+<p>A useful shortcut to <code class="docutils literal"><span class="pre">concat</span></code> are the <code class="docutils literal"><span class="pre">append</span></code> instance methods on Series
+and DataFrame. These methods actually predated <code class="docutils literal"><span class="pre">concat</span></code>. They concatenate
+along <code class="docutils literal"><span class="pre">axis=0</span></code>, namely the index:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append1.png" src="_images/merging_append1.png" />
+<p>In the case of DataFrame, the indexes must be disjoint but the columns do not
+need to be:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append2.png" src="_images/merging_append2.png" />
+<p><code class="docutils literal"><span class="pre">append</span></code> may take multiple objects to concatenate:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+
+<span class="gp">In [24]: </span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append3.png" src="_images/merging_append3.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unlike <cite>list.append</cite> method, which appends to the original list and
+returns nothing, <code class="docutils literal"><span class="pre">append</span></code> here <strong>does not</strong> modify <code class="docutils literal"><span class="pre">df1</span></code> and
+returns its copy with <code class="docutils literal"><span class="pre">df2</span></code> appended.</p>
+</div>
+</div>
+<div class="section" id="ignoring-indexes-on-the-concatenation-axis">
+<span id="merging-ignore-index"></span><h2>5.1.3. Ignoring indexes on the concatenation axis<a class="headerlink" href="#ignoring-indexes-on-the-concatenation-axis" title="Permalink to this headline">¶</a></h2>
+<p>For DataFrames which don&#8217;t have a meaningful index, you may wish to append them
+and ignore the fact that they may have overlapping indexes:</p>
+<p>To do this, use the <code class="docutils literal"><span class="pre">ignore_index</span></code> argument:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_ignore_index.png" src="_images/merging_concat_ignore_index.png" />
+<p>This is also a valid argument to <code class="docutils literal"><span class="pre">DataFrame.append</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df4</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df4</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df4&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append_ignore_index.png" src="_images/merging_append_ignore_index.png" />
+</div>
+<div class="section" id="concatenating-with-mixed-ndims">
+<span id="merging-mixed-ndims"></span><h2>5.1.4. Concatenating with mixed ndims<a class="headerlink" href="#concatenating-with-mixed-ndims" title="Permalink to this headline">¶</a></h2>
+<p>You can concatenate a mix of Series and DataFrames. The
+Series will be transformed to DataFrames with the column name as
+the name of the Series.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;X0&#39;</span><span class="p">,</span> <span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+
+<span class="gp">In [30]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s1</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;s1&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_mixed_ndim.png" src="_images/merging_concat_mixed_ndim.png" />
+<p>If unnamed Series are passed they will be numbered consecutively.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;_0&#39;</span><span class="p">,</span> <span class="s1">&#39;_1&#39;</span><span class="p">,</span> <span class="s1">&#39;_2&#39;</span><span class="p">,</span> <span class="s1">&#39;_3&#39;</span><span class="p">])</span>
+
+<span class="gp">In [33]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s2</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_unnamed_series.png" src="_images/merging_concat_unnamed_series.png" />
+<p>Passing <code class="docutils literal"><span class="pre">ignore_index=True</span></code> will drop all name references.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s1</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;s1&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">False</span><span class="p">);</span>
+
+<span class="gp">In [37]: </span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_series_ignore_index.png" src="_images/merging_concat_series_ignore_index.png" />
+</div>
+<div class="section" id="more-concatenating-with-group-keys">
+<h2>5.1.5. More concatenating with group keys<a class="headerlink" href="#more-concatenating-with-group-keys" title="Permalink to this headline">¶</a></h2>
+<p>A fairly common use of the <code class="docutils literal"><span class="pre">keys</span></code> argument is to override the column names when creating a new DataFrame based on existing Series.
+Notice how the default behaviour consists on letting the resulting DataFrame inherits the parent Series&#8217; name, when these existed.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+
+<span class="gp">In [39]: </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="gp">In [40]: </span><span class="n">s5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="gp">In [41]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[41]: </span><span class="go"></span>
+<span class="go">   foo  0  1</span>
+<span class="go">0    0  0  0</span>
+<span class="go">1    1  1  1</span>
+<span class="go">2    2  2  4</span>
+<span class="go">3    3  3  5</span>
+</pre></div>
+</div>
+<p>Through the <code class="docutils literal"><span class="pre">keys</span></code> argument we can override the existing column names.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;yellow&#39;</span><span class="p">])</span>
+<span class="gh">Out[42]: </span><span class="go"></span>
+<span class="go">   red  blue  yellow</span>
+<span class="go">0    0     0       0</span>
+<span class="go">1    1     1       1</span>
+<span class="go">2    2     2       4</span>
+<span class="go">3    3     3       5</span>
+</pre></div>
+</div>
+<p>Let&#8217;s consider now a variation on the very first example presented:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_group_keys2.png" src="_images/merging_concat_group_keys2.png" />
+<p>You can also pass a dict to <code class="docutils literal"><span class="pre">concat</span></code> in which case the dict keys will be used
+for the <code class="docutils literal"><span class="pre">keys</span></code> argument (unless other keys are specified):</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">pieces</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">df1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">df2</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">df3</span><span class="p">}</span>
+
+<span class="gp">In [46]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_dict.png" src="_images/merging_concat_dict.png" />
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_dict_keys.png" src="_images/merging_concat_dict_keys.png" />
+<p>The MultiIndex created has levels that are constructed from the passed keys and
+the index of the DataFrame pieces:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span>
+<span class="gh">Out[50]: </span><span class="go">FrozenList([[u&#39;z&#39;, u&#39;y&#39;], [4, 5, 6, 7, 8, 9, 10, 11]])</span>
+</pre></div>
+</div>
+<p>If you wish to specify other levels (as will occasionally be the case), you can
+do so using the <code class="docutils literal"><span class="pre">levels</span></code> argument:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">],</span>
+<span class="gp">   ....: </span>                <span class="n">levels</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">]],</span>
+<span class="gp">   ....: </span>                <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_key&#39;</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df3&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+
+<span class="gp">In [53]: </span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_concat_dict_keys_names.png" src="_images/merging_concat_dict_keys_names.png" />
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span>
+<span class="gh">Out[54]: </span><span class="go">FrozenList([[u&#39;z&#39;, u&#39;y&#39;, u&#39;x&#39;, u&#39;w&#39;], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]])</span>
+</pre></div>
+</div>
+<p>Yes, this is fairly esoteric, but is actually necessary for implementing things
+like GroupBy where the order of a categorical variable is meaningful.</p>
+</div>
+<div class="section" id="appending-rows-to-a-dataframe">
+<span id="merging-append-row"></span><h2>5.1.6. Appending rows to a DataFrame<a class="headerlink" href="#appending-rows-to-a-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>While not especially efficient (since a new object must be created), you can
+append a single row to a DataFrame by passing a Series or dict to <code class="docutils literal"><span class="pre">append</span></code>,
+which returns a new DataFrame as above.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [55]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;X0&#39;</span><span class="p">,</span> <span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">])</span>
+
+<span class="gp">In [56]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">s2</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append_series_as_row.png" src="_images/merging_append_series_as_row.png" />
+<p>You should use <code class="docutils literal"><span class="pre">ignore_index</span></code> with this method to instruct DataFrame to
+discard its index. If you wish to preserve the index, you should construct an
+appropriately-indexed DataFrame and append or concatenate those objects.</p>
+<p>You can also pass a list of dicts or Series:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">dicts</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+<span class="gp">   ....: </span>         <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}]</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [59]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dicts</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dicts</span><span class="p">)],</span> <span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;dicts&#39;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
+
+<span class="gp">In [61]: </span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="_images/merging_append_dits.png" src="_images/merging_append_dits.png" />
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="merging2.html" class="btn btn-neutral float-right" title="5.2. Database-style DataFrame joining/merging" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="merging.html" class="btn btn-neutral" title="5. Merge, join, and concatenate" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

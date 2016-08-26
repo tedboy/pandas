@@ -18,4 +18,5 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    groupby.rst
    computation.rst
    advanced.rst
+   merging.rst
 

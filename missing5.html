@@ -209,6 +209,35 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="merging.html">5. Merge, join, and concatenate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merging1.html">5.1. Concatenating objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#set-logic-on-the-other-axes">5.1.1. Set logic on the other axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#concatenating-using-append">5.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#ignoring-indexes-on-the-concatenation-axis">5.1.3. Ignoring indexes on the concatenation axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#concatenating-with-mixed-ndims">5.1.4. Concatenating with mixed ndims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#more-concatenating-with-group-keys">5.1.5. More concatenating with group keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#appending-rows-to-a-dataframe">5.1.6. Appending rows to a DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging2.html">5.2. Database-style DataFrame joining/merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#brief-primer-on-merge-methods-relational-algebra">5.2.1. Brief primer on merge methods (relational algebra)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#the-merge-indicator">5.2.2. The merge indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-on-index">5.2.3. Joining on index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-key-columns-on-an-index">5.2.4. Joining key columns on an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-a-single-index-to-a-multi-index">5.2.5. Joining a single Index to a Multi-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-with-two-multi-indexes">5.2.6. Joining with two multi-indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#overlapping-value-columns">5.2.7. Overlapping value columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-multiple-dataframe-or-panel-objects">5.2.8. Joining multiple DataFrame or Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#merging-together-values-within-series-or-dataframe-columns">5.2.9. Merging together values within Series or DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging3.html">5.3. Timeseries friendly merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-ordered-data">5.3.1. Merging Ordered Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-asof">5.3.2. Merging AsOf</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -528,7 +557,7 @@ performs linear interpolation at missing datapoints.</p>
 <span class="gh">Out[22]: </span><span class="go">100</span>
 
 <span class="gp">In [23]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[23]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d2ca88550&gt;</span>
+<span class="gh">Out[23]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b8c5cb2c850&gt;</span>
 </pre></div>
 </div>
 <img alt="_images/series_interpolate.png" src="_images/series_interpolate.png" />
@@ -693,7 +722,7 @@ the degree or order of the approximation:</p>
 <span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">})</span>
 
 <span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[44]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d2c466810&gt;</span>
+<span class="gh">Out[44]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b8c5d0cf590&gt;</span>
 </pre></div>
 </div>
 <img alt="_images/compare_interpolations.png" src="_images/compare_interpolations.png" />

@@ -209,6 +209,35 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="merging.html">5. Merge, join, and concatenate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merging1.html">5.1. Concatenating objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#set-logic-on-the-other-axes">5.1.1. Set logic on the other axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#concatenating-using-append">5.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#ignoring-indexes-on-the-concatenation-axis">5.1.3. Ignoring indexes on the concatenation axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#concatenating-with-mixed-ndims">5.1.4. Concatenating with mixed ndims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#more-concatenating-with-group-keys">5.1.5. More concatenating with group keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging1.html#appending-rows-to-a-dataframe">5.1.6. Appending rows to a DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging2.html">5.2. Database-style DataFrame joining/merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#brief-primer-on-merge-methods-relational-algebra">5.2.1. Brief primer on merge methods (relational algebra)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#the-merge-indicator">5.2.2. The merge indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-on-index">5.2.3. Joining on index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-key-columns-on-an-index">5.2.4. Joining key columns on an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-a-single-index-to-a-multi-index">5.2.5. Joining a single Index to a Multi-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-with-two-multi-indexes">5.2.6. Joining with two multi-indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#overlapping-value-columns">5.2.7. Overlapping value columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#joining-multiple-dataframe-or-panel-objects">5.2.8. Joining multiple DataFrame or Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging2.html#merging-together-values-within-series-or-dataframe-columns">5.2.9. Merging together values within Series or DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merging3.html">5.3. Timeseries friendly merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-ordered-data">5.3.1. Merging Ordered Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merging3.html#merging-asof">5.3.2. Merging AsOf</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -607,37 +636,37 @@ the values in column 1 where the group is &#8220;B&#8221; are 3 higher on averag
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">()</span>
 <span class="gh">Out[44]: </span><span class="go"></span>
 <span class="go">OrderedDict([(&#39;A&#39;,</span>
-<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cae03d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca60050&gt;],</span>
-<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cac6f10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca88f50&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2c9f8310&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2c9e2410&gt;],</span>
-<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2ca6ac10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cae1750&gt;],</span>
+<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce64a50&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cdee5d0&gt;],</span>
+<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce54610&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce16690&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cd7fad0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cd57d50&gt;],</span>
+<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5cdf8410&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce6edd0&gt;],</span>
 <span class="go">               &#39;means&#39;: [],</span>
-<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2ca7e110&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cae1110&gt;],</span>
-<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2c9af890&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cad7210&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca57ed0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca022d0&gt;]}),</span>
+<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce03790&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce6e790&gt;],</span>
+<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce64490&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce5f890&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cde50d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cd88950&gt;]}),</span>
 <span class="go">             (&#39;B&#39;,</span>
-<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cae06d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb0e590&gt;],</span>
-<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2caf8c10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb04290&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19850&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19e90&gt;],</span>
-<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cb04f10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb24b50&gt;],</span>
+<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce64d50&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce91c10&gt;],</span>
+<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce872d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce87910&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce9ded0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cea7550&gt;],</span>
+<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce915d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ceb4210&gt;],</span>
 <span class="go">               &#39;means&#39;: [],</span>
-<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cb048d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb24510&gt;],</span>
-<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2caf82d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2caf85d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb0eb90&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19210&gt;]})])</span>
+<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce87f50&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5cea7b90&gt;],</span>
+<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b8c5ce7c950&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce7cc50&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce9d250&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b8c5ce9d890&gt;]})])</span>
 </pre></div>
 </div>
 <img alt="_images/groupby_boxplot.png" src="_images/groupby_boxplot.png" />
