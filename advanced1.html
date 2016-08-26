@@ -1,0 +1,675 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. Hierarchical indexing (MultiIndex) &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="4. MultiIndex / Advanced Indexing" href="advanced.html"/>
+        <link rel="next" title="4.2. Advanced indexing with hierarchical index" href="advanced2.html"/>
+        <link rel="prev" title="4. MultiIndex / Advanced Indexing" href="advanced.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing5.html">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="missing5.html#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="computation.html">3. Computational tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="computation1.html">3.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#percent-change">3.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#covariance">3.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#correlation">3.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#data-ranking">3.1.4. Data ranking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation2.html">3.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#method-summary">3.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#rolling-windows">3.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling">3.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling-vs-resampling">3.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#centering-windows">3.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#binary-window-functions">3.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#computing-rolling-pairwise-covariances-and-correlations">3.2.7. Computing rolling pairwise covariances and correlations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation3.html">3.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-multiple-functions-at-once">3.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-different-functions-to-dataframe-columns">3.3.2. Applying different functions to DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation4.html">3.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation4.html#method-summary">3.4.1. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation5.html">3.5. Exponentially Weighted Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="advanced.html">4. MultiIndex / Advanced Indexing</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-multiindex-hierarchical-index-object">4.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reconstructing-the-level-labels">4.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-indexing-on-axis-with-multiindex">4.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-alignment-and-using-reindex">4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced2.html">4.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#using-slicers">4.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#cross-section">4.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#advanced-reindexing-and-alignment">4.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#swapping-levels-with-swaplevel">4.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#reordering-levels-with-reorder-levels">4.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced3.html">4.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced4.html">4.4. Take Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced5.html">4.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#categoricalindex">4.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#int64index-and-rangeindex">4.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#float64index">4.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="advanced.html">4. MultiIndex / Advanced Indexing</a> &raquo;</li>
+        
+      <li>4.1. Hierarchical indexing (MultiIndex)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/advanced1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hierarchical-indexing-multiindex">
+<span id="advanced-hierarchical"></span><h1>4.1. Hierarchical indexing (MultiIndex)<a class="headerlink" href="#hierarchical-indexing-multiindex" title="Permalink to this headline">¶</a></h1>
+<p>Hierarchical / Multi-level indexing is very exciting as it opens the door to some
+quite sophisticated data analysis and manipulation, especially for working with
+higher dimensional data. In essence, it enables you to store and manipulate
+data with an arbitrary number of dimensions in lower dimensional data
+structures like Series (1d) and DataFrame (2d).</p>
+<p>In this section, we will show what exactly we mean by &#8220;hierarchical&#8221; indexing
+and how it integrates with the all of the pandas indexing functionality
+described above and in prior sections. Later, when discussing <a class="reference internal" href="groupby.html#groupby"><span>group by</span></a> and <span class="xref std std-ref">pivoting and reshaping data</span>, we&#8217;ll show
+non-trivial applications to illustrate how it aids in structuring data for
+analysis.</p>
+<p>See the <span class="xref std std-ref">cookbook</span> for some advanced strategies</p>
+<div class="section" id="creating-a-multiindex-hierarchical-index-object">
+<h2>4.1.1. Creating a MultiIndex (hierarchical index) object<a class="headerlink" href="#creating-a-multiindex-hierarchical-index-object" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">MultiIndex</span></code> object is the hierarchical analogue of the standard
+<code class="docutils literal"><span class="pre">Index</span></code> object which typically stores the axis labels in pandas objects. You
+can think of <code class="docutils literal"><span class="pre">MultiIndex</span></code> an array of tuples where each tuple is unique. A
+<code class="docutils literal"><span class="pre">MultiIndex</span></code> can be created from a list of arrays (using
+<code class="docutils literal"><span class="pre">MultiIndex.from_arrays</span></code>), an array of tuples (using
+<code class="docutils literal"><span class="pre">MultiIndex.from_tuples</span></code>), or a crossed set of iterables (using
+<code class="docutils literal"><span class="pre">MultiIndex.from_product</span></code>).  The <code class="docutils literal"><span class="pre">Index</span></code> constructor will attempt to return
+a <code class="docutils literal"><span class="pre">MultiIndex</span></code> when it is passed a list of tuples.  The following examples
+demo different ways to initialize MultiIndexes.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">arrays</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">],</span>
+<span class="gp">   ...: </span>          <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]]</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">tuples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">arrays</span><span class="p">))</span>
+
+<span class="gp">In [3]: </span><span class="n">tuples</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">[(&#39;bar&#39;, &#39;one&#39;),</span>
+<span class="go"> (&#39;bar&#39;, &#39;two&#39;),</span>
+<span class="go"> (&#39;baz&#39;, &#39;one&#39;),</span>
+<span class="go"> (&#39;baz&#39;, &#39;two&#39;),</span>
+<span class="go"> (&#39;foo&#39;, &#39;one&#39;),</span>
+<span class="go"> (&#39;foo&#39;, &#39;two&#39;),</span>
+<span class="go"> (&#39;qux&#39;, &#39;one&#39;),</span>
+<span class="go"> (&#39;qux&#39;, &#39;two&#39;)]</span>
+
+<span class="gp">In [4]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">tuples</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">])</span>
+
+<span class="gp">In [5]: </span><span class="n">index</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">MultiIndex(levels=[[u&#39;bar&#39;, u&#39;baz&#39;, u&#39;foo&#39;, u&#39;qux&#39;], [u&#39;one&#39;, u&#39;two&#39;]],</span>
+<span class="go">           labels=[[0, 0, 1, 1, 2, 2, 3, 3], [0, 1, 0, 1, 0, 1, 0, 1]],</span>
+<span class="go">           names=[u&#39;first&#39;, u&#39;second&#39;])</span>
+
+<span class="gp">In [6]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">s</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">first  second</span>
+<span class="go">bar    one       0.469112</span>
+<span class="go">       two      -0.282863</span>
+<span class="go">baz    one      -1.509059</span>
+<span class="go">       two      -1.135632</span>
+<span class="go">foo    one       1.212112</span>
+<span class="go">       two      -0.173215</span>
+<span class="go">qux    one       0.119209</span>
+<span class="go">       two      -1.044236</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>When you want every pairing of the elements in two iterables, it can be easier
+to use the <code class="docutils literal"><span class="pre">MultiIndex.from_product</span></code> function:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">iterables</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">]]</span>
+
+<span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span><span class="n">iterables</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">])</span>
+<span class="gh">Out[9]: </span><span class="go"></span>
+<span class="go">MultiIndex(levels=[[u&#39;bar&#39;, u&#39;baz&#39;, u&#39;foo&#39;, u&#39;qux&#39;], [u&#39;one&#39;, u&#39;two&#39;]],</span>
+<span class="go">           labels=[[0, 0, 1, 1, 2, 2, 3, 3], [0, 1, 0, 1, 0, 1, 0, 1]],</span>
+<span class="go">           names=[u&#39;first&#39;, u&#39;second&#39;])</span>
+</pre></div>
+</div>
+<p>As a convenience, you can pass a list of arrays directly into Series or
+DataFrame to construct a MultiIndex automatically:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">]),</span>
+<span class="gp">   ....: </span>          <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">])]</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [11]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">arrays</span><span class="p">)</span>
+
+<span class="gp">In [12]: </span><span class="n">s</span>
+<span class="gh">Out[12]: </span><span class="go"></span>
+<span class="go">bar  one   -0.861849</span>
+<span class="go">     two   -2.104569</span>
+<span class="go">baz  one   -0.494929</span>
+<span class="go">     two    1.071804</span>
+<span class="go">foo  one    0.721555</span>
+<span class="go">     two   -0.706771</span>
+<span class="go">qux  one   -1.039575</span>
+<span class="go">     two    0.271860</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [13]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">arrays</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="n">df</span>
+<span class="gh">Out[14]: </span><span class="go"></span>
+<span class="go">                0         1         2         3</span>
+<span class="go">bar one -0.424972  0.567020  0.276232 -1.087401</span>
+<span class="go">    two -0.673690  0.113648 -1.478427  0.524988</span>
+<span class="go">baz one  0.404705  0.577046 -1.715002 -1.039268</span>
+<span class="go">    two -0.370647 -1.157892 -1.344312  0.844885</span>
+<span class="go">foo one  1.075770 -0.109050  1.643563 -1.469388</span>
+<span class="go">    two  0.357021 -0.674600 -1.776904 -0.968914</span>
+<span class="go">qux one -1.294524  0.413738  0.276662 -0.472035</span>
+<span class="go">    two -0.013960 -0.362543 -0.006154 -0.923061</span>
+</pre></div>
+</div>
+<p>All of the <code class="docutils literal"><span class="pre">MultiIndex</span></code> constructors accept a <code class="docutils literal"><span class="pre">names</span></code> argument which stores
+string names for the levels themselves. If no names are provided, <code class="docutils literal"><span class="pre">None</span></code> will
+be assigned:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span>
+<span class="gh">Out[15]: </span><span class="go">FrozenList([None, None])</span>
+</pre></div>
+</div>
+<p>This index can back any axis of a pandas object, and the number of <strong>levels</strong>
+of the index is up to you:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+
+<span class="gp">In [17]: </span><span class="n">df</span>
+<span class="gh">Out[17]: </span><span class="go"></span>
+<span class="go">first        bar                 baz                 foo                 qux  \</span>
+<span class="go">second       one       two       one       two       one       two       one   </span>
+<span class="go">A       0.895717  0.805244 -1.206412  2.565646  1.431256  1.340309 -1.170299   </span>
+<span class="go">B       0.410835  0.813850  0.132003 -0.827317 -0.076467 -1.187678  1.130127   </span>
+<span class="go">C      -1.413681  1.607920  1.024180  0.569605  0.875906 -2.211372  0.974466   </span>
+
+<span class="go">first             </span>
+<span class="go">second       two  </span>
+<span class="go">A      -0.226169  </span>
+<span class="go">B      -1.436737  </span>
+<span class="go">C      -2.006747  </span>
+
+<span class="gp">In [18]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">[:</span><span class="mi">6</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">index</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
+<span class="gh">Out[18]: </span><span class="go"></span>
+<span class="go">first              bar                 baz                 foo          </span>
+<span class="go">second             one       two       one       two       one       two</span>
+<span class="go">first second                                                            </span>
+<span class="go">bar   one    -0.410001 -0.078638  0.545952 -1.219217 -1.226825  0.769804</span>
+<span class="go">      two    -1.281247 -0.727707 -0.121306 -0.097883  0.695775  0.341734</span>
+<span class="go">baz   one     0.959726 -1.110336 -0.619976  0.149748 -0.732339  0.687738</span>
+<span class="go">      two     0.176444  0.403310 -0.154951  0.301624 -2.179861 -1.369849</span>
+<span class="go">foo   one    -0.954208  1.462696 -1.743161 -0.826591 -0.345352  1.314232</span>
+<span class="go">      two     0.690579  0.995761  2.396780  0.014871  3.357427 -0.317441</span>
+</pre></div>
+</div>
+<p>We&#8217;ve &#8220;sparsified&#8221; the higher levels of the indexes to make the console output a
+bit easier on the eyes.</p>
+<p>It&#8217;s worth keeping in mind that there&#8217;s nothing preventing you from using
+tuples as atomic labels on an axis:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">tuples</span><span class="p">)</span>
+<span class="gh">Out[19]: </span><span class="go"></span>
+<span class="go">(bar, one)   -1.236269</span>
+<span class="go">(bar, two)    0.896171</span>
+<span class="go">(baz, one)   -0.487602</span>
+<span class="go">(baz, two)   -0.082240</span>
+<span class="go">(foo, one)   -2.182937</span>
+<span class="go">(foo, two)    0.380396</span>
+<span class="go">(qux, one)    0.084844</span>
+<span class="go">(qux, two)    0.432390</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>The reason that the <code class="docutils literal"><span class="pre">MultiIndex</span></code> matters is that it can allow you to do
+grouping, selection, and reshaping operations as we will describe below and in
+subsequent areas of the documentation. As you will see in later sections, you
+can find yourself working with hierarchically-indexed data without creating a
+<code class="docutils literal"><span class="pre">MultiIndex</span></code> explicitly yourself. However, when loading data from a file, you
+may wish to generate your own <code class="docutils literal"><span class="pre">MultiIndex</span></code> when preparing the data set.</p>
+<p>Note that how the index is displayed by be controlled using the
+<code class="docutils literal"><span class="pre">multi_sparse</span></code> option in <code class="docutils literal"><span class="pre">pandas.set_printoptions</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.multi_sparse&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="gp">In [21]: </span><span class="n">df</span>
+<span class="gh">Out[21]: </span><span class="go"></span>
+<span class="go">first        bar       bar       baz       baz       foo       foo       qux  \</span>
+<span class="go">second       one       two       one       two       one       two       one   </span>
+<span class="go">A       0.895717  0.805244 -1.206412  2.565646  1.431256  1.340309 -1.170299   </span>
+<span class="go">B       0.410835  0.813850  0.132003 -0.827317 -0.076467 -1.187678  1.130127   </span>
+<span class="go">C      -1.413681  1.607920  1.024180  0.569605  0.875906 -2.211372  0.974466   </span>
+
+<span class="go">first        qux  </span>
+<span class="go">second       two  </span>
+<span class="go">A      -0.226169  </span>
+<span class="go">B      -1.436737  </span>
+<span class="go">C      -2.006747  </span>
+
+<span class="gp">In [22]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.multi_sparse&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reconstructing-the-level-labels">
+<span id="advanced-get-level-values"></span><h2>4.1.2. Reconstructing the level labels<a class="headerlink" href="#reconstructing-the-level-labels" title="Permalink to this headline">¶</a></h2>
+<p>The method <code class="docutils literal"><span class="pre">get_level_values</span></code> will return a vector of the labels for each
+location at a particular level:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[23]: </span><span class="go">Index([u&#39;bar&#39;, u&#39;bar&#39;, u&#39;baz&#39;, u&#39;baz&#39;, u&#39;foo&#39;, u&#39;foo&#39;, u&#39;qux&#39;, u&#39;qux&#39;], dtype=&#39;object&#39;, name=u&#39;first&#39;)</span>
+
+<span class="gp">In [24]: </span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">)</span>
+<span class="gh">Out[24]: </span><span class="go">Index([u&#39;one&#39;, u&#39;two&#39;, u&#39;one&#39;, u&#39;two&#39;, u&#39;one&#39;, u&#39;two&#39;, u&#39;one&#39;, u&#39;two&#39;], dtype=&#39;object&#39;, name=u&#39;second&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-indexing-on-axis-with-multiindex">
+<h2>4.1.3. Basic indexing on axis with MultiIndex<a class="headerlink" href="#basic-indexing-on-axis-with-multiindex" title="Permalink to this headline">¶</a></h2>
+<p>One of the important features of hierarchical indexing is that you can select
+data by a &#8220;partial&#8221; label identifying a subgroup in the data. <strong>Partial</strong>
+selection &#8220;drops&#8221; levels of the hierarchical index in the result in a
+completely analogous way to selecting a column in a regular DataFrame:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">]</span>
+<span class="gh">Out[25]: </span><span class="go"></span>
+<span class="go">second       one       two</span>
+<span class="go">A       0.895717  0.805244</span>
+<span class="go">B       0.410835  0.813850</span>
+<span class="go">C      -1.413681  1.607920</span>
+
+<span class="gp">In [26]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">]</span>
+<span class="gh">Out[26]: </span><span class="go"></span>
+<span class="go">A    0.895717</span>
+<span class="go">B    0.410835</span>
+<span class="go">C   -1.413681</span>
+<span class="go">Name: (bar, one), dtype: float64</span>
+
+<span class="gp">In [27]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;one&#39;</span><span class="p">]</span>
+<span class="gh">Out[27]: </span><span class="go"></span>
+<span class="go">A    0.895717</span>
+<span class="go">B    0.410835</span>
+<span class="go">C   -1.413681</span>
+<span class="go">Name: one, dtype: float64</span>
+
+<span class="gp">In [28]: </span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;qux&#39;</span><span class="p">]</span>
+<span class="gh">Out[28]: </span><span class="go"></span>
+<span class="go">one   -1.039575</span>
+<span class="go">two    0.271860</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="advanced2.html#advanced-xs"><span>Cross-section with hierarchical index</span></a> for how to select
+on a deeper level.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The repr of a <code class="docutils literal"><span class="pre">MultiIndex</span></code> shows ALL the defined levels of an index, even
+if the they are not actually used. When slicing an index, you may notice this.
+For example:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># original multi-index</span>
+<span class="gp">In [29]: </span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
+<span class="go">MultiIndex(levels=[[u&#39;bar&#39;, u&#39;baz&#39;, u&#39;foo&#39;, u&#39;qux&#39;], [u&#39;one&#39;, u&#39;two&#39;]],</span>
+<span class="go">           labels=[[0, 0, 1, 1, 2, 2, 3, 3], [0, 1, 0, 1, 0, 1, 0, 1]],</span>
+<span class="go">           names=[u&#39;first&#39;, u&#39;second&#39;])</span>
+
+<span class="go"># sliced</span>
+<span class="gp">In [30]: </span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;qux&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span>
+<span class="gh">Out[30]: </span><span class="go"></span>
+<span class="go">MultiIndex(levels=[[u&#39;bar&#39;, u&#39;baz&#39;, u&#39;foo&#39;, u&#39;qux&#39;], [u&#39;one&#39;, u&#39;two&#39;]],</span>
+<span class="go">           labels=[[2, 2, 3, 3], [0, 1, 0, 1]],</span>
+<span class="go">           names=[u&#39;first&#39;, u&#39;second&#39;])</span>
+</pre></div>
+</div>
+<p>This is done to avoid a recomputation of the levels in order to make slicing
+highly performant. If you want to see the actual used levels.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;qux&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+<span class="gh">Out[31]: </span><span class="go">array([(&#39;foo&#39;, &#39;one&#39;), (&#39;foo&#39;, &#39;two&#39;), (&#39;qux&#39;, &#39;one&#39;), (&#39;qux&#39;, &#39;two&#39;)], dtype=object)</span>
+
+<span class="go"># for a specific level</span>
+<span class="gp">In [32]: </span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;qux&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[32]: </span><span class="go">Index([u&#39;foo&#39;, u&#39;foo&#39;, u&#39;qux&#39;, u&#39;qux&#39;], dtype=&#39;object&#39;, name=u&#39;first&#39;)</span>
+</pre></div>
+</div>
+<p>To reconstruct the multiindex with only the used levels</p>
+<div class="last highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;qux&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="gh">Out[33]: </span><span class="go"></span>
+<span class="go">MultiIndex(levels=[[u&#39;foo&#39;, u&#39;qux&#39;], [u&#39;one&#39;, u&#39;two&#39;]],</span>
+<span class="go">           labels=[[0, 0, 1, 1], [0, 1, 0, 1]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-alignment-and-using-reindex">
+<h2>4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code><a class="headerlink" href="#data-alignment-and-using-reindex" title="Permalink to this headline">¶</a></h2>
+<p>Operations between differently-indexed objects having <code class="docutils literal"><span class="pre">MultiIndex</span></code> on the
+axes will work as you expect; data alignment will work the same as an Index of
+tuples:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">s</span> <span class="o">+</span> <span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[34]: </span><span class="go"></span>
+<span class="go">bar  one   -1.723698</span>
+<span class="go">     two   -4.209138</span>
+<span class="go">baz  one   -0.989859</span>
+<span class="go">     two    2.143608</span>
+<span class="go">foo  one    1.443110</span>
+<span class="go">     two   -1.413542</span>
+<span class="go">qux  one         NaN</span>
+<span class="go">     two         NaN</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [35]: </span><span class="n">s</span> <span class="o">+</span> <span class="n">s</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[35]: </span><span class="go"></span>
+<span class="go">bar  one   -1.723698</span>
+<span class="go">     two         NaN</span>
+<span class="go">baz  one   -0.989859</span>
+<span class="go">     two         NaN</span>
+<span class="go">foo  one    1.443110</span>
+<span class="go">     two         NaN</span>
+<span class="go">qux  one   -2.079150</span>
+<span class="go">     two         NaN</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">reindex</span></code> can be called with another <code class="docutils literal"><span class="pre">MultiIndex</span></code> or even a list or array
+of tuples:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gh">Out[36]: </span><span class="go"></span>
+<span class="go">first  second</span>
+<span class="go">bar    one      -0.861849</span>
+<span class="go">       two      -2.104569</span>
+<span class="go">baz    one      -0.494929</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [37]: </span><span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">([(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;qux&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">)])</span>
+<span class="gh">Out[37]: </span><span class="go"></span>
+<span class="go">foo  two   -0.706771</span>
+<span class="go">bar  one   -0.861849</span>
+<span class="go">qux  one   -1.039575</span>
+<span class="go">baz  one   -0.494929</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advanced2.html" class="btn btn-neutral float-right" title="4.2. Advanced indexing with hierarchical index" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="advanced.html" class="btn btn-neutral" title="4. MultiIndex / Advanced Indexing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -26,7 +26,7 @@ Group By: split-apply-combine
    np.random.seed(123456)
    np.set_printoptions(precision=4, suppress=True)
    import pandas as pd
-   pd.options.display.max_rows = 15
+   pd.options.display.max_rows = 8
    import matplotlib
    matplotlib.style.use('ggplot')
    import matplotlib.pyplot as plt

@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.5. Index Types &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="4. MultiIndex / Advanced Indexing" href="advanced.html"/>
+        <link rel="prev" title="4.4. Take Methods" href="advanced4.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing5.html">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="missing5.html#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="computation.html">3. Computational tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="computation1.html">3.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#percent-change">3.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#covariance">3.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#correlation">3.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#data-ranking">3.1.4. Data ranking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation2.html">3.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#method-summary">3.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#rolling-windows">3.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling">3.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling-vs-resampling">3.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#centering-windows">3.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#binary-window-functions">3.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#computing-rolling-pairwise-covariances-and-correlations">3.2.7. Computing rolling pairwise covariances and correlations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation3.html">3.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-multiple-functions-at-once">3.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-different-functions-to-dataframe-columns">3.3.2. Applying different functions to DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation4.html">3.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation4.html#method-summary">3.4.1. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation5.html">3.5. Exponentially Weighted Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="advanced.html">4. MultiIndex / Advanced Indexing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="advanced1.html">4.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#creating-a-multiindex-hierarchical-index-object">4.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#reconstructing-the-level-labels">4.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#basic-indexing-on-axis-with-multiindex">4.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#data-alignment-and-using-reindex">4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced2.html">4.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#using-slicers">4.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#cross-section">4.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#advanced-reindexing-and-alignment">4.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#swapping-levels-with-swaplevel">4.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#reordering-levels-with-reorder-levels">4.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced3.html">4.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced4.html">4.4. Take Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#categoricalindex">4.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#int64index-and-rangeindex">4.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#float64index">4.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="advanced.html">4. MultiIndex / Advanced Indexing</a> &raquo;</li>
+        
+      <li>4.5. Index Types</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/advanced5.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="index-types">
+<span id="indexing-index-types"></span><h1>4.5. Index Types<a class="headerlink" href="#index-types" title="Permalink to this headline">¶</a></h1>
+<p>We have discussed <code class="docutils literal"><span class="pre">MultiIndex</span></code> in the previous sections pretty extensively. <code class="docutils literal"><span class="pre">DatetimeIndex</span></code> and <code class="docutils literal"><span class="pre">PeriodIndex</span></code>
+are shown <span class="xref std std-ref">here</span>. <code class="docutils literal"><span class="pre">TimedeltaIndex</span></code> are <span class="xref std std-ref">here</span>.</p>
+<p>In the following sub-sections we will highlite some other index types.</p>
+<div class="section" id="categoricalindex">
+<span id="indexing-categoricalindex"></span><h2>4.5.1. CategoricalIndex<a class="headerlink" href="#categoricalindex" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.16.1.</span></p>
+</div>
+<p>We introduce a <code class="docutils literal"><span class="pre">CategoricalIndex</span></code>, a new type of index object that is useful for supporting
+indexing with duplicates. This is a container around a <code class="docutils literal"><span class="pre">Categorical</span></code> (introduced in v0.15.0)
+and allows efficient indexing and storage of an index with a large number of duplicated elements. Prior to 0.16.1,
+setting the index of a <code class="docutils literal"><span class="pre">DataFrame/Series</span></code> with a <code class="docutils literal"><span class="pre">category</span></code> dtype would convert this to regular object-based <code class="docutils literal"><span class="pre">Index</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+<span class="gp">   ...: </span>                   <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;aabbca&#39;</span><span class="p">)})</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;cab&#39;</span><span class="p">))</span>
+
+<span class="gp">In [3]: </span><span class="n">df</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">   A  B</span>
+<span class="go">0  0  a</span>
+<span class="go">1  1  a</span>
+<span class="go">2  2  b</span>
+<span class="go">3  3  b</span>
+<span class="go">4  4  c</span>
+<span class="go">5  5  a</span>
+
+<span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">A       int64</span>
+<span class="go">B    category</span>
+<span class="go">dtype: object</span>
+
+<span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
+<span class="gh">Out[5]: </span><span class="go">Index([u&#39;c&#39;, u&#39;a&#39;, u&#39;b&#39;], dtype=&#39;object&#39;)</span>
+</pre></div>
+</div>
+<p>Setting the index, will create create a <code class="docutils literal"><span class="pre">CategoricalIndex</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">df2</span><span class="o">.</span><span class="n">index</span>
+<span class="gh">Out[7]: </span><span class="go">CategoricalIndex([u&#39;a&#39;, u&#39;a&#39;, u&#39;b&#39;, u&#39;b&#39;, u&#39;c&#39;, u&#39;a&#39;], categories=[u&#39;c&#39;, u&#39;a&#39;, u&#39;b&#39;], ordered=False, name=u&#39;B&#39;, dtype=&#39;category&#39;)</span>
+</pre></div>
+</div>
+<p>Indexing with <code class="docutils literal"><span class="pre">__getitem__/.iloc/.loc/.ix</span></code> works similarly to an <code class="docutils literal"><span class="pre">Index</span></code> with duplicates.
+The indexers MUST be in the category or the operation will raise.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="gh">Out[8]: </span><span class="go"></span>
+<span class="go">   A</span>
+<span class="go">B   </span>
+<span class="go">a  0</span>
+<span class="go">a  1</span>
+<span class="go">a  5</span>
+</pre></div>
+</div>
+<p>These PRESERVE the <code class="docutils literal"><span class="pre">CategoricalIndex</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="gh">Out[9]: </span><span class="go">CategoricalIndex([u&#39;a&#39;, u&#39;a&#39;, u&#39;a&#39;], categories=[u&#39;c&#39;, u&#39;a&#39;, u&#39;b&#39;], ordered=False, name=u&#39;B&#39;, dtype=&#39;category&#39;)</span>
+</pre></div>
+</div>
+<p>Sorting will order by the order of the categories</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">df2</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="gh">Out[10]: </span><span class="go"></span>
+<span class="go">   A</span>
+<span class="go">B   </span>
+<span class="go">c  4</span>
+<span class="go">a  0</span>
+<span class="go">a  1</span>
+<span class="go">a  5</span>
+<span class="go">b  2</span>
+<span class="go">b  3</span>
+</pre></div>
+</div>
+<p>Groupby operations on the index will preserve the index nature as well</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[11]: </span><span class="go"></span>
+<span class="go">   A</span>
+<span class="go">B   </span>
+<span class="go">c  4</span>
+<span class="go">a  6</span>
+<span class="go">b  5</span>
+
+<span class="gp">In [12]: </span><span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+<span class="gh">Out[12]: </span><span class="go">CategoricalIndex([u&#39;c&#39;, u&#39;a&#39;, u&#39;b&#39;], categories=[u&#39;c&#39;, u&#39;a&#39;, u&#39;b&#39;], ordered=False, name=u&#39;B&#39;, dtype=&#39;category&#39;)</span>
+</pre></div>
+</div>
+<p>Reindexing operations, will return a resulting index based on the type of the passed
+indexer, meaning that passing a list will return a plain-old-<code class="docutils literal"><span class="pre">Index</span></code>; indexing with
+a <code class="docutils literal"><span class="pre">Categorical</span></code> will return a <code class="docutils literal"><span class="pre">CategoricalIndex</span></code>, indexed according to the categories
+of the PASSED <code class="docutils literal"><span class="pre">Categorical</span></code> dtype. This allows one to arbitrarly index these even with
+values NOT in the categories, similarly to how you can reindex ANY pandas index.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">df2</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">])</span>
+<span class="gh">Out[13]: </span><span class="go"></span>
+<span class="go">     A</span>
+<span class="go">B     </span>
+<span class="go">a  0.0</span>
+<span class="go">a  1.0</span>
+<span class="go">a  5.0</span>
+<span class="go">e  NaN</span>
+
+<span class="gp">In [14]: </span><span class="n">df2</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span>
+<span class="gh">Out[14]: </span><span class="go">Index([u&#39;a&#39;, u&#39;a&#39;, u&#39;a&#39;, u&#39;e&#39;], dtype=&#39;object&#39;, name=u&#39;B&#39;)</span>
+
+<span class="gp">In [15]: </span><span class="n">df2</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">],</span><span class="n">categories</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)))</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
+<span class="go">     A</span>
+<span class="go">B     </span>
+<span class="go">a  0.0</span>
+<span class="go">a  1.0</span>
+<span class="go">a  5.0</span>
+<span class="go">e  NaN</span>
+
+<span class="gp">In [16]: </span><span class="n">df2</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">],</span><span class="n">categories</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)))</span><span class="o">.</span><span class="n">index</span>
+<span class="gh">Out[16]: </span><span class="go">CategoricalIndex([u&#39;a&#39;, u&#39;a&#39;, u&#39;a&#39;, u&#39;e&#39;], categories=[u&#39;a&#39;, u&#39;b&#39;, u&#39;c&#39;, u&#39;d&#39;, u&#39;e&#39;], ordered=False, name=u&#39;B&#39;, dtype=&#39;category&#39;)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Reshaping and Comparison operations on a <code class="docutils literal"><span class="pre">CategoricalIndex</span></code> must have the same categories
+or a <code class="docutils literal"><span class="pre">TypeError</span></code> will be raised.</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+                            <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;aabbca&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)})</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">df3</span><span class="o">.</span><span class="n">index</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">CategoricalIndex</span><span class="p">([</span><span class="s1">u&#39;a&#39;</span><span class="p">,</span> <span class="s1">u&#39;a&#39;</span><span class="p">,</span> <span class="s1">u&#39;b&#39;</span><span class="p">,</span> <span class="s1">u&#39;b&#39;</span><span class="p">,</span> <span class="s1">u&#39;c&#39;</span><span class="p">,</span> <span class="s1">u&#39;a&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">u&#39;a&#39;</span><span class="p">,</span> <span class="s1">u&#39;b&#39;</span><span class="p">,</span> <span class="s1">u&#39;c&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">u&#39;B&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">categories</span> <span class="n">must</span> <span class="n">match</span> <span class="n">existing</span> <span class="n">categories</span> <span class="n">when</span> <span class="n">appending</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="int64index-and-rangeindex">
+<span id="indexing-rangeindex"></span><h2>4.5.2. Int64Index and RangeIndex<a class="headerlink" href="#int64index-and-rangeindex" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Indexing on an integer-based Index with floats has been clarified in 0.18.0, for a summary of the changes, see <span class="xref std std-ref">here</span>.</p>
+</div>
+<p><code class="docutils literal"><span class="pre">Int64Index</span></code> is a fundamental basic index in <em>pandas</em>. This is an Immutable array implementing an ordered, sliceable set.
+Prior to 0.18.0, the <code class="docutils literal"><span class="pre">Int64Index</span></code> would provide the default index for all <code class="docutils literal"><span class="pre">NDFrame</span></code> objects.</p>
+<p><code class="docutils literal"><span class="pre">RangeIndex</span></code> is a sub-class of <code class="docutils literal"><span class="pre">Int64Index</span></code> added in version 0.18.0, now providing the default index for all <code class="docutils literal"><span class="pre">NDFrame</span></code> objects.
+<code class="docutils literal"><span class="pre">RangeIndex</span></code> is an optimized version of <code class="docutils literal"><span class="pre">Int64Index</span></code> that can represent a monotonic ordered set. These are analagous to python <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#typesseq-range">range types</a>.</p>
+</div>
+<div class="section" id="float64index">
+<span id="indexing-float64index"></span><h2>4.5.3. Float64Index<a class="headerlink" href="#float64index" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As of 0.14.0, <code class="docutils literal"><span class="pre">Float64Index</span></code> is backed by a native <code class="docutils literal"><span class="pre">float64</span></code> dtype
+array. Prior to 0.14.0, <code class="docutils literal"><span class="pre">Float64Index</span></code> was backed by an <code class="docutils literal"><span class="pre">object</span></code> dtype
+array. Using a <code class="docutils literal"><span class="pre">float64</span></code> dtype in the backend speeds up arithmetic
+operations by about 30x and boolean indexing operations on the
+<code class="docutils literal"><span class="pre">Float64Index</span></code> itself are about 2x as fast.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.13.0.</span></p>
+</div>
+<p>By default a <code class="docutils literal"><span class="pre">Float64Index</span></code> will be automatically created when passing floating, or mixed-integer-floating values in index creation.
+This enables a pure label-based slicing paradigm that makes <code class="docutils literal"><span class="pre">[],ix,loc</span></code> for scalar indexing and slicing work exactly the
+same.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">indexf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="gp">In [18]: </span><span class="n">indexf</span>
+<span class="gh">Out[18]: </span><span class="go">Float64Index([1.5, 2.0, 3.0, 4.5, 5.0], dtype=&#39;float64&#39;)</span>
+
+<span class="gp">In [19]: </span><span class="n">sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">indexf</span><span class="p">)</span>
+
+<span class="gp">In [20]: </span><span class="n">sf</span>
+<span class="gh">Out[20]: </span><span class="go"></span>
+<span class="go">1.5    0</span>
+<span class="go">2.0    1</span>
+<span class="go">3.0    2</span>
+<span class="go">4.5    3</span>
+<span class="go">5.0    4</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Scalar selection for <code class="docutils literal"><span class="pre">[],.ix,.loc</span></code> will always be label based. An integer will match an equal float index (e.g. <code class="docutils literal"><span class="pre">3</span></code> is equivalent to <code class="docutils literal"><span class="pre">3.0</span></code>)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">sf</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gh">Out[21]: </span><span class="go">2</span>
+
+<span class="gp">In [22]: </span><span class="n">sf</span><span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
+<span class="gh">Out[22]: </span><span class="go">2</span>
+
+<span class="gp">In [23]: </span><span class="n">sf</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gh">Out[23]: </span><span class="go">2</span>
+
+<span class="gp">In [24]: </span><span class="n">sf</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
+<span class="gh">Out[24]: </span><span class="go">2</span>
+
+<span class="gp">In [25]: </span><span class="n">sf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gh">Out[25]: </span><span class="go">2</span>
+
+<span class="gp">In [26]: </span><span class="n">sf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
+<span class="gh">Out[26]: </span><span class="go">2</span>
+</pre></div>
+</div>
+<p>The only positional indexing is via <code class="docutils literal"><span class="pre">iloc</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">sf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gh">Out[27]: </span><span class="go">3</span>
+</pre></div>
+</div>
+<p>A scalar index that is not found will raise <code class="docutils literal"><span class="pre">KeyError</span></code></p>
+<p>Slicing is ALWAYS on the values of the index, for <code class="docutils literal"><span class="pre">[],ix,loc</span></code> and ALWAYS positional with <code class="docutils literal"><span class="pre">iloc</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">sf</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="gh">Out[28]: </span><span class="go"></span>
+<span class="go">2.0    1</span>
+<span class="go">3.0    2</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [29]: </span><span class="n">sf</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
+<span class="go">2.0    1</span>
+<span class="go">3.0    2</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [30]: </span><span class="n">sf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="gh">Out[30]: </span><span class="go"></span>
+<span class="go">2.0    1</span>
+<span class="go">3.0    2</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [31]: </span><span class="n">sf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="gh">Out[31]: </span><span class="go"></span>
+<span class="go">3.0    2</span>
+<span class="go">4.5    3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>In float indexes, slicing using floats is allowed</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">sf</span><span class="p">[</span><span class="mf">2.1</span><span class="p">:</span><span class="mf">4.6</span><span class="p">]</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
+<span class="go">3.0    2</span>
+<span class="go">4.5    3</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [33]: </span><span class="n">sf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">2.1</span><span class="p">:</span><span class="mf">4.6</span><span class="p">]</span>
+<span class="gh">Out[33]: </span><span class="go"></span>
+<span class="go">3.0    2</span>
+<span class="go">4.5    3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>In non-float indexes, slicing using floats will raise a <code class="docutils literal"><span class="pre">TypeError</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))[</span><span class="mf">3.5</span><span class="p">]</span>
+<span class="go">TypeError: the label [3.5] is not a proper indexer for this index type (Int64Index)</span>
+
+<span class="gp">In [1]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))[</span><span class="mf">3.5</span><span class="p">:</span><span class="mf">4.5</span><span class="p">]</span>
+<span class="go">TypeError: the slice start [3.5] is not a proper indexer for this index type (Int64Index)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Using a scalar float indexer for <code class="docutils literal"><span class="pre">.iloc</span></code> has been removed in 0.18.0, so the following will raise a <code class="docutils literal"><span class="pre">TypeError</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>
+<span class="go">TypeError: cannot do positional indexing on &lt;class &#39;pandas.indexes.range.RangeIndex&#39;&gt; with these indexers [3.0] of &lt;type &#39;float&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Further the treatment of <code class="docutils literal"><span class="pre">.ix</span></code> with a float indexer on a non-float index, will be label based, and thus coerce the index.</p>
+<div class="last highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">))</span>
+
+<span class="gp">In [35]: </span><span class="n">s2</span>
+<span class="gh">Out[35]: </span><span class="go"></span>
+<span class="go">a    1</span>
+<span class="go">b    2</span>
+<span class="go">c    3</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [36]: </span><span class="n">s2</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="gp">In [37]: </span><span class="n">s2</span>
+<span class="gh">Out[37]: </span><span class="go"></span>
+<span class="go">a       1</span>
+<span class="go">b       2</span>
+<span class="go">c       3</span>
+<span class="go">1.0    10</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+</div>
+<p>Here is a typical use-case for using this type of indexing. Imagine that you have a somewhat
+irregular timedelta-like indexing scheme, but the data is recorded as floats. This could for
+example be millisecond offsets.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">dfir</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">   ....: </span>                               <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">250.0</span><span class="p">,</span>
+<span class="gp">   ....: </span>                               <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;AB&#39;</span><span class="p">)),</span>
+<span class="gp">   ....: </span>                  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">   ....: </span>                               <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mf">250.1</span><span class="p">,</span>
+<span class="gp">   ....: </span>                               <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;AB&#39;</span><span class="p">))])</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [39]: </span><span class="n">dfir</span>
+<span class="gh">Out[39]: </span><span class="go"></span>
+<span class="go">               A         B</span>
+<span class="go">0.0     0.997289 -1.693316</span>
+<span class="go">250.0  -0.179129 -1.598062</span>
+<span class="go">500.0   0.936914  0.912560</span>
+<span class="go">750.0  -1.003401  1.632781</span>
+<span class="go">...          ...       ...</span>
+<span class="go">1500.6 -2.281374  0.760010</span>
+<span class="go">1750.7 -0.742532  1.533318</span>
+<span class="go">2000.8  2.495362 -0.432771</span>
+<span class="go">2250.9 -0.068954  0.043520</span>
+
+<span class="go">[11 rows x 2 columns]</span>
+</pre></div>
+</div>
+<p>Selection operations then will always work on a value basis, for all selection operators.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [40]: </span><span class="n">dfir</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mf">1000.4</span><span class="p">]</span>
+<span class="gh">Out[40]: </span><span class="go"></span>
+<span class="go">               A         B</span>
+<span class="go">0.0     0.997289 -1.693316</span>
+<span class="go">250.0  -0.179129 -1.598062</span>
+<span class="go">500.0   0.936914  0.912560</span>
+<span class="go">750.0  -1.003401  1.632781</span>
+<span class="go">1000.0 -0.724626  0.178219</span>
+<span class="go">1000.4  0.310610 -0.108002</span>
+
+<span class="gp">In [41]: </span><span class="n">dfir</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1001</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="gh">Out[41]: </span><span class="go"></span>
+<span class="go">0.0       0.997289</span>
+<span class="go">250.0    -0.179129</span>
+<span class="go">500.0     0.936914</span>
+<span class="go">750.0    -1.003401</span>
+<span class="go">1000.0   -0.724626</span>
+<span class="go">1000.4    0.310610</span>
+<span class="go">Name: A, dtype: float64</span>
+
+<span class="gp">In [42]: </span><span class="n">dfir</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">1000.4</span><span class="p">]</span>
+<span class="gh">Out[42]: </span><span class="go"></span>
+<span class="go">A    0.310610</span>
+<span class="go">B   -0.108002</span>
+<span class="go">Name: 1000.4, dtype: float64</span>
+</pre></div>
+</div>
+<p>You could then easily pick out the first 1 second (1000 ms) of data then.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">dfir</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">]</span>
+<span class="gh">Out[43]: </span><span class="go"></span>
+<span class="go">               A         B</span>
+<span class="go">0.0     0.997289 -1.693316</span>
+<span class="go">250.0  -0.179129 -1.598062</span>
+<span class="go">500.0   0.936914  0.912560</span>
+<span class="go">750.0  -1.003401  1.632781</span>
+<span class="go">1000.0 -0.724626  0.178219</span>
+</pre></div>
+</div>
+<p>Of course if you need integer based selection, then use <code class="docutils literal"><span class="pre">iloc</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">dfir</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[44]: </span><span class="go"></span>
+<span class="go">               A         B</span>
+<span class="go">0.0     0.997289 -1.693316</span>
+<span class="go">250.0  -0.179129 -1.598062</span>
+<span class="go">500.0   0.936914  0.912560</span>
+<span class="go">750.0  -1.003401  1.632781</span>
+<span class="go">1000.0 -0.724626  0.178219</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="advanced4.html" class="btn btn-neutral" title="4.4. Take Methods" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2. Window Functions &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="3. Computational tools" href="computation.html"/>
+        <link rel="next" title="3.3. Aggregation" href="computation3.html"/>
+        <link rel="prev" title="3.1. Statistical Functions" href="computation1.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing5.html">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="missing5.html#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="computation.html">3. Computational tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="computation1.html">3.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#percent-change">3.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#covariance">3.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#correlation">3.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#data-ranking">3.1.4. Data ranking</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#method-summary">3.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rolling-windows">3.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-aware-rolling">3.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-aware-rolling-vs-resampling">3.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#centering-windows">3.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-window-functions">3.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-rolling-pairwise-covariances-and-correlations">3.2.7. Computing rolling pairwise covariances and correlations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation3.html">3.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-multiple-functions-at-once">3.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-different-functions-to-dataframe-columns">3.3.2. Applying different functions to DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation4.html">3.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation4.html#method-summary">3.4.1. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation5.html">3.5. Exponentially Weighted Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">4. MultiIndex / Advanced Indexing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced1.html">4.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#creating-a-multiindex-hierarchical-index-object">4.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#reconstructing-the-level-labels">4.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#basic-indexing-on-axis-with-multiindex">4.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#data-alignment-and-using-reindex">4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced2.html">4.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#using-slicers">4.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#cross-section">4.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#advanced-reindexing-and-alignment">4.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#swapping-levels-with-swaplevel">4.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#reordering-levels-with-reorder-levels">4.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced3.html">4.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced4.html">4.4. Take Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced5.html">4.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#categoricalindex">4.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#int64index-and-rangeindex">4.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#float64index">4.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="computation.html">3. Computational tools</a> &raquo;</li>
+        
+      <li>3.2. Window Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/computation2.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="window-functions">
+<span id="stats-moments"></span><h1>3.2. Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Prior to version 0.18.0, <code class="docutils literal"><span class="pre">pd.rolling_*</span></code>, <code class="docutils literal"><span class="pre">pd.expanding_*</span></code>, and <code class="docutils literal"><span class="pre">pd.ewm*</span></code> were module level
+functions and are now deprecated. These are replaced by using the <code class="xref py py-class docutils literal"><span class="pre">Rolling</span></code>, <code class="xref py py-class docutils literal"><span class="pre">Expanding</span></code> and <code class="xref py py-class docutils literal"><span class="pre">EWM</span></code>. objects and a corresponding method call.</p>
+<p class="last">The deprecation warning will show the new syntax, see an example <span class="xref std std-ref">here</span>
+You can view the previous documentation
+<a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.17.1/computation.html#moving-rolling-statistics-moments">here</a></p>
+</div>
+<p>For working with data, a number of windows functions are provided for
+computing common <em>window</em> or <em>rolling</em> statistics. Among these are count, sum,
+mean, median, correlation, variance, covariance, standard deviation, skewness,
+and kurtosis.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The API for window statistics is quite similar to the way one works with <code class="docutils literal"><span class="pre">GroupBy</span></code> objects, see the documentation <a class="reference internal" href="groupby.html#groupby"><span>here</span></a></p>
+</div>
+<p>We work with <code class="docutils literal"><span class="pre">rolling</span></code>, <code class="docutils literal"><span class="pre">expanding</span></code> and <code class="docutils literal"><span class="pre">exponentially</span> <span class="pre">weighted</span></code> data through the corresponding
+objects, <code class="xref py py-class docutils literal"><span class="pre">Rolling</span></code>, <code class="xref py py-class docutils literal"><span class="pre">Expanding</span></code> and <code class="xref py py-class docutils literal"><span class="pre">EWM</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="gp">In [2]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="gp">In [3]: </span><span class="n">s</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">2000-01-01     0.469112</span>
+<span class="go">2000-01-02     0.186249</span>
+<span class="go">2000-01-03    -1.322810</span>
+<span class="go">2000-01-04    -2.458442</span>
+<span class="go">                ...    </span>
+<span class="go">2002-09-23   -44.645728</span>
+<span class="go">2002-09-24   -44.953742</span>
+<span class="go">2002-09-25   -45.033657</span>
+<span class="go">2002-09-26   -46.044246</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+<p>These are created from methods on <code class="docutils literal"><span class="pre">Series</span></code> and <code class="docutils literal"><span class="pre">DataFrame</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="gp">In [5]: </span><span class="n">r</span>
+<span class="gh">Out[5]: </span><span class="go">Rolling [window=60,center=False,axis=0]</span>
+</pre></div>
+</div>
+<p>These object provide tab-completion of the avaible methods and properties.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">r</span><span class="o">.</span>
+<span class="go">r.agg         r.apply       r.count       r.exclusions  r.max         r.median      r.name        r.skew        r.sum</span>
+<span class="go">r.aggregate   r.corr        r.cov         r.kurt        r.mean        r.min         r.quantile    r.std         r.var</span>
+</pre></div>
+</div>
+<p>Generally these methods all have the same interface. They all
+accept the following arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">window</span></code>: size of moving window</li>
+<li><code class="docutils literal"><span class="pre">min_periods</span></code>: threshold of non-null data points to require (otherwise
+result is NA)</li>
+<li><code class="docutils literal"><span class="pre">center</span></code>: boolean, whether to set the labels at the center (default is False)</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>The <code class="docutils literal"><span class="pre">freq</span></code> and <code class="docutils literal"><span class="pre">how</span></code> arguments were in the API prior to 0.18.0 changes. These are deprecated in the new API. You can simply resample the input prior to creating a window function.</p>
+<p class="last">For example, instead of <code class="docutils literal"><span class="pre">s.rolling(window=5,freq='D').max()</span></code> to get the max value on a rolling 5 Day window, one could use <code class="docutils literal"><span class="pre">s.resample('D').max().rolling(window=5).max()</span></code>, which first resamples the data to daily data, then provides a rolling 5 day window.</p>
+</div>
+<p>We can then call methods on these <code class="docutils literal"><span class="pre">rolling</span></code> objects. These return like-indexed objects:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">r</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">2000-01-01          NaN</span>
+<span class="go">2000-01-02          NaN</span>
+<span class="go">2000-01-03          NaN</span>
+<span class="go">2000-01-04          NaN</span>
+<span class="go">                ...    </span>
+<span class="go">2002-09-23   -40.090910</span>
+<span class="go">2002-09-24   -40.187383</span>
+<span class="go">2002-09-25   -40.285841</span>
+<span class="go">2002-09-26   -40.404663</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d22eba810&gt;</span>
+
+<span class="gp">In [8]: </span><span class="n">r</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d22eba810&gt;</span>
+</pre></div>
+</div>
+<img alt="_images/rolling_mean_ex.png" src="_images/rolling_mean_ex.png" />
+<p>They can also be applied to DataFrame objects. This is really just syntactic
+sugar for applying the moving window operator to all of the DataFrame&#8217;s columns:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="gp">   ...: </span>                  <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
+<span class="gp">   ...: </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">])</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [10]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="gp">In [11]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[11]: </span><span class="go"></span>
+<span class="go">array([&lt;matplotlib.axes._subplots.AxesSubplot object at 0x2b1d23724e90&gt;,</span>
+<span class="go">       &lt;matplotlib.axes._subplots.AxesSubplot object at 0x2b1d22f6d3d0&gt;,</span>
+<span class="go">       &lt;matplotlib.axes._subplots.AxesSubplot object at 0x2b1d22fee310&gt;,</span>
+<span class="go">       &lt;matplotlib.axes._subplots.AxesSubplot object at 0x2b1d2304ebd0&gt;], dtype=object)</span>
+</pre></div>
+</div>
+<img alt="_images/rolling_mean_frame.png" src="_images/rolling_mean_frame.png" />
+<div class="section" id="method-summary">
+<span id="stats-summary"></span><h2>3.2.1. Method Summary<a class="headerlink" href="#method-summary" title="Permalink to this headline">¶</a></h2>
+<p>We provide a number of the common statistical functions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">count()</span></code></td>
+<td>Number of non-null observations</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">sum()</span></code></td>
+<td>Sum of values</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">mean()</span></code></td>
+<td>Mean of values</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">median()</span></code></td>
+<td>Arithmetic median of values</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">min()</span></code></td>
+<td>Minimum</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">max()</span></code></td>
+<td>Maximum</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">std()</span></code></td>
+<td>Bessel-corrected sample standard deviation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">var()</span></code></td>
+<td>Unbiased variance</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">skew()</span></code></td>
+<td>Sample skewness (3rd moment)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">kurt()</span></code></td>
+<td>Sample kurtosis (4th moment)</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">quantile()</span></code></td>
+<td>Sample quantile (value at %)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">apply()</span></code></td>
+<td>Generic apply</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">cov()</span></code></td>
+<td>Unbiased covariance (binary)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">corr()</span></code></td>
+<td>Correlation (binary)</td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="xref py py-meth docutils literal"><span class="pre">apply()</span></code> function takes an extra <code class="docutils literal"><span class="pre">func</span></code> argument and performs
+generic rolling computations. The <code class="docutils literal"><span class="pre">func</span></code> argument should be a single function
+that produces a single value from an ndarray input. Suppose we wanted to
+compute the mean absolute deviation on a rolling basis:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">mad</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="gp">In [13]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mad</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="gh">Out[13]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d23969f10&gt;</span>
+</pre></div>
+</div>
+<img alt="_images/rolling_apply_ex.png" src="_images/rolling_apply_ex.png" />
+</div>
+<div class="section" id="rolling-windows">
+<span id="stats-rolling-window"></span><h2>3.2.2. Rolling Windows<a class="headerlink" href="#rolling-windows" title="Permalink to this headline">¶</a></h2>
+<p>Passing <code class="docutils literal"><span class="pre">win_type</span></code> to <code class="docutils literal"><span class="pre">.rolling</span></code> generates a generic rolling window computation, that is weighted according the <code class="docutils literal"><span class="pre">win_type</span></code>.
+The following methods are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="xref py py-meth docutils literal"><span class="pre">sum()</span></code></td>
+<td>Sum of values</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal"><span class="pre">mean()</span></code></td>
+<td>Mean of values</td>
+</tr>
+</tbody>
+</table>
+<p>The weights used in the window are specified by the <code class="docutils literal"><span class="pre">win_type</span></code> keyword. The list of recognized types are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">boxcar</span></code></li>
+<li><code class="docutils literal"><span class="pre">triang</span></code></li>
+<li><code class="docutils literal"><span class="pre">blackman</span></code></li>
+<li><code class="docutils literal"><span class="pre">hamming</span></code></li>
+<li><code class="docutils literal"><span class="pre">bartlett</span></code></li>
+<li><code class="docutils literal"><span class="pre">parzen</span></code></li>
+<li><code class="docutils literal"><span class="pre">bohman</span></code></li>
+<li><code class="docutils literal"><span class="pre">blackmanharris</span></code></li>
+<li><code class="docutils literal"><span class="pre">nuttall</span></code></li>
+<li><code class="docutils literal"><span class="pre">barthann</span></code></li>
+<li><code class="docutils literal"><span class="pre">kaiser</span></code> (needs beta)</li>
+<li><code class="docutils literal"><span class="pre">gaussian</span></code> (needs std)</li>
+<li><code class="docutils literal"><span class="pre">general_gaussian</span></code> (needs power, width)</li>
+<li><code class="docutils literal"><span class="pre">slepian</span></code> (needs width).</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="gp">In [15]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;triang&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03         NaN</span>
+<span class="go">2000-01-04         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07    0.444733</span>
+<span class="go">2000-01-08    0.479115</span>
+<span class="go">2000-01-09    0.184728</span>
+<span class="go">2000-01-10    0.215758</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal"><span class="pre">boxcar</span></code> window is equivalent to <code class="xref py py-meth docutils literal"><span class="pre">mean()</span></code>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;boxcar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[16]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03         NaN</span>
+<span class="go">2000-01-04         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07   -0.018978</span>
+<span class="go">2000-01-08    0.400008</span>
+<span class="go">2000-01-09    0.539270</span>
+<span class="go">2000-01-10    0.153939</span>
+<span class="go">Freq: D, dtype: float64</span>
+
+<span class="gp">In [17]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[17]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03         NaN</span>
+<span class="go">2000-01-04         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07   -0.018978</span>
+<span class="go">2000-01-08    0.400008</span>
+<span class="go">2000-01-09    0.539270</span>
+<span class="go">2000-01-10    0.153939</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+<p>For some windowing functions, additional parameters must be specified:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gh">Out[18]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03         NaN</span>
+<span class="go">2000-01-04         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07    1.636865</span>
+<span class="go">2000-01-08    1.248347</span>
+<span class="go">2000-01-09   -1.821568</span>
+<span class="go">2000-01-10    1.360994</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+<div class="admonition note" id="stats-moments-normalization">
+<p class="first admonition-title">Note</p>
+<p>For <code class="docutils literal"><span class="pre">.sum()</span></code> with a <code class="docutils literal"><span class="pre">win_type</span></code>, there is no normalization done to the
+weights for the window. Passing custom weights of <code class="docutils literal"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> will yield a different
+result than passing weights of <code class="docutils literal"><span class="pre">[2,</span> <span class="pre">2,</span> <span class="pre">2]</span></code>, for example. When passing a
+<code class="docutils literal"><span class="pre">win_type</span></code> instead of explicitly specifying the weights, the weights are
+already normalized so that the largest weight is 1.</p>
+<p class="last">In contrast, the nature of the <code class="docutils literal"><span class="pre">.mean()</span></code> calculation is
+such that the weights are normalized with respect to each other. Weights
+of <code class="docutils literal"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> and <code class="docutils literal"><span class="pre">[2,</span> <span class="pre">2,</span> <span class="pre">2]</span></code> yield the same result.</p>
+</div>
+</div>
+<div class="section" id="time-aware-rolling">
+<span id="stats-moments-ts"></span><h2>3.2.3. Time-aware Rolling<a class="headerlink" href="#time-aware-rolling" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.19.0.</span></p>
+</div>
+<p>New in version 0.19.0 are the ability to pass an offset (or convertible) to a <code class="docutils literal"><span class="pre">.rolling()</span></code> method and have it produce
+variable sized windows based on the passed time window. For each time point, this includes all preceding values occurring
+within the indicated time delta.</p>
+<p>This can be particularly useful for a non-regular time frequency index.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span>
+<span class="gp">   ....: </span>                   <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:00&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">))</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [20]: </span><span class="n">dft</span>
+<span class="gh">Out[20]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">2013-01-01 09:00:00  0.0</span>
+<span class="go">2013-01-01 09:00:01  1.0</span>
+<span class="go">2013-01-01 09:00:02  2.0</span>
+<span class="go">2013-01-01 09:00:03  NaN</span>
+<span class="go">2013-01-01 09:00:04  4.0</span>
+</pre></div>
+</div>
+<p>This is a regular frequency index. Using an integer window parameter works to roll along the window frequency.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[21]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">2013-01-01 09:00:00  NaN</span>
+<span class="go">2013-01-01 09:00:01  1.0</span>
+<span class="go">2013-01-01 09:00:02  3.0</span>
+<span class="go">2013-01-01 09:00:03  NaN</span>
+<span class="go">2013-01-01 09:00:04  NaN</span>
+
+<span class="gp">In [22]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[22]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">2013-01-01 09:00:00  0.0</span>
+<span class="go">2013-01-01 09:00:01  1.0</span>
+<span class="go">2013-01-01 09:00:02  3.0</span>
+<span class="go">2013-01-01 09:00:03  2.0</span>
+<span class="go">2013-01-01 09:00:04  4.0</span>
+</pre></div>
+</div>
+<p>Specifying an offset allows a more intuitive specification of the rolling frequency.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">&#39;2s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[23]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">2013-01-01 09:00:00  0.0</span>
+<span class="go">2013-01-01 09:00:01  1.0</span>
+<span class="go">2013-01-01 09:00:02  3.0</span>
+<span class="go">2013-01-01 09:00:03  2.0</span>
+<span class="go">2013-01-01 09:00:04  4.0</span>
+</pre></div>
+</div>
+<p>Using a non-regular, but still monotonic index, rolling with an integer window does not impart any special calculation.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span>
+<span class="gp">   ....: </span>                   <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:00&#39;</span><span class="p">),</span>
+<span class="gp">   ....: </span>                                     <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:02&#39;</span><span class="p">),</span>
+<span class="gp">   ....: </span>                                     <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:03&#39;</span><span class="p">),</span>
+<span class="gp">   ....: </span>                                     <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:05&#39;</span><span class="p">),</span>
+<span class="gp">   ....: </span>                                     <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130101 09:00:06&#39;</span><span class="p">)],</span>
+<span class="gp">   ....: </span>                                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">))</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [25]: </span><span class="n">dft</span>
+<span class="gh">Out[25]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">foo                     </span>
+<span class="go">2013-01-01 09:00:00  0.0</span>
+<span class="go">2013-01-01 09:00:02  1.0</span>
+<span class="go">2013-01-01 09:00:03  2.0</span>
+<span class="go">2013-01-01 09:00:05  NaN</span>
+<span class="go">2013-01-01 09:00:06  4.0</span>
+
+<span class="gp">In [26]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[26]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">foo                     </span>
+<span class="go">2013-01-01 09:00:00  NaN</span>
+<span class="go">2013-01-01 09:00:02  1.0</span>
+<span class="go">2013-01-01 09:00:03  3.0</span>
+<span class="go">2013-01-01 09:00:05  NaN</span>
+<span class="go">2013-01-01 09:00:06  NaN</span>
+</pre></div>
+</div>
+<p>Using the time-specification generates variable windows for this sparse data.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">&#39;2s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[27]: </span><span class="go"></span>
+<span class="go">                       B</span>
+<span class="go">foo                     </span>
+<span class="go">2013-01-01 09:00:00  0.0</span>
+<span class="go">2013-01-01 09:00:02  1.0</span>
+<span class="go">2013-01-01 09:00:03  3.0</span>
+<span class="go">2013-01-01 09:00:05  NaN</span>
+<span class="go">2013-01-01 09:00:06  4.0</span>
+</pre></div>
+</div>
+<p>Furthermore, we now allow an optional <code class="docutils literal"><span class="pre">on</span></code> parameter to specify a column (rather than the
+default of the index) in a DataFrame.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="gp">In [29]: </span><span class="n">dft</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
+<span class="go">                  foo    B</span>
+<span class="go">0 2013-01-01 09:00:00  0.0</span>
+<span class="go">1 2013-01-01 09:00:02  1.0</span>
+<span class="go">2 2013-01-01 09:00:03  2.0</span>
+<span class="go">3 2013-01-01 09:00:05  NaN</span>
+<span class="go">4 2013-01-01 09:00:06  4.0</span>
+
+<span class="gp">In [30]: </span><span class="n">dft</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">&#39;2s&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[30]: </span><span class="go"></span>
+<span class="go">                  foo    B</span>
+<span class="go">0 2013-01-01 09:00:00  0.0</span>
+<span class="go">1 2013-01-01 09:00:02  1.0</span>
+<span class="go">2 2013-01-01 09:00:03  3.0</span>
+<span class="go">3 2013-01-01 09:00:05  NaN</span>
+<span class="go">4 2013-01-01 09:00:06  4.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="time-aware-rolling-vs-resampling">
+<span id="stats-moments-ts-versus-resampling"></span><h2>3.2.4. Time-aware Rolling vs. Resampling<a class="headerlink" href="#time-aware-rolling-vs-resampling" title="Permalink to this headline">¶</a></h2>
+<p>Using <code class="docutils literal"><span class="pre">.rolling()</span></code> with a time-based index is quite similar to <span class="xref std std-ref">resampling</span>. They
+both operate and perform reductive operations on time-indexed pandas objects.</p>
+<p>When using <code class="docutils literal"><span class="pre">.rolling()</span></code> with an offset. The offset is a time-delta. Take a backwards-in-time looking window, and
+aggregate all of the values in that window (including the end-point, but not the start-point). This is the new value
+at that point in the result. These are variable sized windows in time-space for each point of the input. You will get
+a same sized result as the input.</p>
+<p>When using <code class="docutils literal"><span class="pre">.resample()</span></code> with an offset. Construct a new index that is the frequency of the offset. For each frequency
+bin, aggregate points from the input within a backwards-in-time looking window that fall in that bin. The result of this
+aggregation is the output for that frequency point. The windows are fixed size size in the frequency space. Your result
+will have the shape of a regular frequency between the min and the max of the original input object.</p>
+<p>To summarize, <code class="docutils literal"><span class="pre">.rolling()</span></code> is a time-based window operation, while <code class="docutils literal"><span class="pre">.resample()</span></code> is a frequency-based window operation.</p>
+</div>
+<div class="section" id="centering-windows">
+<h2>3.2.5. Centering Windows<a class="headerlink" href="#centering-windows" title="Permalink to this headline">¶</a></h2>
+<p>By default the labels are set to the right edge of the window, but a
+<code class="docutils literal"><span class="pre">center</span></code> keyword is available so the labels can be set at the center.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[31]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03         NaN</span>
+<span class="go">2000-01-04         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07   -0.018978</span>
+<span class="go">2000-01-08    0.400008</span>
+<span class="go">2000-01-09    0.539270</span>
+<span class="go">2000-01-10    0.153939</span>
+<span class="go">Freq: D, dtype: float64</span>
+
+<span class="gp">In [32]: </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
+<span class="go">2000-01-01         NaN</span>
+<span class="go">2000-01-02         NaN</span>
+<span class="go">2000-01-03    0.386370</span>
+<span class="go">2000-01-04    0.460074</span>
+<span class="go">                ...   </span>
+<span class="go">2000-01-07    0.539270</span>
+<span class="go">2000-01-08    0.153939</span>
+<span class="go">2000-01-09         NaN</span>
+<span class="go">2000-01-10         NaN</span>
+<span class="go">Freq: D, dtype: float64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="binary-window-functions">
+<span id="stats-moments-binary"></span><h2>3.2.6. Binary Window Functions<a class="headerlink" href="#binary-window-functions" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-meth docutils literal"><span class="pre">cov()</span></code> and <code class="xref py py-meth docutils literal"><span class="pre">corr()</span></code> can compute moving window statistics about
+two <code class="docutils literal"><span class="pre">Series</span></code> or any combination of <code class="docutils literal"><span class="pre">DataFrame/Series</span></code> or
+<code class="docutils literal"><span class="pre">DataFrame/DataFrame</span></code>. Here is the behavior in each case:</p>
+<ul class="simple">
+<li>two <code class="docutils literal"><span class="pre">Series</span></code>: compute the statistic for the pairing.</li>
+<li><code class="docutils literal"><span class="pre">DataFrame/Series</span></code>: compute the statistics for each column of the DataFrame
+with the passed Series, thus returning a DataFrame.</li>
+<li><code class="docutils literal"><span class="pre">DataFrame/DataFrame</span></code>: by default compute the statistic for matching column
+names, returning a DataFrame. If the keyword argument <code class="docutils literal"><span class="pre">pairwise=True</span></code> is
+passed then computes the statistic for each pair of columns, returning a
+<code class="docutils literal"><span class="pre">Panel</span></code> whose <code class="docutils literal"><span class="pre">items</span></code> are the dates in question (see <a class="reference internal" href="#stats-moments-corr-pairwise"><span>the next section</span></a>).</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
+
+<span class="gp">In [34]: </span><span class="n">df2</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span>
+<span class="gh">Out[34]: </span><span class="go"></span>
+<span class="go">                   A    B         C         D</span>
+<span class="go">2000-01-01       NaN  NaN       NaN       NaN</span>
+<span class="go">2000-01-02       NaN  NaN       NaN       NaN</span>
+<span class="go">2000-01-03       NaN  NaN       NaN       NaN</span>
+<span class="go">2000-01-04       NaN  NaN       NaN       NaN</span>
+<span class="go">...              ...  ...       ...       ...</span>
+<span class="go">2000-01-17  0.245266  1.0 -0.828150 -0.580157</span>
+<span class="go">2000-01-18  0.447883  1.0 -0.901636  0.907240</span>
+<span class="go">2000-01-19 -0.140933  1.0  0.164937  0.956559</span>
+<span class="go">2000-01-20 -0.666317  1.0 -0.324339  0.968124</span>
+
+<span class="go">[20 rows x 4 columns]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="computing-rolling-pairwise-covariances-and-correlations">
+<span id="stats-moments-corr-pairwise"></span><h2>3.2.7. Computing rolling pairwise covariances and correlations<a class="headerlink" href="#computing-rolling-pairwise-covariances-and-correlations" title="Permalink to this headline">¶</a></h2>
+<p>In financial data analysis and other fields it&#8217;s common to compute covariance
+and correlation matrices for a collection of time series. Often one is also
+interested in moving-window covariance and correlation matrices. This can be
+done by passing the <code class="docutils literal"><span class="pre">pairwise</span></code> keyword argument, which in the case of
+<code class="docutils literal"><span class="pre">DataFrame</span></code> inputs will yield a <code class="docutils literal"><span class="pre">Panel</span></code> whose <code class="docutils literal"><span class="pre">items</span></code> are the dates in
+question. In the case of a single DataFrame argument the <code class="docutils literal"><span class="pre">pairwise</span></code> argument
+can even be omitted:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Missing values are ignored and each entry is computed using the pairwise
+complete observations.  Please see the <a class="reference internal" href="computation1.html#computation-covariance"><span>covariance section</span></a> for <a class="reference internal" href="computation1.html#computation-covariance-caveats"><span>caveats</span></a> associated with this method of
+calculating covariance and correlation matrices.</p>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">covs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]],</span> <span class="n">pairwise</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="gp">In [36]: </span><span class="n">covs</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">]]</span>
+<span class="gh">Out[36]: </span><span class="go"></span>
+<span class="go">          A          B          C</span>
+<span class="go">B -9.024783  21.812311 -10.328820</span>
+<span class="go">C  4.689587 -10.328820   8.037580</span>
+<span class="go">D  1.481747   0.785067  -0.840609</span>
+</pre></div>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">correls</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="gp">In [38]: </span><span class="n">correls</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">]]</span>
+<span class="gh">Out[38]: </span><span class="go"></span>
+<span class="go">          A         B         C         D</span>
+<span class="go">A  1.000000 -0.579381  0.495964  0.363033</span>
+<span class="go">B -0.579381  1.000000 -0.780077  0.137356</span>
+<span class="go">C  0.495964 -0.780077  1.000000 -0.242284</span>
+<span class="go">D  0.363033  0.137356 -0.242284  1.000000</span>
+</pre></div>
+</div>
+<p>You can efficiently retrieve the time series of correlations between two
+columns using <code class="docutils literal"><span class="pre">.loc</span></code> indexing:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">correls</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[39]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1d2c445890&gt;</span>
+</pre></div>
+</div>
+<img alt="_images/rolling_corr_pairwise_ex.png" src="_images/rolling_corr_pairwise_ex.png" />
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="computation3.html" class="btn btn-neutral float-right" title="3.3. Aggregation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="computation1.html" class="btn btn-neutral" title="3.1. Statistical Functions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

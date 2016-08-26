@@ -153,6 +153,62 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="computation.html">3. Computational tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="computation1.html">3.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#percent-change">3.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#covariance">3.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#correlation">3.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation1.html#data-ranking">3.1.4. Data ranking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation2.html">3.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#method-summary">3.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#rolling-windows">3.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling">3.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#time-aware-rolling-vs-resampling">3.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#centering-windows">3.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#binary-window-functions">3.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation2.html#computing-rolling-pairwise-covariances-and-correlations">3.2.7. Computing rolling pairwise covariances and correlations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation3.html">3.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-multiple-functions-at-once">3.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation3.html#applying-different-functions-to-dataframe-columns">3.3.2. Applying different functions to DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation4.html">3.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="computation4.html#method-summary">3.4.1. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="computation5.html">3.5. Exponentially Weighted Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">4. MultiIndex / Advanced Indexing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced1.html">4.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#creating-a-multiindex-hierarchical-index-object">4.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#reconstructing-the-level-labels">4.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#basic-indexing-on-axis-with-multiindex">4.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced1.html#data-alignment-and-using-reindex">4.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced2.html">4.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#using-slicers">4.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#cross-section">4.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#advanced-reindexing-and-alignment">4.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#swapping-levels-with-swaplevel">4.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced2.html#reordering-levels-with-reorder-levels">4.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced3.html">4.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced4.html">4.4. Take Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced5.html">4.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#categoricalindex">4.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#int64index-and-rangeindex">4.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced5.html#float64index">4.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -551,37 +607,37 @@ the values in column 1 where the group is &#8220;B&#8221; are 3 higher on averag
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">()</span>
 <span class="gh">Out[44]: </span><span class="go"></span>
 <span class="go">OrderedDict([(&#39;A&#39;,</span>
-<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c22de50&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c241490&gt;],</span>
-<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82bc06310&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82bc25a50&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c24a750&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c24ad90&gt;],</span>
-<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c235e10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c254a50&gt;],</span>
+<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cae03d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca60050&gt;],</span>
+<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cac6f10&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca88f50&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2c9f8310&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2c9e2410&gt;],</span>
+<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2ca6ac10&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cae1750&gt;],</span>
 <span class="go">               &#39;means&#39;: [],</span>
-<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82bca9150&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c254410&gt;],</span>
-<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c22df50&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82bbfdf10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c241a90&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c24a110&gt;]}),</span>
+<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2ca7e110&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cae1110&gt;],</span>
+<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2c9af890&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cad7210&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca57ed0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2ca022d0&gt;]}),</span>
 <span class="go">             (&#39;B&#39;,</span>
-<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c22dd10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c277890&gt;],</span>
-<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c261f10&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c26c590&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c283b50&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c28e1d0&gt;],</span>
-<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c277250&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c28ee50&gt;],</span>
+<span class="go">              {&#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cae06d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb0e590&gt;],</span>
+<span class="go">               &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2caf8c10&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb04290&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19850&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19e90&gt;],</span>
+<span class="go">               &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cb04f10&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb24b50&gt;],</span>
 <span class="go">               &#39;means&#39;: [],</span>
-<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c26cbd0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c28e810&gt;],</span>
-<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2ad82c2615d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c2618d0&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c277e90&gt;,</span>
-<span class="go">                &lt;matplotlib.lines.Line2D at 0x2ad82c283510&gt;]})])</span>
+<span class="go">               &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2cb048d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb24510&gt;],</span>
+<span class="go">               &#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x2b1d2caf82d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2caf85d0&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb0eb90&gt;,</span>
+<span class="go">                &lt;matplotlib.lines.Line2D at 0x2b1d2cb19210&gt;]})])</span>
 </pre></div>
 </div>
 <img alt="_images/groupby_boxplot.png" src="_images/groupby_boxplot.png" />
