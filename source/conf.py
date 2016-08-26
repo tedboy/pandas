@@ -116,6 +116,7 @@ exclude_patterns = [
 'advanced*',
 'merging1.rst',
 'merging*',
+'10min*',
 # 'demo_autoclass.rst',
 # 'demo_automodule.rst',
 # 'demo_automodule.rst',
