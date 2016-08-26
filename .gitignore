@@ -1,0 +1,6 @@
+build/*
+build_bkup/*
+source/generated/*
+build_published/*
+source/*/generated/*.rst
+*.png
