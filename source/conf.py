@@ -114,6 +114,8 @@ exclude_patterns = [
 # 'missing*',
 # 'computation*',
 # 'advanced*',
+# 'merging1.rst',
+# 'merging*',
 # 'demo_autoclass.rst',
 # 'demo_automodule.rst',
 # 'demo_automodule.rst',
