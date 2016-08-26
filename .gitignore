@@ -4,3 +4,4 @@ source/generated/*
 build_published/*
 source/*/generated/*.rst
 *.png
+log.txt

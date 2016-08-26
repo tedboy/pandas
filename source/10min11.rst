@@ -1,0 +1,45 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import numpy as np
+   import pandas as pd
+   import os
+   np.random.seed(123456)
+   np.set_printoptions(precision=4, suppress=True)
+   import matplotlib
+   matplotlib.style.use('ggplot')
+   import matplotlib.pyplot as plt
+   pd.options.display.max_rows = 8
+
+Plotting
+--------
+
+:ref:`Plotting <visualization>` docs.
+
+.. ipython:: python
+   :suppress:
+
+   import matplotlib.pyplot as plt
+   plt.close('all')
+
+.. ipython:: python
+
+   ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+   ts = ts.cumsum()
+
+   @savefig series_plot_basic.png
+   ts.plot()
+
+On DataFrame, :meth:`~DataFrame.plot` is a convenience to plot all of the
+columns with labels:
+
+.. ipython:: python
+
+   df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+                     columns=['A', 'B', 'C', 'D'])
+   df = df.cumsum()
+
+   @savefig frame_plot_basic.png
+   plt.figure(); df.plot(); plt.legend(loc='best')

@@ -1,0 +1,60 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import numpy as np
+   import pandas as pd
+   import os
+   np.random.seed(123456)
+   np.set_printoptions(precision=4, suppress=True)
+   import matplotlib
+   matplotlib.style.use('ggplot')
+   import matplotlib.pyplot as plt
+   pd.options.display.max_rows = 8
+   dates = pd.date_range('20130101', periods=6)
+   df = pd.DataFrame(np.random.randn(6,4), index=dates, columns=list('ABCD'))
+
+Viewing Data
+------------
+
+See the :ref:`Basics section <basics>`
+
+See the top & bottom rows of the frame
+
+.. ipython:: python
+
+   df.head()
+   df.tail(3)
+
+Display the index, columns, and the underlying numpy data
+
+.. ipython:: python
+
+   df.index
+   df.columns
+   df.values
+
+Describe shows a quick statistic summary of your data
+
+.. ipython:: python
+
+   df.describe()
+
+Transposing your data
+
+.. ipython:: python
+
+   df.T
+
+Sorting by an axis
+
+.. ipython:: python
+
+   df.sort_index(axis=1, ascending=False)
+
+Sorting by values
+
+.. ipython:: python
+
+   df.sort_values(by='B')

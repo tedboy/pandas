@@ -1,0 +1,88 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import numpy as np
+   import pandas as pd
+   import os
+   np.random.seed(123456)
+   np.set_printoptions(precision=4, suppress=True)
+   import matplotlib
+   matplotlib.style.use('ggplot')
+   import matplotlib.pyplot as plt
+   pd.options.display.max_rows = 8
+
+   ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+   ts = ts.cumsum()
+   df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+                     columns=['A', 'B', 'C', 'D'])
+   df = df.cumsum()
+
+
+Getting Data In/Out
+-------------------
+
+CSV
+~~~
+
+:ref:`Writing to a csv file <io.store_in_csv>`
+
+.. ipython:: python
+
+   df.to_csv('foo.csv')
+
+:ref:`Reading from a csv file <io.read_csv_table>`
+
+.. ipython:: python
+
+   pd.read_csv('foo.csv')
+
+.. ipython:: python
+   :suppress:
+
+   os.remove('foo.csv')
+
+HDF5
+~~~~
+
+Reading and writing to :ref:`HDFStores <io.hdf5>`
+
+Writing to a HDF5 Store
+
+.. ipython:: python
+
+   df.to_hdf('foo.h5','df')
+
+Reading from a HDF5 Store
+
+.. ipython:: python
+
+   pd.read_hdf('foo.h5','df')
+
+.. ipython:: python
+   :suppress:
+
+   os.remove('foo.h5')
+
+Excel
+~~~~~
+
+Reading and writing to :ref:`MS Excel <io.excel>`
+
+Writing to an excel file
+
+.. ipython:: python
+
+   df.to_excel('foo.xlsx', sheet_name='Sheet1')
+
+Reading from an excel file
+
+.. ipython:: python
+
+   pd.read_excel('foo.xlsx', 'Sheet1', index_col=None, na_values=['NA'])
+
+.. ipython:: python
+   :suppress:
+
+   os.remove('foo.xlsx')
