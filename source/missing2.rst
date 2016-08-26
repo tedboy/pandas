@@ -3,6 +3,7 @@
 
    import numpy as np
    import pandas as pd
+   np.random.seed(0)
    pd.options.display.max_rows=15
    import matplotlib
    matplotlib.style.use('ggplot')
@@ -22,6 +23,7 @@ pandas objects provide intercompatibility between ``NaT`` and ``NaN``.
 .. ipython:: python
 
    df2 = df.copy()
+   df2
    df2['timestamp'] = pd.Timestamp('20120101')
    df2
    df2.ix[['a','c','h'],['one','timestamp']] = np.nan
