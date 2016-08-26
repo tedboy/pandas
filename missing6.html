@@ -32,6 +32,7 @@
   
     <link rel="top" title="Pandas Doc" href="index.html"/>
         <link rel="up" title="1. Working with missing data" href="missing.html"/>
+        <link rel="next" title="2. Group By: split-apply-combine" href="groupby.html"/>
         <link rel="prev" title="1.5. Cleaning / filling missing data" href="missing5.html"/> 
 
   
@@ -110,6 +111,46 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -207,46 +248,55 @@ are:</p>
 <p>For example:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
 
-<span class="gp">In [2]: </span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="gp">In [2]: </span><span class="n">s</span>
 <span class="gh">Out[2]: </span><span class="go"></span>
-<span class="go">0    True</span>
-<span class="go">2    True</span>
-<span class="go">4    True</span>
-<span class="go">6    True</span>
-<span class="go">7    True</span>
+<span class="go">0    1.331587</span>
+<span class="go">2    0.715279</span>
+<span class="go">4   -1.545400</span>
+<span class="go">6   -0.008384</span>
+<span class="go">7    0.621336</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [3]: </span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">0     True</span>
+<span class="go">2     True</span>
+<span class="go">4    False</span>
+<span class="go">6    False</span>
+<span class="go">7     True</span>
 <span class="go">dtype: bool</span>
 
-<span class="gp">In [3]: </span><span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[3]: </span><span class="go">dtype(&#39;bool&#39;)</span>
+<span class="gp">In [4]: </span><span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[4]: </span><span class="go">dtype(&#39;bool&#39;)</span>
 
-<span class="gp">In [4]: </span><span class="n">crit</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
+<span class="gp">In [5]: </span><span class="n">crit</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
 
-<span class="gp">In [5]: </span><span class="n">crit</span>
-<span class="gh">Out[5]: </span><span class="go"></span>
-<span class="go">0    True</span>
-<span class="go">1     NaN</span>
-<span class="go">2    True</span>
-<span class="go">3     NaN</span>
-<span class="go">4    True</span>
-<span class="go">5     NaN</span>
-<span class="go">6    True</span>
-<span class="go">7    True</span>
+<span class="gp">In [6]: </span><span class="n">crit</span>
+<span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">0     True</span>
+<span class="go">1      NaN</span>
+<span class="go">2     True</span>
+<span class="go">3      NaN</span>
+<span class="go">4    False</span>
+<span class="go">5      NaN</span>
+<span class="go">6    False</span>
+<span class="go">7     True</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [6]: </span><span class="n">crit</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[6]: </span><span class="go">dtype(&#39;O&#39;)</span>
+<span class="gp">In [7]: </span><span class="n">crit</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[7]: </span><span class="go">dtype(&#39;O&#39;)</span>
 </pre></div>
 </div>
 <p>Ordinarily NumPy will complain if you try to use an object array (even if it
 contains boolean values) instead of a boolean array to get or set values from
 an ndarray (e.g. selecting values based on some criteria). If a boolean vector
 contains NAs, an exception will be generated:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">reindexed</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">reindexed</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="gp">In [8]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
+<span class="gp">In [9]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-8-2da204ed1ac7&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="nn">&lt;ipython-input-9-2da204ed1ac7&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
 
 <span class="nn">/home/takanori/.local/lib/python2.7/site-packages/pandas-0.18.1+293.g51e6adb-py2.7-linux-x86_64.egg/pandas/core/series.pyc</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
@@ -267,25 +317,21 @@ contains NAs, an exception will be generated:</p>
 </pre></div>
 </div>
 <p>However, these can be filled in using <strong>fillna</strong> and it will work fine:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">False</span><span class="p">)]</span>
-<span class="gh">Out[9]: </span><span class="go"></span>
-<span class="go">0    0.126504</span>
-<span class="go">2    0.696198</span>
-<span class="go">4    0.697416</span>
-<span class="go">6    0.601516</span>
-<span class="go">7    0.003659</span>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">False</span><span class="p">)]</span>
+<span class="gh">Out[10]: </span><span class="go"></span>
+<span class="go">0    1.331587</span>
+<span class="go">2    0.715279</span>
+<span class="go">7    0.621336</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [10]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">True</span><span class="p">)]</span>
-<span class="gh">Out[10]: </span><span class="go"></span>
-<span class="go">0    0.126504</span>
+<span class="gp">In [11]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">True</span><span class="p">)]</span>
+<span class="gh">Out[11]: </span><span class="go"></span>
+<span class="go">0    1.331587</span>
 <span class="go">1    0.000000</span>
-<span class="go">2    0.696198</span>
+<span class="go">2    0.715279</span>
 <span class="go">3    0.000000</span>
-<span class="go">4    0.697416</span>
 <span class="go">5    0.000000</span>
-<span class="go">6    0.601516</span>
-<span class="go">7    0.003659</span>
+<span class="go">7    0.621336</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
@@ -297,6 +343,8 @@ contains NAs, an exception will be generated:</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupby.html" class="btn btn-neutral float-right" title="2. Group By: split-apply-combine" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="missing5.html" class="btn btn-neutral" title="1.5. Cleaning / filling missing data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

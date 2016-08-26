@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Pandas Doc</title>
+  <title>2.3. Iterating through groups &mdash; Pandas Doc</title>
   
 
   
@@ -31,7 +30,10 @@
   
 
   
-    <link rel="top" title="Pandas Doc" href="index.html"/> 
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="2. Group By: split-apply-combine" href="groupby.html"/>
+        <link rel="next" title="2.5. Aggregation" href="groupby4.html"/>
+        <link rel="prev" title="2.2. Splitting an object into groups" href="groupby2.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,7 +84,7 @@
             
             
                 <p class="caption"><span class="caption-text">Table of Contents</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
@@ -111,7 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
@@ -120,8 +122,8 @@
 <li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selecting-a-group">2.4. Selecting a group</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
@@ -192,12 +194,16 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li></li>
+          <li><a href="groupby.html">2. Group By: split-apply-combine</a> &raquo;</li>
+        
+      <li>2.3. Iterating through groups</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/groupby3.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -207,17 +213,105 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="iterating-through-groups">
+<span id="groupby-iterating"></span><h1>2.3. Iterating through groups<a class="headerlink" href="#iterating-through-groups" title="Permalink to this headline">¶</a></h1>
+<p>With the GroupBy object in hand, iterating through the grouped data is very
+natural and functions similarly to <code class="docutils literal"><span class="pre">itertools.groupby</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span>
+<span class="gh">Out[1]: </span><span class="go"></span>
+<span class="go">     A      B         C         D</span>
+<span class="go">0  foo    one  0.469112 -0.861849</span>
+<span class="go">1  bar    one -0.282863 -2.104569</span>
+<span class="go">2  foo    two -1.509059 -0.494929</span>
+<span class="go">3  bar  three -1.135632  1.071804</span>
+<span class="go">4  foo    two  1.212112  0.721555</span>
+<span class="go">5  bar    two -0.173215 -0.706771</span>
+<span class="go">6  foo    one  0.119209 -1.039575</span>
+<span class="go">7  foo  three -1.044236  0.271860</span>
 
-<h1 id="index">Index</h1>
+<span class="gp">In [2]: </span><span class="n">grouped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
 
-<div class="genindex-jumpbox">
- 
+<span class="gp">In [3]: </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">grouped</span><span class="p">:</span>
+<span class="gp">   ...: </span>       <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">   ...: </span>       <span class="k">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="go">bar</span>
+<span class="go">     A      B         C         D</span>
+<span class="go">1  bar    one -0.282863 -2.104569</span>
+<span class="go">3  bar  three -1.135632  1.071804</span>
+<span class="go">5  bar    two -0.173215 -0.706771</span>
+<span class="go">foo</span>
+<span class="go">     A      B         C         D</span>
+<span class="go">0  foo    one  0.469112 -0.861849</span>
+<span class="go">2  foo    two -1.509059 -0.494929</span>
+<span class="go">4  foo    two  1.212112  0.721555</span>
+<span class="go">6  foo    one  0.119209 -1.039575</span>
+<span class="go">7  foo  three -1.044236  0.271860</span>
+</pre></div>
+</div>
+<p>In the case of grouping by multiple keys, the group name will be a tuple:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]):</span>
+<span class="gp">   ...: </span>       <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">   ...: </span>       <span class="k">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="go">(&#39;bar&#39;, &#39;one&#39;)</span>
+<span class="go">     A    B         C         D</span>
+<span class="go">1  bar  one -0.282863 -2.104569</span>
+<span class="go">(&#39;bar&#39;, &#39;three&#39;)</span>
+<span class="go">     A      B         C         D</span>
+<span class="go">3  bar  three -1.135632  1.071804</span>
+<span class="go">(&#39;bar&#39;, &#39;two&#39;)</span>
+<span class="go">     A    B         C         D</span>
+<span class="go">5  bar  two -0.173215 -0.706771</span>
+<span class="go">(&#39;foo&#39;, &#39;one&#39;)</span>
+<span class="go">     A    B         C         D</span>
+<span class="go">0  foo  one  0.469112 -0.861849</span>
+<span class="go">6  foo  one  0.119209 -1.039575</span>
+<span class="go">(&#39;foo&#39;, &#39;three&#39;)</span>
+<span class="go">     A      B         C        D</span>
+<span class="go">7  foo  three -1.044236  0.27186</span>
+<span class="go">(&#39;foo&#39;, &#39;two&#39;)</span>
+<span class="go">     A    B         C         D</span>
+<span class="go">2  foo  two -1.509059 -0.494929</span>
+<span class="go">4  foo  two  1.212112  0.721555</span>
+</pre></div>
+</div>
+<p>It&#8217;s standard Python-fu but remember you can unpack the tuple in the for loop
+statement if you wish: <code class="docutils literal"><span class="pre">for</span> <span class="pre">(k1,</span> <span class="pre">k2),</span> <span class="pre">group</span> <span class="pre">in</span> <span class="pre">grouped:</span></code>.</p>
+</div>
+<div class="section" id="selecting-a-group">
+<h1>2.4. Selecting a group<a class="headerlink" href="#selecting-a-group" title="Permalink to this headline">¶</a></h1>
+<p>A single group can be selected using <code class="docutils literal"><span class="pre">GroupBy.get_group()</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">     A      B         C         D</span>
+<span class="go">1  bar    one -0.282863 -2.104569</span>
+<span class="go">3  bar  three -1.135632  1.071804</span>
+<span class="go">5  bar    two -0.173215 -0.706771</span>
+</pre></div>
+</div>
+<p>Or for an object grouped on multiple columns:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">get_group</span><span class="p">((</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">))</span>
+<span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">     A    B         C         D</span>
+<span class="go">1  bar  one -0.282863 -2.104569</span>
+</pre></div>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupby4.html" class="btn btn-neutral float-right" title="2.5. Aggregation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupby2.html" class="btn btn-neutral" title="2.2. Splitting an object into groups" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

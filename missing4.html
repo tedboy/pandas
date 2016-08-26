@@ -113,6 +113,46 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -180,29 +220,29 @@ objects.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">a</span>
 <span class="gh">Out[1]: </span><span class="go"></span>
 <span class="go">        one       two</span>
-<span class="go">a       NaN  0.649977</span>
-<span class="go">c       NaN -1.100540</span>
-<span class="go">e -2.728049 -0.216477</span>
-<span class="go">f  1.677992 -0.265420</span>
-<span class="go">h  1.677992  0.442095</span>
+<span class="go">a       NaN  0.400157</span>
+<span class="go">c       NaN  1.867558</span>
+<span class="go">e  0.950088 -0.151357</span>
+<span class="go">f  0.410599  0.144044</span>
+<span class="go">h  0.410599  0.121675</span>
 
 <span class="gp">In [2]: </span><span class="n">b</span>
 <span class="gh">Out[2]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN  0.649977  0.089530</span>
-<span class="go">c       NaN -1.100540 -0.543761</span>
-<span class="go">e -2.728049 -0.216477 -0.418851</span>
-<span class="go">f  1.677992 -0.265420  1.178294</span>
-<span class="go">h       NaN  0.442095 -0.915192</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  1.867558 -0.977278</span>
+<span class="go">e  0.950088 -0.151357 -0.103219</span>
+<span class="go">f  0.410599  0.144044  1.454274</span>
+<span class="go">h       NaN  0.121675  0.443863</span>
 
 <span class="gp">In [3]: </span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 <span class="gh">Out[3]: </span><span class="go"></span>
 <span class="go">        one  three       two</span>
-<span class="go">a       NaN    NaN  1.299954</span>
-<span class="go">c       NaN    NaN -2.201080</span>
-<span class="go">e -5.456098    NaN -0.432953</span>
-<span class="go">f  3.355983    NaN -0.530840</span>
-<span class="go">h       NaN    NaN  0.884191</span>
+<span class="go">a       NaN    NaN  0.800314</span>
+<span class="go">c       NaN    NaN  3.735116</span>
+<span class="go">e  1.900177    NaN -0.302714</span>
+<span class="go">f  0.821197    NaN  0.288087</span>
+<span class="go">h       NaN    NaN  0.243350</span>
 </pre></div>
 </div>
 <p>The descriptive statistics and computational methods discussed in the
@@ -217,32 +257,32 @@ in the resulting arrays</li>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">df</span>
 <span class="gh">Out[4]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN  0.649977  0.089530</span>
-<span class="go">c       NaN -1.100540 -0.543761</span>
-<span class="go">e -2.728049 -0.216477 -0.418851</span>
-<span class="go">f  1.677992 -0.265420  1.178294</span>
-<span class="go">h       NaN  0.442095 -0.915192</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  1.867558 -0.977278</span>
+<span class="go">e  0.950088 -0.151357 -0.103219</span>
+<span class="go">f  0.410599  0.144044  1.454274</span>
+<span class="go">h       NaN  0.121675  0.443863</span>
 
 <span class="gp">In [5]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="gh">Out[5]: </span><span class="go">-1.0500576508849524</span>
+<span class="gh">Out[5]: </span><span class="go">1.3606869194639617</span>
 
 <span class="gp">In [6]: </span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[6]: </span><span class="go"></span>
-<span class="go">a    0.369753</span>
-<span class="go">c   -0.822150</span>
-<span class="go">e   -1.121126</span>
-<span class="go">f    0.863622</span>
-<span class="go">h   -0.236549</span>
+<span class="go">a    0.689448</span>
+<span class="go">c    0.445140</span>
+<span class="go">e    0.231837</span>
+<span class="go">f    0.669639</span>
+<span class="go">h    0.282769</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
 <span class="gh">Out[7]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN  0.649977  0.089530</span>
-<span class="go">c       NaN -0.450563 -0.454231</span>
-<span class="go">e -2.728049 -0.667039 -0.873081</span>
-<span class="go">f -1.050058 -0.932460  0.305213</span>
-<span class="go">h       NaN -0.490364 -0.609980</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  2.267715  0.001460</span>
+<span class="go">e  0.950088  2.116358 -0.101759</span>
+<span class="go">f  1.360687  2.260402  1.352515</span>
+<span class="go">h       NaN  2.382077  1.796378</span>
 </pre></div>
 </div>
 <div class="section" id="na-values-in-groupby">
@@ -252,21 +292,21 @@ with R, for example:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df</span>
 <span class="gh">Out[8]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN  0.649977  0.089530</span>
-<span class="go">c       NaN -1.100540 -0.543761</span>
-<span class="go">e -2.728049 -0.216477 -0.418851</span>
-<span class="go">f  1.677992 -0.265420  1.178294</span>
-<span class="go">h       NaN  0.442095 -0.915192</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  1.867558 -0.977278</span>
+<span class="go">e  0.950088 -0.151357 -0.103219</span>
+<span class="go">f  0.410599  0.144044  1.454274</span>
+<span class="go">h       NaN  0.121675  0.443863</span>
 
 <span class="gp">In [9]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[9]: </span><span class="go"></span>
-<span class="go">                two     three</span>
-<span class="go">one                          </span>
-<span class="go">-2.728049 -0.216477 -0.418851</span>
-<span class="go"> 1.677992 -0.265420  1.178294</span>
+<span class="go">               two     three</span>
+<span class="go">one                         </span>
+<span class="go">0.410599  0.144044  1.454274</span>
+<span class="go">0.950088 -0.151357 -0.103219</span>
 </pre></div>
 </div>
-<p>See the groupby section <span class="xref std std-ref">here</span> for more information.</p>
+<p>See the groupby section <a class="reference internal" href="groupby9.html#groupby-missing"><span>here</span></a> for more information.</p>
 </div>
 </div>
 

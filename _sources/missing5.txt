@@ -3,6 +3,7 @@
 
    import numpy as np
    import pandas as pd
+   np.random.seed(0)
    pd.options.display.max_rows=15
    import matplotlib
    matplotlib.style.use('ggplot')

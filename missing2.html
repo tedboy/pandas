@@ -113,6 +113,46 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -180,30 +220,39 @@ sentinel value that can be represented by numpy in a singular dtype (datetime64[
 pandas objects provide intercompatibility between <code class="docutils literal"><span class="pre">NaT</span></code> and <code class="docutils literal"><span class="pre">NaN</span></code>.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="gp">In [2]: </span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20120101&#39;</span><span class="p">)</span>
+<span class="gp">In [2]: </span><span class="n">df2</span>
+<span class="gh">Out[2]: </span><span class="go"></span>
+<span class="go">        one       two     three four  five</span>
+<span class="go">a  1.764052  0.400157  0.978738  bar  True</span>
+<span class="go">c  2.240893  1.867558 -0.977278  bar  True</span>
+<span class="go">e  0.950088 -0.151357 -0.103219  bar  True</span>
+<span class="go">f  0.410599  0.144044  1.454274  bar  True</span>
+<span class="go">h  0.761038  0.121675  0.443863  bar  True</span>
 
-<span class="gp">In [3]: </span><span class="n">df2</span>
-<span class="gh">Out[3]: </span><span class="go"></span>
-<span class="go">        one       two     three four   five  timestamp</span>
-<span class="go">a  2.217206 -0.238894 -0.123068  bar   True 2012-01-01</span>
-<span class="go">c  0.653209  0.876684  0.596272  bar   True 2012-01-01</span>
-<span class="go">e -0.759459 -0.129187 -1.240067  bar  False 2012-01-01</span>
-<span class="go">f  2.455302  1.404168  1.233578  bar   True 2012-01-01</span>
-<span class="go">h -1.937002  1.743854  0.635683  bar  False 2012-01-01</span>
+<span class="gp">In [3]: </span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20120101&#39;</span><span class="p">)</span>
 
-<span class="gp">In [4]: </span><span class="n">df2</span><span class="o">.</span><span class="n">ix</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;h&#39;</span><span class="p">],[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [4]: </span><span class="n">df2</span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">        one       two     three four  five  timestamp</span>
+<span class="go">a  1.764052  0.400157  0.978738  bar  True 2012-01-01</span>
+<span class="go">c  2.240893  1.867558 -0.977278  bar  True 2012-01-01</span>
+<span class="go">e  0.950088 -0.151357 -0.103219  bar  True 2012-01-01</span>
+<span class="go">f  0.410599  0.144044  1.454274  bar  True 2012-01-01</span>
+<span class="go">h  0.761038  0.121675  0.443863  bar  True 2012-01-01</span>
 
-<span class="gp">In [5]: </span><span class="n">df2</span>
-<span class="gh">Out[5]: </span><span class="go"></span>
-<span class="go">        one       two     three four   five  timestamp</span>
-<span class="go">a       NaN -0.238894 -0.123068  bar   True        NaT</span>
-<span class="go">c       NaN  0.876684  0.596272  bar   True        NaT</span>
-<span class="go">e -0.759459 -0.129187 -1.240067  bar  False 2012-01-01</span>
-<span class="go">f  2.455302  1.404168  1.233578  bar   True 2012-01-01</span>
-<span class="go">h       NaN  1.743854  0.635683  bar  False        NaT</span>
+<span class="gp">In [5]: </span><span class="n">df2</span><span class="o">.</span><span class="n">ix</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;h&#39;</span><span class="p">],[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [6]: </span><span class="n">df2</span><span class="o">.</span><span class="n">get_dtype_counts</span><span class="p">()</span>
+<span class="gp">In [6]: </span><span class="n">df2</span>
 <span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">        one       two     three four  five  timestamp</span>
+<span class="go">a       NaN  0.400157  0.978738  bar  True        NaT</span>
+<span class="go">c       NaN  1.867558 -0.977278  bar  True        NaT</span>
+<span class="go">e  0.950088 -0.151357 -0.103219  bar  True 2012-01-01</span>
+<span class="go">f  0.410599  0.144044  1.454274  bar  True 2012-01-01</span>
+<span class="go">h       NaN  0.121675  0.443863  bar  True        NaT</span>
+
+<span class="gp">In [7]: </span><span class="n">df2</span><span class="o">.</span><span class="n">get_dtype_counts</span><span class="p">()</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
 <span class="go">bool              1</span>
 <span class="go">datetime64[ns]    1</span>
 <span class="go">float64           3</span>

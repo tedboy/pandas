@@ -3,6 +3,7 @@
 
    import numpy as np
    import pandas as pd
+   np.random.seed(10)
    pd.options.display.max_rows=15
    import matplotlib
    matplotlib.style.use('ggplot')
@@ -31,6 +32,7 @@ For example:
 .. ipython:: python
 
    s = pd.Series(np.random.randn(5), index=[0, 2, 4, 6, 7])
+   s
    s > 0
    (s > 0).dtype
    crit = (s > 0).reindex(list(range(8)))

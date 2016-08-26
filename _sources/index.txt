@@ -7,12 +7,13 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
 - Pandas version = 0.18
 - ``|today|`` = |today|
 - All modules for which code is available (`link <./_modules/index.html>`_)
-
+- https://github.com/pydata/pandas/tree/master/doc/source
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :numbered:
    :caption: Table of Contents
 
    missing.rst
+   groupby.rst
 

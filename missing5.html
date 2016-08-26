@@ -113,6 +113,46 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -184,21 +224,21 @@ of ways, which we illustrate:</p>
 <p><strong>Replace NA with a scalar value</strong></p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df2</span>
 <span class="gh">Out[1]: </span><span class="go"></span>
-<span class="go">        one       two     three four   five  timestamp</span>
-<span class="go">a       NaN -0.491877  1.298408  bar   True        NaT</span>
-<span class="go">c       NaN  1.340464 -0.872411  bar   True        NaT</span>
-<span class="go">e  0.187190 -1.962389  0.053224  bar   True 2012-01-01</span>
-<span class="go">f  1.092757 -1.233472  1.753621  bar   True 2012-01-01</span>
-<span class="go">h       NaN  0.609427 -1.582108  bar  False        NaT</span>
+<span class="go">        one       two     three four  five  timestamp</span>
+<span class="go">a       NaN  0.400157  0.978738  bar  True        NaT</span>
+<span class="go">c       NaN  1.867558 -0.977278  bar  True        NaT</span>
+<span class="go">e  0.950088 -0.151357 -0.103219  bar  True 2012-01-01</span>
+<span class="go">f  0.410599  0.144044  1.454274  bar  True 2012-01-01</span>
+<span class="go">h       NaN  0.121675  0.443863  bar  True        NaT</span>
 
 <span class="gp">In [2]: </span><span class="n">df2</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[2]: </span><span class="go"></span>
-<span class="go">        one       two     three four   five  timestamp</span>
-<span class="go">a  0.000000 -0.491877  1.298408  bar   True 1970-01-01</span>
-<span class="go">c  0.000000  1.340464 -0.872411  bar   True 1970-01-01</span>
-<span class="go">e  0.187190 -1.962389  0.053224  bar   True 2012-01-01</span>
-<span class="go">f  1.092757 -1.233472  1.753621  bar   True 2012-01-01</span>
-<span class="go">h  0.000000  0.609427 -1.582108  bar  False 1970-01-01</span>
+<span class="go">        one       two     three four  five  timestamp</span>
+<span class="go">a  0.000000  0.400157  0.978738  bar  True 1970-01-01</span>
+<span class="go">c  0.000000  1.867558 -0.977278  bar  True 1970-01-01</span>
+<span class="go">e  0.950088 -0.151357 -0.103219  bar  True 2012-01-01</span>
+<span class="go">f  0.410599  0.144044  1.454274  bar  True 2012-01-01</span>
+<span class="go">h  0.000000  0.121675  0.443863  bar  True 1970-01-01</span>
 
 <span class="gp">In [3]: </span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;missing&#39;</span><span class="p">)</span>
 <span class="gh">Out[3]: </span><span class="go"></span>
@@ -216,20 +256,20 @@ can propagate non-null values forward or backward:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">df</span>
 <span class="gh">Out[4]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN -0.491877  1.298408</span>
-<span class="go">c       NaN  1.340464 -0.872411</span>
-<span class="go">e  0.187190 -1.962389  0.053224</span>
-<span class="go">f  1.092757 -1.233472  1.753621</span>
-<span class="go">h       NaN  0.609427 -1.582108</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  1.867558 -0.977278</span>
+<span class="go">e  0.950088 -0.151357 -0.103219</span>
+<span class="go">f  0.410599  0.144044  1.454274</span>
+<span class="go">h       NaN  0.121675  0.443863</span>
 
 <span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pad&#39;</span><span class="p">)</span>
 <span class="gh">Out[5]: </span><span class="go"></span>
 <span class="go">        one       two     three</span>
-<span class="go">a       NaN -0.491877  1.298408</span>
-<span class="go">c       NaN  1.340464 -0.872411</span>
-<span class="go">e  0.187190 -1.962389  0.053224</span>
-<span class="go">f  1.092757 -1.233472  1.753621</span>
-<span class="go">h  1.092757  0.609427 -1.582108</span>
+<span class="go">a       NaN  0.400157  0.978738</span>
+<span class="go">c       NaN  1.867558 -0.977278</span>
+<span class="go">e  0.950088 -0.151357 -0.103219</span>
+<span class="go">f  0.410599  0.144044  1.454274</span>
+<span class="go">h  0.410599  0.121675  0.443863</span>
 </pre></div>
 </div>
 <p id="missing-data-fillna-limit"><strong>Limit the amount of filling</strong></p>
@@ -238,20 +278,20 @@ we can use the <cite>limit</cite> keyword:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span>
 <span class="gh">Out[6]: </span><span class="go"></span>
 <span class="go">   one       two     three</span>
-<span class="go">a  NaN -0.491877  1.298408</span>
-<span class="go">c  NaN  1.340464 -0.872411</span>
+<span class="go">a  NaN  0.400157  0.978738</span>
+<span class="go">c  NaN  1.867558 -0.977278</span>
 <span class="go">e  NaN       NaN       NaN</span>
 <span class="go">f  NaN       NaN       NaN</span>
-<span class="go">h  NaN  0.609427 -1.582108</span>
+<span class="go">h  NaN  0.121675  0.443863</span>
 
 <span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pad&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[7]: </span><span class="go"></span>
 <span class="go">   one       two     three</span>
-<span class="go">a  NaN -0.491877  1.298408</span>
-<span class="go">c  NaN  1.340464 -0.872411</span>
-<span class="go">e  NaN  1.340464 -0.872411</span>
+<span class="go">a  NaN  0.400157  0.978738</span>
+<span class="go">c  NaN  1.867558 -0.977278</span>
+<span class="go">e  NaN  1.867558 -0.977278</span>
 <span class="go">f  NaN       NaN       NaN</span>
-<span class="go">h  NaN  0.609427 -1.582108</span>
+<span class="go">h  NaN  0.121675  0.443863</span>
 </pre></div>
 </div>
 <p>To remind you, these are the available filling methods:</p>
@@ -298,44 +338,44 @@ use case of this is to fill a DataFrame with the mean of that column.</p>
 <span class="gp">In [12]: </span><span class="n">dff</span>
 <span class="gh">Out[12]: </span><span class="go"></span>
 <span class="go">          A         B         C</span>
-<span class="go">0  0.595234 -1.002352  1.469024</span>
-<span class="go">1  1.793470  0.356869  0.086976</span>
-<span class="go">2  0.884402  1.384724  0.248210</span>
-<span class="go">3       NaN -1.294654  0.591539</span>
-<span class="go">4       NaN       NaN -0.511280</span>
-<span class="go">5 -0.525059       NaN       NaN</span>
-<span class="go">6 -1.931987 -0.859409       NaN</span>
-<span class="go">7  1.185273  1.103510       NaN</span>
-<span class="go">8  0.370780  1.661003  0.957359</span>
-<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+<span class="go">0  0.333674  1.494079 -0.205158</span>
+<span class="go">1  0.313068 -0.854096 -2.552990</span>
+<span class="go">2  0.653619  0.864436 -0.742165</span>
+<span class="go">3       NaN -1.454366  0.045759</span>
+<span class="go">4       NaN       NaN  1.469359</span>
+<span class="go">5  0.154947       NaN       NaN</span>
+<span class="go">6 -1.980796 -0.347912       NaN</span>
+<span class="go">7  1.230291  1.202380       NaN</span>
+<span class="go">8 -0.302303 -1.048553 -1.420018</span>
+<span class="go">9 -1.706270  1.950775 -0.509652</span>
 
 <span class="gp">In [13]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="gh">Out[13]: </span><span class="go"></span>
 <span class="go">          A         B         C</span>
-<span class="go">0  0.595234 -1.002352  1.469024</span>
-<span class="go">1  1.793470  0.356869  0.086976</span>
-<span class="go">2  0.884402  1.384724  0.248210</span>
-<span class="go">3  0.167166 -1.294654  0.591539</span>
-<span class="go">4  0.167166 -0.044163 -0.511280</span>
-<span class="go">5 -0.525059 -0.044163  0.173964</span>
-<span class="go">6 -1.931987 -0.859409  0.173964</span>
-<span class="go">7  1.185273  1.103510  0.173964</span>
-<span class="go">8  0.370780  1.661003  0.957359</span>
-<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+<span class="go">0  0.333674  1.494079 -0.205158</span>
+<span class="go">1  0.313068 -0.854096 -2.552990</span>
+<span class="go">2  0.653619  0.864436 -0.742165</span>
+<span class="go">3 -0.162971 -1.454366  0.045759</span>
+<span class="go">4 -0.162971  0.225843  1.469359</span>
+<span class="go">5  0.154947  0.225843 -0.559267</span>
+<span class="go">6 -1.980796 -0.347912 -0.559267</span>
+<span class="go">7  1.230291  1.202380 -0.559267</span>
+<span class="go">8 -0.302303 -1.048553 -1.420018</span>
+<span class="go">9 -1.706270  1.950775 -0.509652</span>
 
 <span class="gp">In [14]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>
 <span class="gh">Out[14]: </span><span class="go"></span>
 <span class="go">          A         B         C</span>
-<span class="go">0  0.595234 -1.002352  1.469024</span>
-<span class="go">1  1.793470  0.356869  0.086976</span>
-<span class="go">2  0.884402  1.384724  0.248210</span>
-<span class="go">3       NaN -1.294654  0.591539</span>
-<span class="go">4       NaN -0.044163 -0.511280</span>
-<span class="go">5 -0.525059 -0.044163  0.173964</span>
-<span class="go">6 -1.931987 -0.859409  0.173964</span>
-<span class="go">7  1.185273  1.103510  0.173964</span>
-<span class="go">8  0.370780  1.661003  0.957359</span>
-<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+<span class="go">0  0.333674  1.494079 -0.205158</span>
+<span class="go">1  0.313068 -0.854096 -2.552990</span>
+<span class="go">2  0.653619  0.864436 -0.742165</span>
+<span class="go">3       NaN -1.454366  0.045759</span>
+<span class="go">4       NaN  0.225843  1.469359</span>
+<span class="go">5  0.154947  0.225843 -0.559267</span>
+<span class="go">6 -1.980796 -0.347912 -0.559267</span>
+<span class="go">7  1.230291  1.202380 -0.559267</span>
+<span class="go">8 -0.302303 -1.048553 -1.420018</span>
+<span class="go">9 -1.706270  1.950775 -0.509652</span>
 </pre></div>
 </div>
 <div class="versionadded">
@@ -346,16 +386,16 @@ a Series in this case.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">dff</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">dff</span><span class="p">),</span> <span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 <span class="gh">Out[15]: </span><span class="go"></span>
 <span class="go">          A         B         C</span>
-<span class="go">0  0.595234 -1.002352  1.469024</span>
-<span class="go">1  1.793470  0.356869  0.086976</span>
-<span class="go">2  0.884402  1.384724  0.248210</span>
-<span class="go">3  0.167166 -1.294654  0.591539</span>
-<span class="go">4  0.167166 -0.044163 -0.511280</span>
-<span class="go">5 -0.525059 -0.044163  0.173964</span>
-<span class="go">6 -1.931987 -0.859409  0.173964</span>
-<span class="go">7  1.185273  1.103510  0.173964</span>
-<span class="go">8  0.370780  1.661003  0.957359</span>
-<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+<span class="go">0  0.333674  1.494079 -0.205158</span>
+<span class="go">1  0.313068 -0.854096 -2.552990</span>
+<span class="go">2  0.653619  0.864436 -0.742165</span>
+<span class="go">3 -0.162971 -1.454366  0.045759</span>
+<span class="go">4 -0.162971  0.225843  1.469359</span>
+<span class="go">5  0.154947  0.225843 -0.559267</span>
+<span class="go">6 -1.980796 -0.347912 -0.559267</span>
+<span class="go">7  1.230291  1.202380 -0.559267</span>
+<span class="go">8 -0.302303 -1.048553 -1.420018</span>
+<span class="go">9 -1.706270  1.950775 -0.509652</span>
 </pre></div>
 </div>
 </div>
@@ -366,11 +406,11 @@ data. To do this, use the <strong>dropna</strong> method:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">df</span>
 <span class="gh">Out[16]: </span><span class="go"></span>
 <span class="go">   one       two     three</span>
-<span class="go">a  NaN -0.491877  1.298408</span>
-<span class="go">c  NaN  1.340464 -0.872411</span>
+<span class="go">a  NaN  0.400157  0.978738</span>
+<span class="go">c  NaN  1.867558 -0.977278</span>
 <span class="go">e  NaN  0.000000  0.000000</span>
 <span class="go">f  NaN  0.000000  0.000000</span>
-<span class="go">h  NaN  0.609427 -1.582108</span>
+<span class="go">h  NaN  0.121675  0.443863</span>
 
 <span class="gp">In [17]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[17]: </span><span class="go"></span>
@@ -381,11 +421,11 @@ data. To do this, use the <strong>dropna</strong> method:</p>
 <span class="gp">In [18]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[18]: </span><span class="go"></span>
 <span class="go">        two     three</span>
-<span class="go">a -0.491877  1.298408</span>
-<span class="go">c  1.340464 -0.872411</span>
+<span class="go">a  0.400157  0.978738</span>
+<span class="go">c  1.867558 -0.977278</span>
 <span class="go">e  0.000000  0.000000</span>
 <span class="go">f  0.000000  0.000000</span>
-<span class="go">h  0.609427 -1.582108</span>
+<span class="go">h  0.121675  0.443863</span>
 
 <span class="gp">In [19]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 <span class="gh">Out[19]: </span><span class="go">Series([], Name: one, dtype: float64)</span>
@@ -432,10 +472,10 @@ performs linear interpolation at missing datapoints.</p>
 <span class="gh">Out[22]: </span><span class="go">100</span>
 
 <span class="gp">In [23]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[23]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2adc7c5e6c50&gt;</span>
+<span class="gh">Out[23]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ad82c2a92d0&gt;</span>
 </pre></div>
 </div>
-<img alt="../build/html/_static/series_interpolate.png" src="../build/html/_static/series_interpolate.png" />
+<img alt="_images/series_interpolate.png" src="_images/series_interpolate.png" />
 <p>Index aware interpolation is available via the <code class="docutils literal"><span class="pre">method</span></code> keyword:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">ts2</span>
 <span class="gh">Out[24]: </span><span class="go"></span>
@@ -597,10 +637,10 @@ the degree or order of the approximation:</p>
 <span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">})</span>
 
 <span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[44]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2adc7ec3c5d0&gt;</span>
+<span class="gh">Out[44]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ad82baae710&gt;</span>
 </pre></div>
 </div>
-<img alt="../build/html/_static/compare_interpolations.png" src="../build/html/_static/compare_interpolations.png" />
+<img alt="_images/compare_interpolations.png" src="_images/compare_interpolations.png" />
 <p>Another use case is interpolation at <em>new</em> values.
 Suppose you have 100 observations from some distribution. And let&#8217;s suppose
 that you&#8217;re particularly interested in what&#8217;s happening around the middle.

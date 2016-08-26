@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Pandas Doc</title>
+  <title>2.7. Filtration &mdash; Pandas Doc</title>
   
 
   
@@ -31,7 +30,10 @@
   
 
   
-    <link rel="top" title="Pandas Doc" href="index.html"/> 
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="2. Group By: split-apply-combine" href="groupby.html"/>
+        <link rel="next" title="2.8. Dispatching to instance methods" href="groupby7.html"/>
+        <link rel="prev" title="2.6. Transformation" href="groupby5.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,7 +84,7 @@
             
             
                 <p class="caption"><span class="caption-text">Table of Contents</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
@@ -111,7 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
@@ -129,7 +131,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="groupby5.html">2.6. Transformation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.7. Filtration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
@@ -192,12 +194,16 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li></li>
+          <li><a href="groupby.html">2. Group By: split-apply-combine</a> &raquo;</li>
+        
+      <li>2.7. Filtration</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/groupby6.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -207,17 +213,100 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="filtration">
+<span id="groupby-filter"></span><h1>2.7. Filtration<a class="headerlink" href="#filtration" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.12.</span></p>
+</div>
+<p>The <code class="docutils literal"><span class="pre">filter</span></code> method returns a subset of the original object. Suppose we
+want to take only elements that belong to groups with a group sum greater
+than 2.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<h1 id="index">Index</h1>
+<span class="gp">In [2]: </span><span class="n">sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[2]: </span><span class="go"></span>
+<span class="go">3    3</span>
+<span class="go">4    3</span>
+<span class="go">5    3</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The argument of <code class="docutils literal"><span class="pre">filter</span></code> must be a function that, applied to the group as a
+whole, returns <code class="docutils literal"><span class="pre">True</span></code> or <code class="docutils literal"><span class="pre">False</span></code>.</p>
+<p>Another useful operation is filtering out elements that belong to groups
+with only a couple members.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;aabbbbcc&#39;</span><span class="p">)})</span>
 
-<div class="genindex-jumpbox">
- 
+<span class="gp">In [4]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">   A  B</span>
+<span class="go">2  2  b</span>
+<span class="go">3  3  b</span>
+<span class="go">4  4  b</span>
+<span class="go">5  5  b</span>
+</pre></div>
+</div>
+<p>Alternatively, instead of dropping the offending groups, we can return a
+like-indexed objects where the groups that do not pass the filter are filled
+with NaNs.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">     A    B</span>
+<span class="go">0  NaN  NaN</span>
+<span class="go">1  NaN  NaN</span>
+<span class="go">2  2.0    b</span>
+<span class="go">3  3.0    b</span>
+<span class="go">4  4.0    b</span>
+<span class="go">5  5.0    b</span>
+<span class="go">6  NaN  NaN</span>
+<span class="go">7  NaN  NaN</span>
+</pre></div>
+</div>
+<p>For DataFrames with multiple columns, filters should explicitly specify a column as the filter criterion.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">dff</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">   A  B  C</span>
+<span class="go">2  2  b  2</span>
+<span class="go">3  3  b  3</span>
+<span class="go">4  4  b  4</span>
+<span class="go">5  5  b  5</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Some functions when applied to a groupby object will act as a <strong>filter</strong> on the input, returning
+a reduced shape of the original (and potentially eliminating groups), but with the index unchanged.
+Passing <code class="docutils literal"><span class="pre">as_index=False</span></code> will not affect these transformation methods.</p>
+<p>For example: <code class="docutils literal"><span class="pre">head,</span> <span class="pre">tail</span></code>.</p>
+<div class="last highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go"></span>
+<span class="go">   A  B  C</span>
+<span class="go">0  0  a  0</span>
+<span class="go">1  1  a  1</span>
+<span class="go">2  2  b  2</span>
+<span class="go">3  3  b  3</span>
+<span class="go">6  6  c  6</span>
+<span class="go">7  7  c  7</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupby7.html" class="btn btn-neutral float-right" title="2.8. Dispatching to instance methods" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupby5.html" class="btn btn-neutral" title="2.6. Transformation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

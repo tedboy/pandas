@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.6. Transformation &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="2. Group By: split-apply-combine" href="groupby.html"/>
+        <link rel="next" title="2.7. Filtration" href="groupby6.html"/>
+        <link rel="prev" title="2.5. Aggregation" href="groupby4.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing5.html">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="missing5.html#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing5.html#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-with-multiindex">2.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby2.html#dataframe-column-selection-in-groupby">2.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html">2.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby3.html#selecting-a-group">2.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby4.html">2.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-multiple-functions-at-once">2.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#applying-different-functions-to-dataframe-columns">2.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby4.html#cython-optimized-aggregation-functions">2.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby6.html">2.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby7.html">2.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby8.html">2.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby9.html">2.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#automatic-exclusion-of-nuisance-columns">2.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#na-and-nat-group-handling">2.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-ordered-factors">2.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#grouping-with-a-grouper-specification">2.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-first-rows-of-each-group">2.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#taking-the-nth-row-of-each-group">2.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#enumerate-group-items">2.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby9.html#plotting">2.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupby10.html">2.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#regrouping-by-factor">2.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#groupby-by-indexer-to-resample-data">2.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby10.html#returning-a-series-to-propagate-names">2.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="groupby.html">2. Group By: split-apply-combine</a> &raquo;</li>
+        
+      <li>2.6. Transformation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/groupby5.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transformation">
+<span id="groupby-transform"></span><h1>2.6. Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">transform</span></code> method returns an object that is indexed the same (same size)
+as the one being grouped. Thus, the passed transform function should return a
+result that is the same size as the group chunk. For example, suppose we wished
+to standardize the data within each group:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;10/1/1999&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">1100</span><span class="p">)</span>
+
+<span class="gp">In [2]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1100</span><span class="p">),</span> <span class="n">index</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">min_periods</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="gp">In [4]: </span><span class="n">ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">2000-01-08    0.073603</span>
+<span class="go">2000-01-09    0.057313</span>
+<span class="go">2000-01-10    0.089255</span>
+<span class="go">2000-01-11    0.133248</span>
+<span class="go">2000-01-12    0.175876</span>
+<span class="go">Freq: D, dtype: float64</span>
+
+<span class="gp">In [5]: </span><span class="n">ts</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">2002-09-30    0.858589</span>
+<span class="go">2002-10-01    0.863873</span>
+<span class="go">2002-10-02    0.885344</span>
+<span class="go">2002-10-03    0.878466</span>
+<span class="go">2002-10-04    0.919510</span>
+<span class="go">Freq: D, dtype: float64</span>
+
+<span class="gp">In [6]: </span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">year</span>
+
+<span class="gp">In [7]: </span><span class="n">zscore</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="gp">In [8]: </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We would expect the result to now have mean 0 and standard deviation 1 within
+each group, which we can easily check:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Original Data</span>
+<span class="gp">In [9]: </span><span class="n">grouped</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="gp">In [10]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[10]: </span><span class="go"></span>
+<span class="go">2000    0.407865</span>
+<span class="go">2001    0.358106</span>
+<span class="go">2002    0.619029</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [11]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="gh">Out[11]: </span><span class="go"></span>
+<span class="go">2000    0.180659</span>
+<span class="go">2001    0.227780</span>
+<span class="go">2002    0.296282</span>
+<span class="go">dtype: float64</span>
+
+<span class="go"># Transformed Data</span>
+<span class="gp">In [12]: </span><span class="n">grouped_trans</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="gp">In [13]: </span><span class="n">grouped_trans</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[13]: </span><span class="go"></span>
+<span class="go">2000   -1.662242e-17</span>
+<span class="go">2001    7.592100e-16</span>
+<span class="go">2002   -4.344699e-16</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [14]: </span><span class="n">grouped_trans</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="gh">Out[14]: </span><span class="go"></span>
+<span class="go">2000    1.0</span>
+<span class="go">2001    1.0</span>
+<span class="go">2002    1.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>We can also visually compare the original and transformed data sets.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Original&#39;</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;Transformed&#39;</span><span class="p">:</span> <span class="n">transformed</span><span class="p">})</span>
+
+<span class="gp">In [16]: </span><span class="n">compare</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[16]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ad82b963590&gt;</span>
+</pre></div>
+</div>
+<img alt="_images/groupby_transform_plot.png" src="_images/groupby_transform_plot.png" />
+<p>Another common data transform is to replace missing data with the group mean.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">data_df</span>
+<span class="gh">Out[17]: </span><span class="go"></span>
+<span class="go">            A         B         C</span>
+<span class="go">0   -0.786641 -0.393609 -0.171092</span>
+<span class="go">1    1.786173 -0.575189  0.820750</span>
+<span class="go">2   -1.256530 -0.642246  0.236892</span>
+<span class="go">3   -0.466867 -1.382653 -0.369422</span>
+<span class="go">4         NaN -0.851236  1.058006</span>
+<span class="go">5   -0.080372 -1.268121  1.561967</span>
+<span class="go">6    0.816983  1.965656 -1.169408</span>
+<span class="go">..        ...       ...       ...</span>
+<span class="go">993       NaN -0.575634 -2.332083</span>
+<span class="go">994  0.225519  0.347968 -0.517897</span>
+<span class="go">995  0.945827  0.190394  0.845686</span>
+<span class="go">996  0.607557  0.722559  0.737809</span>
+<span class="go">997  0.024958  0.553376  0.477220</span>
+<span class="go">998  0.647037 -0.397862 -0.022409</span>
+<span class="go">999  0.929380  0.232026 -1.296769</span>
+
+<span class="go">[1000 rows x 3 columns]</span>
+
+<span class="gp">In [18]: </span><span class="n">countries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;GR&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">])</span>
+
+<span class="gp">In [19]: </span><span class="n">key</span> <span class="o">=</span> <span class="n">countries</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)]</span>
+
+<span class="gp">In [20]: </span><span class="n">grouped</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="go"># Non-NA count in each group</span>
+<span class="gp">In [21]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[21]: </span><span class="go"></span>
+<span class="go">      A    B    C</span>
+<span class="go">GR  208  221  189</span>
+<span class="go">JP  235  251  215</span>
+<span class="go">UK  235  239  217</span>
+<span class="go">US  230  239  202</span>
+
+<span class="gp">In [22]: </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="gp">In [23]: </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can verify that the group means have not changed in the transformed data
+and that the transformed data contains no NAs.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">grouped_trans</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="gp">In [25]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># original group means</span>
+<span class="gh">Out[25]: </span><span class="go"></span>
+<span class="go">           A         B         C</span>
+<span class="go">GR  0.032022  0.037422  0.007687</span>
+<span class="go">JP -0.049426 -0.008097 -0.092958</span>
+<span class="go">UK  0.072942  0.059592  0.176494</span>
+<span class="go">US -0.016772 -0.075033 -0.086060</span>
+
+<span class="gp">In [26]: </span><span class="n">grouped_trans</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># transformation did not change group means</span>
+<span class="gh">Out[26]: </span><span class="go"></span>
+<span class="go">           A         B         C</span>
+<span class="go">GR  0.032022  0.037422  0.007687</span>
+<span class="go">JP -0.049426 -0.008097 -0.092958</span>
+<span class="go">UK  0.072942  0.059592  0.176494</span>
+<span class="go">US -0.016772 -0.075033 -0.086060</span>
+
+<span class="gp">In [27]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="c1"># original has some missing data points</span>
+<span class="gh">Out[27]: </span><span class="go"></span>
+<span class="go">      A    B    C</span>
+<span class="go">GR  208  221  189</span>
+<span class="go">JP  235  251  215</span>
+<span class="go">UK  235  239  217</span>
+<span class="go">US  230  239  202</span>
+
+<span class="gp">In [28]: </span><span class="n">grouped_trans</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="c1"># counts after transformation</span>
+<span class="gh">Out[28]: </span><span class="go"></span>
+<span class="go">      A    B    C</span>
+<span class="go">GR  234  234  234</span>
+<span class="go">JP  261  261  261</span>
+<span class="go">UK  255  255  255</span>
+<span class="go">US  250  250  250</span>
+
+<span class="gp">In [29]: </span><span class="n">grouped_trans</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="c1"># Verify non-NA count equals group size</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
+<span class="go">GR    234</span>
+<span class="go">JP    261</span>
+<span class="go">UK    255</span>
+<span class="go">US    250</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Some functions when applied to a groupby object will automatically transform the input, returning
+an object of the same shape as the original. Passing <code class="docutils literal"><span class="pre">as_index=False</span></code> will not affect these transformation methods.</p>
+<p>For example: <code class="docutils literal"><span class="pre">fillna,</span> <span class="pre">ffill,</span> <span class="pre">bfill,</span> <span class="pre">shift</span></code>.</p>
+<div class="last highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">grouped</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+<span class="gh">Out[30]: </span><span class="go"></span>
+<span class="go">            A         B         C</span>
+<span class="go">0   -0.786641 -0.393609 -0.171092</span>
+<span class="go">1    1.786173 -0.575189  0.820750</span>
+<span class="go">2   -1.256530 -0.642246  0.236892</span>
+<span class="go">3   -0.466867 -1.382653 -0.369422</span>
+<span class="go">4   -0.786641 -0.851236  1.058006</span>
+<span class="go">5   -0.080372 -1.268121  1.561967</span>
+<span class="go">6    0.816983  1.965656 -1.169408</span>
+<span class="go">..        ...       ...       ...</span>
+<span class="go">993 -0.661776 -0.575634 -2.332083</span>
+<span class="go">994  0.225519  0.347968 -0.517897</span>
+<span class="go">995  0.945827  0.190394  0.845686</span>
+<span class="go">996  0.607557  0.722559  0.737809</span>
+<span class="go">997  0.024958  0.553376  0.477220</span>
+<span class="go">998  0.647037 -0.397862 -0.022409</span>
+<span class="go">999  0.929380  0.232026 -1.296769</span>
+
+<span class="go">[1000 rows x 3 columns]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupby6.html" class="btn btn-neutral float-right" title="2.7. Filtration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupby4.html" class="btn btn-neutral" title="2.5. Aggregation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Pandas Doc</title>
+  <title>2.1. Introduction &mdash; Pandas Doc</title>
   
 
   
@@ -31,7 +30,10 @@
   
 
   
-    <link rel="top" title="Pandas Doc" href="index.html"/> 
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="2. Group By: split-apply-combine" href="groupby.html"/>
+        <link rel="next" title="2.2. Splitting an object into groups" href="groupby2.html"/>
+        <link rel="prev" title="2. Group By: split-apply-combine" href="groupby.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,7 +84,7 @@
             
             
                 <p class="caption"><span class="caption-text">Table of Contents</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
@@ -111,8 +113,8 @@
 <li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupby1.html">2.1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="groupby.html">2. Group By: split-apply-combine</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupby2.html">2.2. Splitting an object into groups</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-sorting">2.2.1. GroupBy sorting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupby2.html#groupby-object-attributes">2.2.2. GroupBy object attributes</a></li>
@@ -192,12 +194,16 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li></li>
+          <li><a href="groupby.html">2. Group By: split-apply-combine</a> &raquo;</li>
+        
+      <li>2.1. Introduction</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/groupby1.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -207,17 +213,84 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="introduction">
+<h1>2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>By &#8220;group by&#8221; we are referring to a process involving one or more of the following
+steps</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Splitting</strong> the data into groups based on some criteria</li>
+<li><strong>Applying</strong> a function to each group independently</li>
+<li><strong>Combining</strong> the results into a data structure</li>
+</ul>
+</div></blockquote>
+<p>Of these, the split step is the most straightforward. In fact, in many
+situations you may wish to split the data set into groups and do something with
+those groups yourself. In the apply step, we might wish to one of the
+following:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Aggregation</strong>: computing a summary statistic (or statistics) about each
+group. Some examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Compute group sums or means</li>
+<li>Compute group sizes / counts</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Transformation</strong>: perform some group-specific computations and return a
+like-indexed. Some examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Standardizing data (zscore) within group</li>
+<li>Filling NAs within groups with a value derived from each group</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Filtration</strong>: discard some groups, according to a group-wise computation
+that evaluates True or False. Some examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Discarding data that belongs to groups with only a few members</li>
+<li>Filtering out data based on the group sum or mean</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Some combination of the above: GroupBy will examine the results of the apply
+step and try to return a sensibly combined result if it doesn&#8217;t fit into
+either of the above two categories</p>
+</li>
+</ul>
+</div></blockquote>
+<p>Since the set of object instance methods on pandas data structures are generally
+rich and expressive, we often simply want to invoke, say, a DataFrame function
+on each group. The name GroupBy should be quite familiar to those who have used
+a SQL-based tool (or <code class="docutils literal"><span class="pre">itertools</span></code>), in which you can write code like:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Column1</span><span class="p">,</span> <span class="n">Column2</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">Column3</span><span class="p">),</span> <span class="k">sum</span><span class="p">(</span><span class="n">Column4</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">SomeTable</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Column1</span><span class="p">,</span> <span class="n">Column2</span>
+</pre></div>
+</div>
+<p>We aim to make operations like this natural and easy to express using
+pandas. We&#8217;ll address each area of GroupBy functionality then provide some
+non-trivial examples / use cases.</p>
+<p>See the <span class="xref std std-ref">cookbook</span> for some advanced strategies</p>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupby2.html" class="btn btn-neutral float-right" title="2.2. Splitting an object into groups" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupby.html" class="btn btn-neutral" title="2. Group By: split-apply-combine" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
