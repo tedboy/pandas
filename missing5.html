@@ -1,0 +1,1046 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.5. Cleaning / filling missing data &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="index.html"/>
+        <link rel="up" title="1. Working with missing data" href="missing.html"/>
+        <link rel="next" title="1.6. Missing data casting rules and indexing" href="missing6.html"/>
+        <link rel="prev" title="1.4. Calculations with missing data" href="missing4.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="missing.html">1. Working with missing data</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="missing1.html">1.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#when-why-does-data-become-missing">1.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="missing1.html#values-considered-missing">1.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing2.html">1.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing3.html">1.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="missing4.html">1.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="missing4.html#na-values-in-groupby">1.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">1.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filling-missing-values-fillna">1.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filling-with-a-pandasobject">1.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropping-axis-labels-with-missing-data-dropna">1.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interpolation">1.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interpolation-limits">1.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#replacing-generic-values">1.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#string-regular-expression-replacement">1.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numeric-replacement">1.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="missing6.html">1.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="missing.html">1. Working with missing data</a> &raquo;</li>
+        
+      <li>1.5. Cleaning / filling missing data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/missing5.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cleaning-filling-missing-data">
+<h1>1.5. Cleaning / filling missing data<a class="headerlink" href="#cleaning-filling-missing-data" title="Permalink to this headline">¶</a></h1>
+<p>pandas objects are equipped with various data manipulation methods for dealing
+with missing data.</p>
+<div class="section" id="filling-missing-values-fillna">
+<span id="missing-data-fillna"></span><h2>1.5.1. Filling missing values: fillna<a class="headerlink" href="#filling-missing-values-fillna" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>fillna</strong> function can &#8220;fill in&#8221; NA values with non-null data in a couple
+of ways, which we illustrate:</p>
+<p><strong>Replace NA with a scalar value</strong></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df2</span>
+<span class="gh">Out[1]: </span><span class="go"></span>
+<span class="go">        one       two     three four   five  timestamp</span>
+<span class="go">a       NaN -0.491877  1.298408  bar   True        NaT</span>
+<span class="go">c       NaN  1.340464 -0.872411  bar   True        NaT</span>
+<span class="go">e  0.187190 -1.962389  0.053224  bar   True 2012-01-01</span>
+<span class="go">f  1.092757 -1.233472  1.753621  bar   True 2012-01-01</span>
+<span class="go">h       NaN  0.609427 -1.582108  bar  False        NaT</span>
+
+<span class="gp">In [2]: </span><span class="n">df2</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[2]: </span><span class="go"></span>
+<span class="go">        one       two     three four   five  timestamp</span>
+<span class="go">a  0.000000 -0.491877  1.298408  bar   True 1970-01-01</span>
+<span class="go">c  0.000000  1.340464 -0.872411  bar   True 1970-01-01</span>
+<span class="go">e  0.187190 -1.962389  0.053224  bar   True 2012-01-01</span>
+<span class="go">f  1.092757 -1.233472  1.753621  bar   True 2012-01-01</span>
+<span class="go">h  0.000000  0.609427 -1.582108  bar  False 1970-01-01</span>
+
+<span class="gp">In [3]: </span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;four&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">a    bar</span>
+<span class="go">c    bar</span>
+<span class="go">e    bar</span>
+<span class="go">f    bar</span>
+<span class="go">h    bar</span>
+<span class="go">Name: four, dtype: object</span>
+</pre></div>
+</div>
+<p><strong>Fill gaps forward or backward</strong></p>
+<p>Using the same filling arguments as <span class="xref std std-ref">reindexing</span>, we
+can propagate non-null values forward or backward:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">df</span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">        one       two     three</span>
+<span class="go">a       NaN -0.491877  1.298408</span>
+<span class="go">c       NaN  1.340464 -0.872411</span>
+<span class="go">e  0.187190 -1.962389  0.053224</span>
+<span class="go">f  1.092757 -1.233472  1.753621</span>
+<span class="go">h       NaN  0.609427 -1.582108</span>
+
+<span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pad&#39;</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">        one       two     three</span>
+<span class="go">a       NaN -0.491877  1.298408</span>
+<span class="go">c       NaN  1.340464 -0.872411</span>
+<span class="go">e  0.187190 -1.962389  0.053224</span>
+<span class="go">f  1.092757 -1.233472  1.753621</span>
+<span class="go">h  1.092757  0.609427 -1.582108</span>
+</pre></div>
+</div>
+<p id="missing-data-fillna-limit"><strong>Limit the amount of filling</strong></p>
+<p>If we only want consecutive gaps filled up to a certain number of data points,
+we can use the <cite>limit</cite> keyword:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span>
+<span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">   one       two     three</span>
+<span class="go">a  NaN -0.491877  1.298408</span>
+<span class="go">c  NaN  1.340464 -0.872411</span>
+<span class="go">e  NaN       NaN       NaN</span>
+<span class="go">f  NaN       NaN       NaN</span>
+<span class="go">h  NaN  0.609427 -1.582108</span>
+
+<span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pad&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">   one       two     three</span>
+<span class="go">a  NaN -0.491877  1.298408</span>
+<span class="go">c  NaN  1.340464 -0.872411</span>
+<span class="go">e  NaN  1.340464 -0.872411</span>
+<span class="go">f  NaN       NaN       NaN</span>
+<span class="go">h  NaN  0.609427 -1.582108</span>
+</pre></div>
+</div>
+<p>To remind you, these are the available filling methods:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>pad / ffill</td>
+<td>Fill values forward</td>
+</tr>
+<tr class="row-odd"><td>bfill / backfill</td>
+<td>Fill values backward</td>
+</tr>
+</tbody>
+</table>
+<p>With time series data, using pad/ffill is extremely common so that the &#8220;last
+known value&#8221; is available at every time point.</p>
+<p>The <code class="docutils literal"><span class="pre">ffill()</span></code> function is equivalent to <code class="docutils literal"><span class="pre">fillna(method='ffill')</span></code>
+and <code class="docutils literal"><span class="pre">bfill()</span></code> is equivalent to <code class="docutils literal"><span class="pre">fillna(method='bfill')</span></code></p>
+</div>
+<div class="section" id="filling-with-a-pandasobject">
+<span id="missing-data-pandasobject"></span><h2>1.5.2. Filling with a PandasObject<a class="headerlink" href="#filling-with-a-pandasobject" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.12.</span></p>
+</div>
+<p>You can also fillna using a dict or Series that is alignable. The labels of the dict or index of the Series
+must match the columns of the frame you wish to fill. The
+use case of this is to fill a DataFrame with the mean of that column.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABC&#39;</span><span class="p">))</span>
+
+<span class="gp">In [9]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="gp">In [10]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="gp">In [11]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="gp">In [12]: </span><span class="n">dff</span>
+<span class="gh">Out[12]: </span><span class="go"></span>
+<span class="go">          A         B         C</span>
+<span class="go">0  0.595234 -1.002352  1.469024</span>
+<span class="go">1  1.793470  0.356869  0.086976</span>
+<span class="go">2  0.884402  1.384724  0.248210</span>
+<span class="go">3       NaN -1.294654  0.591539</span>
+<span class="go">4       NaN       NaN -0.511280</span>
+<span class="go">5 -0.525059       NaN       NaN</span>
+<span class="go">6 -1.931987 -0.859409       NaN</span>
+<span class="go">7  1.185273  1.103510       NaN</span>
+<span class="go">8  0.370780  1.661003  0.957359</span>
+<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+
+<span class="gp">In [13]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="gh">Out[13]: </span><span class="go"></span>
+<span class="go">          A         B         C</span>
+<span class="go">0  0.595234 -1.002352  1.469024</span>
+<span class="go">1  1.793470  0.356869  0.086976</span>
+<span class="go">2  0.884402  1.384724  0.248210</span>
+<span class="go">3  0.167166 -1.294654  0.591539</span>
+<span class="go">4  0.167166 -0.044163 -0.511280</span>
+<span class="go">5 -0.525059 -0.044163  0.173964</span>
+<span class="go">6 -1.931987 -0.859409  0.173964</span>
+<span class="go">7  1.185273  1.103510  0.173964</span>
+<span class="go">8  0.370780  1.661003  0.957359</span>
+<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+
+<span class="gp">In [14]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="gh">Out[14]: </span><span class="go"></span>
+<span class="go">          A         B         C</span>
+<span class="go">0  0.595234 -1.002352  1.469024</span>
+<span class="go">1  1.793470  0.356869  0.086976</span>
+<span class="go">2  0.884402  1.384724  0.248210</span>
+<span class="go">3       NaN -1.294654  0.591539</span>
+<span class="go">4       NaN -0.044163 -0.511280</span>
+<span class="go">5 -0.525059 -0.044163  0.173964</span>
+<span class="go">6 -1.931987 -0.859409  0.173964</span>
+<span class="go">7  1.185273  1.103510  0.173964</span>
+<span class="go">8  0.370780  1.661003  0.957359</span>
+<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.13.</span></p>
+</div>
+<p>Same result as above, but is aligning the &#8216;fill&#8217; value which is
+a Series in this case.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">dff</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">dff</span><span class="p">),</span> <span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
+<span class="go">          A         B         C</span>
+<span class="go">0  0.595234 -1.002352  1.469024</span>
+<span class="go">1  1.793470  0.356869  0.086976</span>
+<span class="go">2  0.884402  1.384724  0.248210</span>
+<span class="go">3  0.167166 -1.294654  0.591539</span>
+<span class="go">4  0.167166 -0.044163 -0.511280</span>
+<span class="go">5 -0.525059 -0.044163  0.173964</span>
+<span class="go">6 -1.931987 -0.859409  0.173964</span>
+<span class="go">7  1.185273  1.103510  0.173964</span>
+<span class="go">8  0.370780  1.661003  0.957359</span>
+<span class="go">9 -1.034788 -1.702994 -1.624082</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dropping-axis-labels-with-missing-data-dropna">
+<span id="missing-data-dropna"></span><h2>1.5.3. Dropping axis labels with missing data: dropna<a class="headerlink" href="#dropping-axis-labels-with-missing-data-dropna" title="Permalink to this headline">¶</a></h2>
+<p>You may wish to simply exclude labels from a data set which refer to missing
+data. To do this, use the <strong>dropna</strong> method:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">df</span>
+<span class="gh">Out[16]: </span><span class="go"></span>
+<span class="go">   one       two     three</span>
+<span class="go">a  NaN -0.491877  1.298408</span>
+<span class="go">c  NaN  1.340464 -0.872411</span>
+<span class="go">e  NaN  0.000000  0.000000</span>
+<span class="go">f  NaN  0.000000  0.000000</span>
+<span class="go">h  NaN  0.609427 -1.582108</span>
+
+<span class="gp">In [17]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[17]: </span><span class="go"></span>
+<span class="go">Empty DataFrame</span>
+<span class="go">Columns: [one, two, three]</span>
+<span class="go">Index: []</span>
+
+<span class="gp">In [18]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[18]: </span><span class="go"></span>
+<span class="go">        two     three</span>
+<span class="go">a -0.491877  1.298408</span>
+<span class="go">c  1.340464 -0.872411</span>
+<span class="go">e  0.000000  0.000000</span>
+<span class="go">f  0.000000  0.000000</span>
+<span class="go">h  0.609427 -1.582108</span>
+
+<span class="gp">In [19]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="gh">Out[19]: </span><span class="go">Series([], Name: one, dtype: float64)</span>
+</pre></div>
+</div>
+<p>Series.dropna is a simpler method as it only has one axis to consider.
+DataFrame.dropna has considerably more options than Series.dropna, which can be
+examined <span class="xref std std-ref">in the API</span>.</p>
+</div>
+<div class="section" id="interpolation">
+<span id="missing-data-interpolate"></span><h2>1.5.4. Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.13.0: </span><code class="xref py py-meth docutils literal"><span class="pre">interpolate()</span></code>, and <code class="xref py py-meth docutils literal"><span class="pre">interpolate()</span></code> have
+revamped interpolation methods and functionality.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.17.0: </span>The <code class="docutils literal"><span class="pre">limit_direction</span></code> keyword argument was added.</p>
+</div>
+<p>Both Series and Dataframe objects have an <code class="docutils literal"><span class="pre">interpolate</span></code> method that, by default,
+performs linear interpolation at missing datapoints.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">ts</span>
+<span class="gh">Out[20]: </span><span class="go"></span>
+<span class="go">2000-01-31    0.469112</span>
+<span class="go">2000-02-29         NaN</span>
+<span class="go">2000-03-31         NaN</span>
+<span class="go">2000-04-28         NaN</span>
+<span class="go">2000-05-31         NaN</span>
+<span class="go">2000-06-30         NaN</span>
+<span class="go">2000-07-31         NaN</span>
+<span class="go">                ...   </span>
+<span class="go">2007-10-31   -3.305259</span>
+<span class="go">2007-11-30   -5.485119</span>
+<span class="go">2007-12-31   -6.854968</span>
+<span class="go">2008-01-31   -7.809176</span>
+<span class="go">2008-02-29   -6.346480</span>
+<span class="go">2008-03-31   -8.089641</span>
+<span class="go">2008-04-30   -8.916232</span>
+<span class="go">Freq: BM, dtype: float64</span>
+
+<span class="gp">In [21]: </span><span class="n">ts</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[21]: </span><span class="go">61</span>
+
+<span class="gp">In [22]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="gh">Out[22]: </span><span class="go">100</span>
+
+<span class="gp">In [23]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[23]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2adc7c5e6c50&gt;</span>
+</pre></div>
+</div>
+<img alt="../build/html/_static/series_interpolate.png" src="../build/html/_static/series_interpolate.png" />
+<p>Index aware interpolation is available via the <code class="docutils literal"><span class="pre">method</span></code> keyword:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">ts2</span>
+<span class="gh">Out[24]: </span><span class="go"></span>
+<span class="go">2000-01-31    0.469112</span>
+<span class="go">2000-02-29         NaN</span>
+<span class="go">2002-07-31   -5.689738</span>
+<span class="go">2005-01-31         NaN</span>
+<span class="go">2008-04-30   -8.916232</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [25]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[25]: </span><span class="go"></span>
+<span class="go">2000-01-31    0.469112</span>
+<span class="go">2000-02-29   -2.610313</span>
+<span class="go">2002-07-31   -5.689738</span>
+<span class="go">2005-01-31   -7.302985</span>
+<span class="go">2008-04-30   -8.916232</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [26]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="gh">Out[26]: </span><span class="go"></span>
+<span class="go">2000-01-31    0.469112</span>
+<span class="go">2000-02-29    0.273272</span>
+<span class="go">2002-07-31   -5.689738</span>
+<span class="go">2005-01-31   -7.095568</span>
+<span class="go">2008-04-30   -8.916232</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>For a floating-point index, use <code class="docutils literal"><span class="pre">method='values'</span></code>:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">ser</span>
+<span class="gh">Out[27]: </span><span class="go"></span>
+<span class="go">0.0      0.0</span>
+<span class="go">1.0      NaN</span>
+<span class="go">10.0    10.0</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [28]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[28]: </span><span class="go"></span>
+<span class="go">0.0      0.0</span>
+<span class="go">1.0      5.0</span>
+<span class="go">10.0    10.0</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [29]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
+<span class="go">0.0      0.0</span>
+<span class="go">1.0      1.0</span>
+<span class="go">10.0    10.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>You can also interpolate with a DataFrame:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">],</span>
+<span class="gp">   ....: </span>                   <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">,</span> <span class="mf">14.4</span><span class="p">]})</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [31]: </span><span class="n">df</span>
+<span class="gh">Out[31]: </span><span class="go"></span>
+<span class="go">     A      B</span>
+<span class="go">0  1.0   0.25</span>
+<span class="go">1  2.1    NaN</span>
+<span class="go">2  NaN    NaN</span>
+<span class="go">3  4.7   4.00</span>
+<span class="go">4  5.6  12.20</span>
+<span class="go">5  6.8  14.40</span>
+
+<span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
+<span class="go">     A      B</span>
+<span class="go">0  1.0   0.25</span>
+<span class="go">1  2.1   1.50</span>
+<span class="go">2  3.4   2.75</span>
+<span class="go">3  4.7   4.00</span>
+<span class="go">4  5.6  12.20</span>
+<span class="go">5  6.8  14.40</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">method</span></code> argument gives access to fancier interpolation methods.
+If you have <a class="reference external" href="http://www.scipy.org">scipy</a> installed, you can set pass the name of a 1-d interpolation routine to <code class="docutils literal"><span class="pre">method</span></code>.
+You&#8217;ll want to consult the full scipy interpolation <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/interpolate.html#univariate-interpolation">documentation</a> and reference <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html">guide</a> for details.
+The appropriate interpolation method will depend on the type of data you are working with.</p>
+<ul class="simple">
+<li>If you are dealing with a time series that is growing at an increasing rate,
+<code class="docutils literal"><span class="pre">method='quadratic'</span></code> may be appropriate.</li>
+<li>If you have values approximating a cumulative distribution function,
+then <code class="docutils literal"><span class="pre">method='pchip'</span></code> should work well.</li>
+<li>To fill missing values with goal of smooth plotting, use <code class="docutils literal"><span class="pre">method='akima'</span></code>.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">These methods require <code class="docutils literal"><span class="pre">scipy</span></code>.</p>
+</div>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;barycentric&#39;</span><span class="p">)</span>
+<span class="gh">Out[33]: </span><span class="go"></span>
+<span class="go">      A       B</span>
+<span class="go">0  1.00   0.250</span>
+<span class="go">1  2.10  -7.660</span>
+<span class="go">2  3.53  -4.515</span>
+<span class="go">3  4.70   4.000</span>
+<span class="go">4  5.60  12.200</span>
+<span class="go">5  6.80  14.400</span>
+
+<span class="gp">In [34]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pchip&#39;</span><span class="p">)</span>
+<span class="gh">Out[34]: </span><span class="go"></span>
+<span class="go">         A          B</span>
+<span class="go">0  1.00000   0.250000</span>
+<span class="go">1  2.10000   0.672808</span>
+<span class="go">2  3.43454   1.928950</span>
+<span class="go">3  4.70000   4.000000</span>
+<span class="go">4  5.60000  12.200000</span>
+<span class="go">5  6.80000  14.400000</span>
+
+<span class="gp">In [35]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;akima&#39;</span><span class="p">)</span>
+<span class="gh">Out[35]: </span><span class="go"></span>
+<span class="go">          A          B</span>
+<span class="go">0  1.000000   0.250000</span>
+<span class="go">1  2.100000  -0.873316</span>
+<span class="go">2  3.406667   0.320034</span>
+<span class="go">3  4.700000   4.000000</span>
+<span class="go">4  5.600000  12.200000</span>
+<span class="go">5  6.800000  14.400000</span>
+</pre></div>
+</div>
+<p>When interpolating via a polynomial or spline approximation, you must also specify
+the degree or order of the approximation:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spline&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[36]: </span><span class="go"></span>
+<span class="go">          A          B</span>
+<span class="go">0  1.000000   0.250000</span>
+<span class="go">1  2.100000  -0.428598</span>
+<span class="go">2  3.404545   1.206900</span>
+<span class="go">3  4.700000   4.000000</span>
+<span class="go">4  5.600000  12.200000</span>
+<span class="go">5  6.800000  14.400000</span>
+
+<span class="gp">In [37]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[37]: </span><span class="go"></span>
+<span class="go">          A          B</span>
+<span class="go">0  1.000000   0.250000</span>
+<span class="go">1  2.100000  -4.161538</span>
+<span class="go">2  3.547059  -2.911538</span>
+<span class="go">3  4.700000   4.000000</span>
+<span class="go">4  5.600000  12.200000</span>
+<span class="go">5  6.800000  14.400000</span>
+</pre></div>
+</div>
+<p>Compare several methods:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="gp">In [39]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">,</span> <span class="o">.</span><span class="mi">25</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">37</span><span class="p">))</span>
+
+<span class="gp">In [40]: </span><span class="n">bad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">])</span>
+
+<span class="gp">In [41]: </span><span class="n">ser</span><span class="p">[</span><span class="n">bad</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="gp">In [42]: </span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;quadratic&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic&#39;</span><span class="p">]</span>
+
+<span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">})</span>
+
+<span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[44]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x2adc7ec3c5d0&gt;</span>
+</pre></div>
+</div>
+<img alt="../build/html/_static/compare_interpolations.png" src="../build/html/_static/compare_interpolations.png" />
+<p>Another use case is interpolation at <em>new</em> values.
+Suppose you have 100 observations from some distribution. And let&#8217;s suppose
+that you&#8217;re particularly interested in what&#8217;s happening around the middle.
+You can mix pandas&#8217; <code class="docutils literal"><span class="pre">reindex</span></code> and <code class="docutils literal"><span class="pre">interpolate</span></code> methods to interpolate
+at the new values.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+
+<span class="go"># interpolate at new_index</span>
+<span class="gp">In [46]: </span><span class="n">new_index</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">index</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mf">49.25</span><span class="p">,</span> <span class="mf">49.5</span><span class="p">,</span> <span class="mf">49.75</span><span class="p">,</span> <span class="mf">50.25</span><span class="p">,</span> <span class="mf">50.5</span><span class="p">,</span> <span class="mf">50.75</span><span class="p">])</span>
+
+<span class="gp">In [47]: </span><span class="n">interp_s</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">new_index</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pchip&#39;</span><span class="p">)</span>
+
+<span class="gp">In [48]: </span><span class="n">interp_s</span><span class="p">[</span><span class="mi">49</span><span class="p">:</span><span class="mi">51</span><span class="p">]</span>
+<span class="gh">Out[48]: </span><span class="go"></span>
+<span class="go">49.00    0.471410</span>
+<span class="go">49.25    0.476841</span>
+<span class="go">49.50    0.481780</span>
+<span class="go">49.75    0.485998</span>
+<span class="go">50.00    0.489266</span>
+<span class="go">50.25    0.491814</span>
+<span class="go">50.50    0.493995</span>
+<span class="go">50.75    0.495763</span>
+<span class="go">51.00    0.497074</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<div class="section" id="interpolation-limits">
+<h3>1.5.4.1. Interpolation Limits<a class="headerlink" href="#interpolation-limits" title="Permalink to this headline">¶</a></h3>
+<p>Like other pandas fill methods, <code class="docutils literal"><span class="pre">interpolate</span></code> accepts a <code class="docutils literal"><span class="pre">limit</span></code> keyword
+argument. Use this argument to limit the number of consecutive interpolations,
+keeping <code class="docutils literal"><span class="pre">NaN</span></code> values for interpolations that are too far from the last valid
+observation:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
+
+<span class="gp">In [50]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[50]: </span><span class="go"></span>
+<span class="go">0     NaN</span>
+<span class="go">1     NaN</span>
+<span class="go">2     5.0</span>
+<span class="go">3     7.0</span>
+<span class="go">4     9.0</span>
+<span class="go">5     NaN</span>
+<span class="go">6    13.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal"><span class="pre">limit</span></code> applies in a forward direction, so that only <code class="docutils literal"><span class="pre">NaN</span></code>
+values after a non-<code class="docutils literal"><span class="pre">NaN</span></code> value can be filled. If you provide <code class="docutils literal"><span class="pre">'backward'</span></code> or
+<code class="docutils literal"><span class="pre">'both'</span></code> for the <code class="docutils literal"><span class="pre">limit_direction</span></code> keyword argument, you can fill <code class="docutils literal"><span class="pre">NaN</span></code>
+values before non-<code class="docutils literal"><span class="pre">NaN</span></code> values, or both before and after non-<code class="docutils literal"><span class="pre">NaN</span></code> values,
+respectively:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># limit_direction == &#39;forward&#39;</span>
+<span class="gh">Out[51]: </span><span class="go"></span>
+<span class="go">0     NaN</span>
+<span class="go">1     NaN</span>
+<span class="go">2     5.0</span>
+<span class="go">3     7.0</span>
+<span class="go">4     NaN</span>
+<span class="go">5     NaN</span>
+<span class="go">6    13.0</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [52]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">)</span>
+<span class="gh">Out[52]: </span><span class="go"></span>
+<span class="go">0     NaN</span>
+<span class="go">1     5.0</span>
+<span class="go">2     5.0</span>
+<span class="go">3     NaN</span>
+<span class="go">4     NaN</span>
+<span class="go">5    11.0</span>
+<span class="go">6    13.0</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [53]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="gh">Out[53]: </span><span class="go"></span>
+<span class="go">0     NaN</span>
+<span class="go">1     5.0</span>
+<span class="go">2     5.0</span>
+<span class="go">3     7.0</span>
+<span class="go">4     NaN</span>
+<span class="go">5    11.0</span>
+<span class="go">6    13.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="replacing-generic-values">
+<span id="missing-data-replace"></span><h2>1.5.5. Replacing Generic Values<a class="headerlink" href="#replacing-generic-values" title="Permalink to this headline">¶</a></h2>
+<p>Often times we want to replace arbitrary values with other values. New in v0.8
+is the <code class="docutils literal"><span class="pre">replace</span></code> method in Series/DataFrame that provides an efficient yet
+flexible way to perform such replacements.</p>
+<p>For a Series, you can replace a single value or a list of values by another
+value:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">])</span>
+
+<span class="gp">In [55]: </span><span class="n">ser</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[55]: </span><span class="go"></span>
+<span class="go">0    5.0</span>
+<span class="go">1    1.0</span>
+<span class="go">2    2.0</span>
+<span class="go">3    3.0</span>
+<span class="go">4    4.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>You can replace a list of values by a list of other values:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">ser</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gh">Out[56]: </span><span class="go"></span>
+<span class="go">0    4.0</span>
+<span class="go">1    3.0</span>
+<span class="go">2    2.0</span>
+<span class="go">3    1.0</span>
+<span class="go">4    0.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>You can also specify a mapping dict:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">ser</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span>
+<span class="gh">Out[57]: </span><span class="go"></span>
+<span class="go">0     10.0</span>
+<span class="go">1    100.0</span>
+<span class="go">2      2.0</span>
+<span class="go">3      3.0</span>
+<span class="go">4      4.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>For a DataFrame, you can specify individual values by column:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+
+<span class="gp">In [59]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gh">Out[59]: </span><span class="go"></span>
+<span class="go">     a    b</span>
+<span class="go">0  100  100</span>
+<span class="go">1    1    6</span>
+<span class="go">2    2    7</span>
+<span class="go">3    3    8</span>
+<span class="go">4    4    9</span>
+</pre></div>
+</div>
+<p>Instead of replacing with specified values, you can treat all given values as
+missing and interpolate over them:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">ser</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pad&#39;</span><span class="p">)</span>
+<span class="gh">Out[60]: </span><span class="go"></span>
+<span class="go">0    0.0</span>
+<span class="go">1    0.0</span>
+<span class="go">2    0.0</span>
+<span class="go">3    0.0</span>
+<span class="go">4    4.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="string-regular-expression-replacement">
+<span id="missing-data-replace-expression"></span><h2>1.5.6. String/Regular Expression Replacement<a class="headerlink" href="#string-regular-expression-replacement" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Python strings prefixed with the <code class="docutils literal"><span class="pre">r</span></code> character such as <code class="docutils literal"><span class="pre">r'hello</span> <span class="pre">world'</span></code>
+are so-called &#8220;raw&#8221; strings. They have different semantics regarding
+backslashes than strings without this prefix. Backslashes in raw strings
+will be interpreted as an escaped backslash, e.g., <code class="docutils literal"><span class="pre">r'\'</span> <span class="pre">==</span> <span class="pre">'\\'</span></code>. You
+should <a class="reference external" href="http://docs.python.org/2/reference/lexical_analysis.html#string-literals">read about them</a>
+if this is unclear.</p>
+</div>
+<p>Replace the &#8216;.&#8217; with <code class="docutils literal"><span class="pre">nan</span></code> (str -&gt; str)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [61]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ab..&#39;</span><span class="p">),</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]}</span>
+
+<span class="gp">In [62]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="gp">In [63]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[63]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>Now do it with a regular expression that removes surrounding whitespace
+(regex -&gt; regex)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">r&#39;\s*\.\s*&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[64]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>Replace a few different values (list -&gt; list)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [65]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<span class="gh">Out[65]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    b    b</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>list of regex -&gt; list of regex</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [66]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">r&#39;\.&#39;</span><span class="p">,</span> <span class="s1">r&#39;(a)&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;dot&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\1</span><span class="s1">stuff&#39;</span><span class="p">],</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[66]: </span><span class="go"></span>
+<span class="go">   a       b       c</span>
+<span class="go">0  0  stuff  stuff</span>
+<span class="go">1  1       b       b</span>
+<span class="go">2  2     dot     NaN</span>
+<span class="go">3  3     dot       d</span>
+</pre></div>
+</div>
+<p>Only search in column <code class="docutils literal"><span class="pre">'b'</span></code> (dict -&gt; dict)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;.&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">})</span>
+<span class="gh">Out[67]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>Same as the previous example, but use a regular expression for
+searching instead (dict of regex -&gt; dict)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">r&#39;\s*\.\s*&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[68]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>You can pass nested dictionaries of regular expressions that use <code class="docutils literal"><span class="pre">regex=True</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [69]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">r&#39;&#39;</span><span class="p">}},</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[69]: </span><span class="go"></span>
+<span class="go">   a  b    c</span>
+<span class="go">0  0  a    a</span>
+<span class="go">1  1       b</span>
+<span class="go">2  2  .  NaN</span>
+<span class="go">3  3  .    d</span>
+</pre></div>
+</div>
+<p>or you can pass the nested dictionary like so</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [70]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">r&#39;\s*\.\s*&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">}})</span>
+<span class="gh">Out[70]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  NaN  NaN</span>
+<span class="go">3  3  NaN    d</span>
+</pre></div>
+</div>
+<p>You can also use the group of a regular expression match when replacing (dict
+of regex -&gt; dict of regex), this works for lists as well</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">r&#39;\s*(\.)\s*&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">r&#39;\1ty&#39;</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[71]: </span><span class="go"></span>
+<span class="go">   a    b    c</span>
+<span class="go">0  0    a    a</span>
+<span class="go">1  1    b    b</span>
+<span class="go">2  2  .ty  NaN</span>
+<span class="go">3  3  .ty    d</span>
+</pre></div>
+</div>
+<p>You can pass a list of regular expressions, of which those that match
+will be replaced with a scalar (list of regex -&gt; regex)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [72]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">r&#39;\s*\.\s*&#39;</span><span class="p">,</span> <span class="s1">r&#39;a|b&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gh">Out[72]: </span><span class="go"></span>
+<span class="go">   a   b    c</span>
+<span class="go">0  0 NaN  NaN</span>
+<span class="go">1  1 NaN  NaN</span>
+<span class="go">2  2 NaN  NaN</span>
+<span class="go">3  3 NaN    d</span>
+</pre></div>
+</div>
+<p>All of the regular expression examples can also be passed with the
+<code class="docutils literal"><span class="pre">to_replace</span></code> argument as the <code class="docutils literal"><span class="pre">regex</span></code> argument. In this case the <code class="docutils literal"><span class="pre">value</span></code>
+argument must be passed explicitly by name or <code class="docutils literal"><span class="pre">regex</span></code> must be a nested
+dictionary. The previous example, in this case, would then be</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [73]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">[</span><span class="s1">r&#39;\s*\.\s*&#39;</span><span class="p">,</span> <span class="s1">r&#39;a|b&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[73]: </span><span class="go"></span>
+<span class="go">   a   b    c</span>
+<span class="go">0  0 NaN  NaN</span>
+<span class="go">1  1 NaN  NaN</span>
+<span class="go">2  2 NaN  NaN</span>
+<span class="go">3  3 NaN    d</span>
+</pre></div>
+</div>
+<p>This can be convenient if you do not want to pass <code class="docutils literal"><span class="pre">regex=True</span></code> every time you
+want to use a regular expression.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Anywhere in the above <code class="docutils literal"><span class="pre">replace</span></code> examples that you see a regular expression
+a compiled regular expression is valid as well.</p>
+</div>
+</div>
+<div class="section" id="numeric-replacement">
+<h2>1.5.7. Numeric Replacement<a class="headerlink" href="#numeric-replacement" title="Permalink to this headline">¶</a></h2>
+<p>Similar to <code class="docutils literal"><span class="pre">DataFrame.fillna</span></code></p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="gp">In [75]: </span><span class="n">df</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="gp">In [76]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[76]: </span><span class="go"></span>
+<span class="go">          0         1</span>
+<span class="go">0 -0.844214 -1.021415</span>
+<span class="go">1  0.432396 -0.323580</span>
+<span class="go">2  0.423825  0.799180</span>
+<span class="go">3  1.262614  0.751965</span>
+<span class="go">4       NaN       NaN</span>
+<span class="go">5       NaN       NaN</span>
+<span class="go">6 -0.498174 -1.060799</span>
+<span class="go">7  0.591667 -0.183257</span>
+<span class="go">8  1.019855 -1.482465</span>
+<span class="go">9       NaN       NaN</span>
+</pre></div>
+</div>
+<p>Replacing more than one value via lists works as well</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">df00</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="gp">In [78]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">df00</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">])</span>
+<span class="gh">Out[78]: </span><span class="go"></span>
+<span class="go">          0         1</span>
+<span class="go">0         a -1.021415</span>
+<span class="go">1  0.432396 -0.323580</span>
+<span class="go">2  0.423825  0.799180</span>
+<span class="go">3   1.26261  0.751965</span>
+<span class="go">4       NaN       NaN</span>
+<span class="go">5       NaN       NaN</span>
+<span class="go">6 -0.498174 -1.060799</span>
+<span class="go">7  0.591667 -0.183257</span>
+<span class="go">8   1.01985 -1.482465</span>
+<span class="go">9       NaN       NaN</span>
+
+<span class="gp">In [79]: </span><span class="n">df</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[79]: </span><span class="go">dtype(&#39;float64&#39;)</span>
+</pre></div>
+</div>
+<p>You can also operate on the DataFrame in place</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [80]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>When replacing multiple <code class="docutils literal"><span class="pre">bool</span></code> or <code class="docutils literal"><span class="pre">datetime64</span></code> objects, the first
+argument to <code class="docutils literal"><span class="pre">replace</span></code> (<code class="docutils literal"><span class="pre">to_replace</span></code>) must match the type of the value
+being replaced type. For example,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;a string&#39;</span><span class="p">:</span> <span class="s1">&#39;new value&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">:</span> <span class="bp">False</span><span class="p">})</span>  <span class="c1"># raises</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">types</span> <span class="s1">&#39;ndarray(dtype=bool)&#39;</span> <span class="ow">and</span> <span class="s1">&#39;str&#39;</span>
+</pre></div>
+</div>
+<p>will raise a <code class="docutils literal"><span class="pre">TypeError</span></code> because one of the <code class="docutils literal"><span class="pre">dict</span></code> keys is not of the
+correct type for replacement.</p>
+<p>However, when replacing a <em>single</em> object such as,</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">])</span>
+
+<span class="gp">In [82]: </span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;a string&#39;</span><span class="p">,</span> <span class="s1">&#39;another string&#39;</span><span class="p">)</span>
+<span class="gh">Out[82]: </span><span class="go"></span>
+<span class="go">0     True</span>
+<span class="go">1    False</span>
+<span class="go">2     True</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p class="last">the original <code class="docutils literal"><span class="pre">NDFrame</span></code> object will be returned untouched. We&#8217;re working on
+unifying this API, but for backwards compatibility reasons we cannot break
+the latter behavior. See <a href="#id1"><span class="problematic" id="id2">:issue:`6354`</span></a> for more details.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="missing6.html" class="btn btn-neutral float-right" title="1.6. Missing data casting rules and indexing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="missing4.html" class="btn btn-neutral" title="1.4. Calculations with missing data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
