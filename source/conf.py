@@ -117,6 +117,8 @@ exclude_patterns = [
 # 'merging1.rst',
 # 'merging*',
 # '10min*',
+# 'cookbook*',
+# 'dsintro*',
 # 'demo_autoclass.rst',
 # 'demo_automodule.rst',
 # 'demo_automodule.rst',
