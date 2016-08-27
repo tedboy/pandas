@@ -110,13 +110,13 @@ language = None
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = [
-'groupby*',
-'missing*',
-'computation*',
-'advanced*',
-'merging1.rst',
-'merging*',
-'10min*',
+# 'groupby*',
+# 'missing*',
+# 'computation*',
+# 'advanced*',
+# 'merging1.rst',
+# 'merging*',
+# '10min*',
 # 'demo_autoclass.rst',
 # 'demo_automodule.rst',
 # 'demo_automodule.rst',
