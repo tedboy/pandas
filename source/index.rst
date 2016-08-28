@@ -26,3 +26,7 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    missing/missing.rst
    groupby/groupby.rst
    merging/merging.rst
+   reshaping/reshaping.rst
+   timeseries/timeseries.rst
+   timedeltas/timedeltas.rst
+   categorical/categorical.rst

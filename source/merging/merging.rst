@@ -10,7 +10,7 @@ and relational algebra functionality in the case of join / merge-type
 operations.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: merging
 

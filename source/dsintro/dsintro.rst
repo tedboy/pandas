@@ -16,7 +16,7 @@ We'll give a brief intro to the data structures, then consider all of the broad
 categories of functionality and methods in separate sections.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: dsintro
 
