@@ -1,0 +1,75 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import numpy as np
+   import pandas as pd
+   import os
+   np.random.seed(123456)
+   np.set_printoptions(precision=4, suppress=True)
+   import matplotlib
+   matplotlib.style.use('ggplot')
+   import matplotlib.pyplot as plt
+   pd.options.display.max_rows = 8
+
+Merge
+-----
+
+Concat
+~~~~~~
+
+pandas provides various facilities for easily combining together Series,
+DataFrame, and Panel objects with various kinds of set logic for the indexes
+and relational algebra functionality in the case of join / merge-type
+operations.
+
+See the :ref:`Merging section <merging>`
+
+Concatenating pandas objects together with :func:`concat`:
+
+.. ipython:: python
+
+   df = pd.DataFrame(np.random.randn(10, 4))
+   df
+
+   # break it into pieces
+   pieces = [df[:3], df[3:7], df[7:]]
+
+   pd.concat(pieces)
+
+Join
+~~~~
+
+SQL style merges. See the :ref:`Database style joining <merging.join>`
+
+.. ipython:: python
+
+   left = pd.DataFrame({'key': ['foo', 'foo'], 'lval': [1, 2]})
+   right = pd.DataFrame({'key': ['foo', 'foo'], 'rval': [4, 5]})
+   left
+   right
+   pd.merge(left, right, on='key')
+
+Another example that can be given is:
+
+.. ipython:: python
+
+   left = pd.DataFrame({'key': ['foo', 'bar'], 'lval': [1, 2]})
+   right = pd.DataFrame({'key': ['foo', 'bar'], 'rval': [4, 5]})
+   left
+   right
+   pd.merge(left, right, on='key')
+
+
+Append
+~~~~~~
+
+Append rows to a dataframe. See the :ref:`Appending <merging.concatenation>`
+
+.. ipython:: python
+
+   df = pd.DataFrame(np.random.randn(8, 4), columns=['A','B','C','D'])
+   df
+   s = df.iloc[3]
+   df.append(s, ignore_index=True)

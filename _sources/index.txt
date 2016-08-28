@@ -14,9 +14,15 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    :numbered:
    :caption: Table of Contents
 
-   missing.rst
-   groupby.rst
-   computation.rst
-   advanced.rst
-   merging.rst
-
+   10min/10min.rst
+   cookbook/cookbook.rst
+   dsintro/dsintro.rst
+   basics/basics.rst
+   text/text.rst
+   options/options.rst
+   indexing/indexing.rst
+   advanced/advanced.rst
+   compututatin/computation.rst
+   missing/missing.rst
+   groupby/groupby.rst
+   merging/merging.rst

@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.9. Data In/Out &mdash; Pandas Doc</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Pandas Doc" href="../index.html"/>
+        <link rel="up" title="2. Cookbook" href="cookbook.html"/>
+        <link rel="next" title="2.10. Computation" href="cookbook10.html"/>
+        <link rel="prev" title="2.8. Plotting" href="cookbook8.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Pandas Doc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../10min/10min.html">1. 10 Minutes to pandas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min1.html">1.1. Object Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min2.html">1.2. Viewing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min3.html">1.3. Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min3.html#getting">1.3.1. Getting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min3.html#selection-by-label">1.3.2. Selection by Label</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min3.html#selection-by-position">1.3.3. Selection by Position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min3.html#boolean-indexing">1.3.4. Boolean Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min3.html#setting">1.3.5. Setting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min4.html">1.4. Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min5.html">1.5. Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min5.html#stats">1.5.1. Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min5.html#apply">1.5.2. Apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min5.html#histogramming">1.5.3. Histogramming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min5.html#string-methods">1.5.4. String Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min6.html">1.6. Merge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min6.html#concat">1.6.1. Concat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min6.html#join">1.6.2. Join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min6.html#append">1.6.3. Append</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min7.html">1.7. Grouping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min8.html">1.8. Reshaping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min8.html#stack">1.8.1. Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min8.html#pivot-tables">1.8.2. Pivot Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min9.html">1.9. Time Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min10.html">1.10. Categoricals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min11.html">1.11. Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min12.html">1.12. Getting Data In/Out</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min12.html#csv">1.12.1. CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min12.html#hdf5">1.12.2. HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10min/10min12.html#excel">1.12.3. Excel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10min/10min13.html">1.13. Gotchas</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="cookbook.html">2. Cookbook</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cookbook1.html">2.1. Idioms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook1.html#if-then">2.1.1. if-then...</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook1.html#splitting">2.1.2. Splitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook1.html#building-criteria">2.1.3. Building Criteria</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook2.html">2.2. Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook2.html#dataframes">2.2.1. DataFrames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook2.html#panels">2.2.2. Panels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook2.html#new-columns">2.2.3. New Columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook3.html">2.3. MultiIndexing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook3.html#arithmetic">2.3.1. Arithmetic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook3.html#slicing">2.3.2. Slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook3.html#sorting">2.3.3. Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook3.html#levels">2.3.4. Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook3.html#panelnd">2.3.5. panelnd</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook4.html">2.4. Missing Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook4.html#replace">2.4.1. Replace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook5.html">2.5. Grouping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook5.html#expanding-data">2.5.1. Expanding Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook5.html#splitting">2.5.2. Splitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook5.html#pivot">2.5.3. Pivot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook5.html#apply">2.5.4. Apply</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook6.html">2.6. Timeseries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook6.html#resampling">2.6.1. Resampling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook7.html">2.7. Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook8.html">2.8. Plotting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.9. Data In/Out</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#csv">2.9.1. CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skip-row-between-header-and-data">2.9.1.1. Skip row between header and data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sql">2.9.2. SQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excel">2.9.3. Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#html">2.9.4. HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hdfstore">2.9.5. HDFStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-files">2.9.6. Binary Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook10.html">2.10. Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook11.html">2.11. Timedeltas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook12.html">2.12. Aliasing Axis Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook13.html">2.13. Creating Example Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsintro/dsintro.html">3. Intro to Data Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dsintro/dsintro1.html">3.1. Series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro1.html#series-is-ndarray-like">3.1.1. Series is ndarray-like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro1.html#series-is-dict-like">3.1.2. Series is dict-like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro1.html#vectorized-operations-and-label-alignment-with-series">3.1.3. Vectorized operations and label alignment with Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro1.html#name-attribute">3.1.4. Name attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dsintro/dsintro2.html">3.2. DataFrame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-dict-of-series-or-dicts">3.2.1. From dict of Series or dicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-dict-of-ndarrays-lists">3.2.2. From dict of ndarrays / lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-structured-or-record-array">3.2.3. From structured or record array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-a-list-of-dicts">3.2.4. From a list of dicts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-a-dict-of-tuples">3.2.5. From a dict of tuples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#from-a-series">3.2.6. From a Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#alternate-constructors">3.2.7. Alternate Constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#column-selection-addition-deletion">3.2.8. Column selection, addition, deletion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#assigning-new-columns-in-method-chains">3.2.9. Assigning New Columns in Method Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#indexing-selection">3.2.10. Indexing / Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#data-alignment-and-arithmetic">3.2.11. Data alignment and arithmetic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#transposing">3.2.12. Transposing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#dataframe-interoperability-with-numpy-functions">3.2.13. DataFrame interoperability with NumPy functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#console-display">3.2.14. Console display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro2.html#dataframe-column-attribute-access-and-ipython-completion">3.2.15. DataFrame column attribute access and IPython completion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dsintro/dsintro3.html">3.3. Panel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#from-3d-ndarray-with-optional-axis-labels">3.3.1. From 3D ndarray with optional axis labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#from-dict-of-dataframe-objects">3.3.2. From dict of DataFrame objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#from-dataframe-using-to-panel-method">3.3.3. From DataFrame using <code class="docutils literal"><span class="pre">to_panel</span></code> method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#item-selection-addition-deletion">3.3.4. Item selection / addition / deletion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#transposing">3.3.5. Transposing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#indexing-selection">3.3.6. Indexing / Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#squeezing">3.3.7. Squeezing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro3.html#conversion-to-dataframe">3.3.8. Conversion to DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dsintro/dsintro4.html">3.4. Panel4D (Experimental)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro4.html#from-4d-ndarray-with-optional-axis-labels">3.4.1. From 4D ndarray with optional axis labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro4.html#from-dict-of-panel-objects">3.4.2. From dict of Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro4.html#slicing">3.4.3. Slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsintro/dsintro4.html#transposing">3.4.4. Transposing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dsintro/dsintro5.html">3.5. PanelND (Experimental)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basics/basics.html">4. Essential Basic Functionality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics1.html">4.1. Head and Tail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics2.html">4.2. Attributes and the raw ndarray(s)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics3.html">4.3. Accelerated operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics4.html">4.4. Flexible binary operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#matching-broadcasting-behavior">4.4.1. Matching / broadcasting behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#missing-data-operations-with-fill-values">4.4.2. Missing data / operations with fill values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#flexible-comparisons">4.4.3. Flexible Comparisons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#boolean-reductions">4.4.4. Boolean Reductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#comparing-if-objects-are-equivalent">4.4.5. Comparing if objects are equivalent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#comparing-array-like-objects">4.4.6. Comparing array-like objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#combining-overlapping-data-sets">4.4.7. Combining overlapping data sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics4.html#general-dataframe-combine">4.4.8. General DataFrame Combine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics5.html">4.5. Descriptive statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics5.html#summarizing-data-describe">4.5.1. Summarizing data: describe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics5.html#index-of-min-max-values">4.5.2. Index of Min/Max Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics5.html#value-counts-histogramming-mode">4.5.3. Value counts (histogramming) / Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics5.html#discretization-and-quantiling">4.5.4. Discretization and quantiling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics6.html">4.6. Function application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics6.html#tablewise-function-application">4.6.1. Tablewise Function Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics6.html#row-or-column-wise-function-application">4.6.2. Row or Column-wise Function Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics6.html#applying-elementwise-python-functions">4.6.3. Applying elementwise Python functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics6.html#applying-with-a-panel">4.6.4. Applying with a Panel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics7.html">4.7. Reindexing and altering labels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#reindexing-to-align-with-another-object">4.7.1. Reindexing to align with another object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#aligning-objects-with-each-other-with-align">4.7.2. Aligning objects with each other with <code class="docutils literal"><span class="pre">align</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#filling-while-reindexing">4.7.3. Filling while reindexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#limits-on-filling-while-reindexing">4.7.4. Limits on filling while reindexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#dropping-labels-from-an-axis">4.7.5. Dropping labels from an axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics7.html#renaming-mapping-labels">4.7.6. Renaming / mapping labels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics8.html">4.8. Iteration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics8.html#iteritems">4.8.1. iteritems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics8.html#iterrows">4.8.2. iterrows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics8.html#itertuples">4.8.3. itertuples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics9.html">4.9. .dt accessor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics10.html">4.10. Vectorized string methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics11.html">4.11. Sorting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics11.html#by-index">4.11.1. By Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics11.html#by-values">4.11.2. By Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics11.html#searchsorted">4.11.3. searchsorted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics11.html#smallest-largest-values">4.11.4. smallest / largest values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics11.html#sorting-by-a-multi-index-column">4.11.5. Sorting by a multi-index column</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics12.html">4.12. Copying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics13.html">4.13. dtypes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics13.html#defaults">4.13.1. defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics13.html#upcasting">4.13.2. upcasting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics13.html#astype">4.13.3. astype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics13.html#object-conversion">4.13.4. object conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basics/basics13.html#gotchas">4.13.5. gotchas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/basics14.html">4.14. Selecting columns based on <code class="docutils literal"><span class="pre">dtype</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../text/text.html">5. Working with Text Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text/text1.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text2.html">5.2. Splitting and Replacing Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text3.html">5.3. Indexing with <code class="docutils literal"><span class="pre">.str</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text4.html">5.4. Extracting Substrings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../text/text4.html#extract-first-match-in-each-subject-extract">5.4.1. Extract first match in each subject (extract)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../text/text4.html#extract-all-matches-in-each-subject-extractall">5.4.2. Extract all matches in each subject (extractall)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text5.html">5.5. Testing for Strings that Match or Contain a Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text6.html">5.6. Creating Indicator Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text7.html">5.7. Method Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../options/options.html">6. Options and Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../options/options1.html">6.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options2.html">6.2. Getting and Setting Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options3.html">6.3. Setting Startup Options in python/ipython Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options4.html">6.4. Frequently Used Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options5.html">6.5. Available Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options6.html">6.6. Number Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../options/options7.html">6.7. Unicode Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../indexing/indexing.html">7. Indexing and Selecting Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing1.html">7.1. Different Choices for Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing2.html">7.2. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing3.html">7.3. Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing4.html">7.4. Slicing ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing5.html">7.5. Selection By Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing6.html">7.6. Selection By Position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing7.html">7.7. Selection By Callable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing8.html">7.8. Selecting Random Samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing9.html">7.9. Setting With Enlargement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing10.html">7.10. Fast scalar value getting and setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing11.html">7.11. Boolean indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing12.html">7.12. Indexing with isin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing13.html">7.13. The <code class="docutils literal"><span class="pre">where()</span></code> Method and Masking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing14.html">7.14. The <code class="docutils literal"><span class="pre">query()</span></code> Method (Experimental)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#multiindex-query-syntax">7.14.1. <code class="docutils literal"><span class="pre">MultiIndex</span></code> <code class="docutils literal"><span class="pre">query()</span></code> Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#query-use-cases">7.14.2. <code class="docutils literal"><span class="pre">query()</span></code> Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#query-python-versus-pandas-syntax-comparison">7.14.3. <code class="docutils literal"><span class="pre">query()</span></code> Python versus pandas Syntax Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#the-in-and-not-in-operators">7.14.4. The <code class="docutils literal"><span class="pre">in</span></code> and <code class="docutils literal"><span class="pre">not</span> <span class="pre">in</span></code> operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#special-use-of-the-operator-with-list-objects">7.14.5. Special use of the <code class="docutils literal"><span class="pre">==</span></code> operator with <code class="docutils literal"><span class="pre">list</span></code> objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#boolean-operators">7.14.6. Boolean Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing14.html#performance-of-query">7.14.7. Performance of <code class="docutils literal"><span class="pre">query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing15.html">7.15. Duplicate Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing16.html">7.16. Dictionary-like <code class="docutils literal"><span class="pre">get()</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing17.html">7.17. The <code class="docutils literal"><span class="pre">select()</span></code> Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing18.html">7.18. The <code class="docutils literal"><span class="pre">lookup()</span></code> Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing19.html">7.19. Index objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing19.html#setting-metadata">7.19.1. Setting metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing19.html#set-operations-on-index-objects">7.19.2. Set operations on Index objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing19.html#missing-values">7.19.3. Missing values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing20.html">7.20. Set / Reset Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing20.html#set-an-index">7.20.1. Set an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing20.html#reset-the-index">7.20.2. Reset the index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing20.html#adding-an-ad-hoc-index">7.20.3. Adding an ad hoc index</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../indexing/indexing21.html">7.21. Returning a view versus a copy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing21.html#why-does-assignment-fail-when-using-chained-indexing">7.21.1. Why does assignment fail when using chained indexing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indexing/indexing21.html#evaluation-order-matters">7.21.2. Evaluation order matters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/advanced.html">8. MultiIndex / Advanced Indexing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/advanced1.html">8.1. Hierarchical indexing (MultiIndex)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced1.html#creating-a-multiindex-hierarchical-index-object">8.1.1. Creating a MultiIndex (hierarchical index) object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced1.html#reconstructing-the-level-labels">8.1.2. Reconstructing the level labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced1.html#basic-indexing-on-axis-with-multiindex">8.1.3. Basic indexing on axis with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced1.html#data-alignment-and-using-reindex">8.1.4. Data alignment and using <code class="docutils literal"><span class="pre">reindex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/advanced2.html">8.2. Advanced indexing with hierarchical index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced2.html#using-slicers">8.2.1. Using slicers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced2.html#cross-section">8.2.2. Cross-section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced2.html#advanced-reindexing-and-alignment">8.2.3. Advanced reindexing and alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced2.html#swapping-levels-with-swaplevel">8.2.4. Swapping levels with <code class="docutils literal"><span class="pre">swaplevel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced2.html#reordering-levels-with-reorder-levels">8.2.5. Reordering levels with <code class="docutils literal"><span class="pre">reorder_levels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/advanced3.html">8.3. Sorting a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/advanced4.html">8.4. Take Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/advanced5.html">8.5. Index Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced5.html#categoricalindex">8.5.1. CategoricalIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced5.html#int64index-and-rangeindex">8.5.2. Int64Index and RangeIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../advanced/advanced5.html#float64index">8.5.3. Float64Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../missing/missing.html">9. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing1.html">9.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#when-why-does-data-become-missing">9.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#values-considered-missing">9.1.2. Values considered &#8220;missing&#8221;</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing2.html">9.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing3.html">9.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing4.html">9.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing4.html#na-values-in-groupby">9.4.1. NA values in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing5.html">9.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-missing-values-fillna">9.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-with-a-pandasobject">9.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#dropping-axis-labels-with-missing-data-dropna">9.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#interpolation">9.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../missing/missing5.html#interpolation-limits">9.5.4.1. Interpolation Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#replacing-generic-values">9.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#string-regular-expression-replacement">9.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#numeric-replacement">9.5.7. Numeric Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing6.html">9.6. Missing data casting rules and indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../groupby/groupby.html">10. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby1.html">10.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby2.html">10.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-sorting">10.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-object-attributes">10.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-with-multiindex">10.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#dataframe-column-selection-in-groupby">10.2.4. DataFrame column selection in GroupBy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html">10.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html#selecting-a-group">10.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby4.html">10.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-multiple-functions-at-once">10.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-different-functions-to-dataframe-columns">10.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#cython-optimized-aggregation-functions">10.5.3. Cython-optimized aggregation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby5.html">10.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby6.html">10.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby7.html">10.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby8.html">10.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby9.html">10.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#automatic-exclusion-of-nuisance-columns">10.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#na-and-nat-group-handling">10.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-ordered-factors">10.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-a-grouper-specification">10.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-first-rows-of-each-group">10.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-nth-row-of-each-group">10.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#enumerate-group-items">10.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#plotting">10.10.8. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby10.html">10.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#regrouping-by-factor">10.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#groupby-by-indexer-to-resample-data">10.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#returning-a-series-to-propagate-names">10.11.3. Returning a Series to propagate names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../merging/merging.html">11. Merge, join, and concatenate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging1.html">11.1. Concatenating objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#set-logic-on-the-other-axes">11.1.1. Set logic on the other axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-using-append">11.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#ignoring-indexes-on-the-concatenation-axis">11.1.3. Ignoring indexes on the concatenation axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-with-mixed-ndims">11.1.4. Concatenating with mixed ndims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#more-concatenating-with-group-keys">11.1.5. More concatenating with group keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#appending-rows-to-a-dataframe">11.1.6. Appending rows to a DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging2.html">11.2. Database-style DataFrame joining/merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#brief-primer-on-merge-methods-relational-algebra">11.2.1. Brief primer on merge methods (relational algebra)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#the-merge-indicator">11.2.2. The merge indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-on-index">11.2.3. Joining on index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-key-columns-on-an-index">11.2.4. Joining key columns on an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-a-single-index-to-a-multi-index">11.2.5. Joining a single Index to a Multi-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-with-two-multi-indexes">11.2.6. Joining with two multi-indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#overlapping-value-columns">11.2.7. Overlapping value columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-multiple-dataframe-or-panel-objects">11.2.8. Joining multiple DataFrame or Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#merging-together-values-within-series-or-dataframe-columns">11.2.9. Merging together values within Series or DataFrame columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging3.html">11.3. Timeseries friendly merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-ordered-data">11.3.1. Merging Ordered Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-asof">11.3.2. Merging AsOf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pandas Doc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="cookbook.html">2. Cookbook</a> &raquo;</li>
+        
+      <li>2.9. Data In/Out</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cookbook/cookbook9.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-in-out">
+<h1>2.9. Data In/Out<a class="headerlink" href="#data-in-out" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://stackoverflow.com/questions/16628329/hdf5-and-sqlite-concurrency-compression-i-o-performance">Performance comparison of SQL vs HDF5</a></p>
+<div class="section" id="csv">
+<span id="cookbook-csv"></span><h2>2.9.1. CSV<a class="headerlink" href="#csv" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref std std-ref">CSV</span> docs</p>
+<p><a class="reference external" href="http://wesmckinney.com/blog/?p=635">read_csv in action</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/17134942/pandas-dataframe-output-end-of-csv">appending to a csv</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/25210819/speeding-up-data-import-function-pandas-and-appending-to-dataframe/25210900#25210900">how to read in multiple files, appending to create a single dataframe</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/11622652/large-persistent-dataframe-in-pandas/12193309#12193309">Reading a csv chunk-by-chunk</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/19674212/pandas-data-frame-select-rows-and-clear-memory">Reading only certain rows of a csv chunk-by-chunk</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15008970/way-to-read-first-few-lines-for-pandas-dataframe">Reading the first few lines of a frame</a></p>
+<p>Reading a file that is compressed but not by <code class="docutils literal"><span class="pre">gzip/bz2</span></code> (the native compressed formats which <code class="docutils literal"><span class="pre">read_csv</span></code> understands).
+This example shows a <code class="docutils literal"><span class="pre">WinZipped</span></code> file, but is a general application of opening the file within a context manager and
+using that handle to read.
+<a class="reference external" href="http://stackoverflow.com/questions/17789907/pandas-convert-winzipped-csv-file-to-data-frame">See here</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15555005/get-inferred-dataframe-types-iteratively-using-chunksize">Inferring dtypes from a file</a></p>
+<p><a class="reference external" href="http://github.com/pydata/pandas/issues/2886">Dealing with bad lines</a></p>
+<p><a class="reference external" href="http://nipunbatra.github.io/2013/06/reading-unclean-data-csv-using-pandas/">Dealing with bad lines II</a></p>
+<p><a class="reference external" href="http://nipunbatra.github.io/2013/06/pandas-reading-csv-with-unix-timestamps-and-converting-to-local-timezone/">Reading CSV with Unix timestamps and converting to local timezone</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/17349574/pandas-write-multiindex-rows-with-to-csv">Write a multi-row index CSV without writing duplicates</a></p>
+<p>Parsing date components in multi-columns is faster with a format</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="n">i</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20000101&#39;</span><span class="p">,</span><span class="n">periods</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">year</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">day</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">32</span><span class="p">]:</span>
+   <span class="n">day</span>  <span class="n">month</span>  <span class="n">year</span>
+<span class="mi">0</span>    <span class="mi">1</span>      <span class="mi">1</span>  <span class="mi">2000</span>
+<span class="mi">1</span>    <span class="mi">2</span>      <span class="mi">1</span>  <span class="mi">2000</span>
+<span class="mi">2</span>    <span class="mi">3</span>      <span class="mi">1</span>  <span class="mi">2000</span>
+<span class="mi">3</span>    <span class="mi">4</span>      <span class="mi">1</span>  <span class="mi">2000</span>
+<span class="mi">4</span>    <span class="mi">5</span>      <span class="mi">1</span>  <span class="mi">2000</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">*</span><span class="mi">10000</span><span class="o">+</span><span class="n">df</span><span class="o">.</span><span class="n">month</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="n">df</span><span class="o">.</span><span class="n">day</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">7.08</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="c1"># simulate combinging into a string, then parsing</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">34</span><span class="p">]:</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%04d%02d%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="n">ds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">35</span><span class="p">]:</span>
+<span class="mi">0</span>    <span class="mi">20000101</span>
+<span class="mi">1</span>    <span class="mi">20000102</span>
+<span class="mi">2</span>    <span class="mi">20000103</span>
+<span class="mi">3</span>    <span class="mi">20000104</span>
+<span class="mi">4</span>    <span class="mi">20000105</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="mi">1</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">488</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<div class="section" id="skip-row-between-header-and-data">
+<h3>2.9.1.1. Skip row between header and data<a class="headerlink" href="#skip-row-between-header-and-data" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [3]: </span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2">;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2"> ;;;;</span>
+<span class="gp">   ...: </span><span class="s2">;;;;</span>
+<span class="gp">   ...: </span><span class="s2">date;Param1;Param2;Param4;Param5</span>
+<span class="gp">   ...: </span><span class="s2">    ;m;C;m;m</span>
+<span class="gp">   ...: </span><span class="s2">;;;;</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 00:00;1;1;2;3</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 01:00;5;3;4;5</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 02:00;9;5;6;7</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 03:00;13;7;8;9</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 04:00;17;9;10;11</span>
+<span class="gp">   ...: </span><span class="s2">01.01.1990 05:00;21;11;12;13</span>
+<span class="gp">   ...: </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">   ...: </span>
+</pre></div>
+</div>
+<div class="section" id="option-1-pass-rows-explicitly-to-skiprows">
+<h4>2.9.1.1.1. Option 1: pass rows explicitly to skiprows<a class="headerlink" href="#option-1-pass-rows-explicitly-to-skiprows" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span>
+<span class="gp">   ...: </span>        <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="gh">Out[4]: </span><span class="go"></span>
+<span class="go">                     Param1  Param2  Param4  Param5</span>
+<span class="go">date                                               </span>
+<span class="go">1990-01-01 00:00:00       1       1       2       3</span>
+<span class="go">1990-01-01 01:00:00       5       3       4       5</span>
+<span class="go">1990-01-01 02:00:00       9       5       6       7</span>
+<span class="go">1990-01-01 03:00:00      13       7       8       9</span>
+<span class="go">1990-01-01 04:00:00      17       9      10      11</span>
+<span class="go">1990-01-01 05:00:00      21      11      12      13</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="option-2-read-column-names-and-then-data">
+<h4>2.9.1.1.2. Option 2: read column names and then data<a class="headerlink" href="#option-2-read-column-names-and-then-data" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>        <span class="n">header</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="gp">   ...: </span>
+<span class="gh">Out[5]: </span><span class="go">Index([u&#39;date&#39;, u&#39;Param1&#39;, u&#39;Param2&#39;, u&#39;Param4&#39;, u&#39;Param5&#39;], dtype=&#39;object&#39;)</span>
+
+<span class="gp">In [6]: </span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>                  <span class="n">header</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [7]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>            <span class="n">header</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">               date  Param1  Param2  Param4  Param5</span>
+<span class="go">0  01.01.1990 00:00       1       1       2       3</span>
+<span class="go">1  01.01.1990 01:00       5       3       4       5</span>
+<span class="go">2  01.01.1990 02:00       9       5       6       7</span>
+<span class="go">3  01.01.1990 03:00      13       7       8       9</span>
+<span class="go">4  01.01.1990 04:00      17       9      10      11</span>
+<span class="go">5  01.01.1990 05:00      21      11      12      13</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sql">
+<span id="cookbook-sql"></span><h2>2.9.2. SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref std std-ref">SQL</span> docs</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/10065051/python-pandas-and-databases-like-mysql">Reading from databases with SQL</a></p>
+</div>
+<div class="section" id="excel">
+<span id="cookbook-excel"></span><h2>2.9.3. Excel<a class="headerlink" href="#excel" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref std std-ref">Excel</span> docs</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15588713/sheets-of-excel-workbook-from-a-url-into-a-pandas-dataframe">Reading from a filelike handle</a></p>
+<p><a class="reference external" href="http://pbpython.com/improve-pandas-excel-output.html">Modifying formatting in XlsxWriter output</a></p>
+</div>
+<div class="section" id="html">
+<span id="cookbook-html"></span><h2>2.9.4. HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://stackoverflow.com/a/18939272/564538">Reading HTML tables from a server that cannot handle the default request
+header</a></p>
+</div>
+<div class="section" id="hdfstore">
+<span id="cookbook-hdf"></span><h2>2.9.5. HDFStore<a class="headerlink" href="#hdfstore" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref std std-ref">HDFStores</span> docs</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/13926089/selecting-columns-from-pandas-hdfstore-table">Simple Queries with a Timestamp Index</a></p>
+<p><a class="reference external" href="http://github.com/pydata/pandas/issues/3032">Managing heterogeneous data using a linked multiple table hierarchy</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/14614512/merging-two-tables-with-millions-of-rows-in-python/14617925#14617925">Merging on-disk tables with millions of rows</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/a/29014295/2858145">Avoiding inconsistencies when writing to a store from multiple processes/threads</a></p>
+<p>De-duplicating a large store by chunks, essentially a recursive reduction operation. Shows a function for taking in data from
+csv file and creating a store by chunks, with date parsing as well.
+<a class="reference external" href="http://stackoverflow.com/questions/16110252/need-to-compare-very-large-files-around-1-5gb-in-python/16110391#16110391">See here</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/20428355/appending-column-to-frame-of-hdf-file-in-pandas/20428786#20428786">Creating a store chunk-by-chunk from a csv file</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/16997048/how-does-one-append-large-amounts-of-data-to-a-pandas-hdfstore-and-get-a-natural/16999397#16999397">Appending to a store, while creating a unique index</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/14262433/large-data-work-flows-using-pandas">Large Data work flows</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/16997048/how-does-one-append-large-amounts-of-data-to-a-pandas-hdfstore-and-get-a-natural">Reading in a sequence of files, then providing a global unique index to a store while appending</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15798209/pandas-group-by-query-on-large-data-in-hdfstore">Groupby on a HDFStore with low group density</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/25459982/trouble-with-grouby-on-millions-of-keys-on-a-chunked-file-in-python-pandas/25471765#25471765">Groupby on a HDFStore with high group density</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/22777284/improve-query-performance-from-a-large-hdfstore-table-with-pandas/22820780#22820780">Hierarchical queries on a HDFStore</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/20497897/converting-dict-of-dicts-into-pandas-dataframe-memory-issues">Counting with a HDFStore</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15488809/how-to-trouble-shoot-hdfstore-exception-cannot-find-the-correct-atom-type">Troubleshoot HDFStore exceptions</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/15988871/hdfstore-appendstring-dataframe-fails-when-string-column-contents-are-longer">Setting min_itemsize with strings</a></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/17893370/ptrepack-sortby-needs-full-index">Using ptrepack to create a completely-sorted-index on a store</a></p>
+<p>Storing Attributes to a group node</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="gp">In [9]: </span><span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;test.h5&#39;</span><span class="p">)</span>
+
+<span class="gp">In [10]: </span><span class="n">store</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">)</span>
+
+<span class="go"># you can store an arbitrary python object via pickle</span>
+<span class="gp">In [11]: </span><span class="n">store</span><span class="o">.</span><span class="n">get_storer</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">my_attribute</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="gp">In [12]: </span><span class="n">store</span><span class="o">.</span><span class="n">get_storer</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">my_attribute</span>
+<span class="gh">Out[12]: </span><span class="go">{&#39;A&#39;: 10}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="binary-files">
+<span id="cookbook-binary"></span><h2>2.9.6. Binary Files<a class="headerlink" href="#binary-files" title="Permalink to this headline">¶</a></h2>
+<p>pandas readily accepts numpy record arrays, if you need to read in a binary
+file consisting of an array of C structs. For example, given this C program
+in a file called <code class="docutils literal"><span class="pre">main.c</span></code> compiled with <code class="docutils literal"><span class="pre">gcc</span> <span class="pre">main.c</span> <span class="pre">-std=gnu99</span></code> on a
+64-bit machine,</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Data</span>
+<span class="p">{</span>
+    <span class="kt">int32_t</span> <span class="n">count</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">avg</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">scale</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Data</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">Data</span> <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">count</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">avg</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">;</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">i</span> <span class="o">+</span> <span class="mf">2.0f</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;binary.dat&quot;</span><span class="p">,</span> <span class="s">&quot;wb&quot;</span><span class="p">);</span>
+    <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the following Python code will read the binary file <code class="docutils literal"><span class="pre">'binary.dat'</span></code> into a
+pandas <code class="docutils literal"><span class="pre">DataFrame</span></code>, where each element of the struct corresponds to a column
+in the frame:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span>
+
+<span class="c1"># note that the offsets are larger than the size of the type because of</span>
+<span class="c1"># struct padding</span>
+<span class="n">offsets</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span>
+<span class="n">formats</span> <span class="o">=</span> <span class="s1">&#39;i4&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">({</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">names</span><span class="p">,</span> <span class="s1">&#39;offsets&#39;</span><span class="p">:</span> <span class="n">offsets</span><span class="p">,</span> <span class="s1">&#39;formats&#39;</span><span class="p">:</span> <span class="n">formats</span><span class="p">},</span>
+              <span class="n">align</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">&#39;binary.dat&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The offsets of the structure elements may be different depending on the
+architecture of the machine on which the file was created. Using a raw
+binary file format like this for general data storage is not recommended, as
+it is not cross platform. We recommended either HDF5 or msgpack, both of
+which are supported by pandas&#8217; IO facilities.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cookbook10.html" class="btn btn-neutral float-right" title="2.10. Computation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cookbook8.html" class="btn btn-neutral" title="2.8. Plotting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
