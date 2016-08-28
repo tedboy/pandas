@@ -18,9 +18,11 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    cookbook/cookbook.rst
    dsintro/dsintro.rst
    basics/basics.rst
+   text/text.rst
+   options/options.rst
+   indexing/indexing.rst
    advanced/advanced.rst
+   compututatin/computation.rst
    missing/missing.rst
    groupby/groupby.rst
-   compututatin/computation.rst
    merging/merging.rst
-   
