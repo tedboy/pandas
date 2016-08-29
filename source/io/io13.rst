@@ -1,0 +1,68 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import os
+   import csv
+   from pandas.compat import StringIO, BytesIO
+   import pandas as pd
+   ExcelWriter = pd.ExcelWriter
+
+   import numpy as np
+   np.random.seed(123456)
+   randn = np.random.randn
+   np.set_printoptions(precision=4, suppress=True)
+
+   import matplotlib.pyplot as plt
+   plt.close('all')
+
+   import pandas.util.testing as tm
+   pd.options.display.max_rows=15
+   clipdf = pd.DataFrame({'A':[1,2,3],'B':[4,5,6],'C':['p','q','r']},
+                         index=['x','y','z'])
+
+.. _io.sas:
+
+.. _io.sas_reader:
+
+SAS Formats
+-----------
+
+.. versionadded:: 0.17.0
+
+The top-level function :func:`read_sas` can read (but not write) SAS
+`xport` (.XPT) and `SAS7BDAT` (.sas7bdat) format files were added in *v0.18.0*.
+
+SAS files only contain two value types: ASCII text and floating point
+values (usually 8 bytes but sometimes truncated).  For xport files,
+there is no automatic type conversion to integers, dates, or
+categoricals.  For SAS7BDAT files, the format codes may allow date
+variables to be automatically converted to dates.  By default the
+whole file is read and returned as a ``DataFrame``.
+
+Specify a ``chunksize`` or use ``iterator=True`` to obtain reader
+objects (``XportReader`` or ``SAS7BDATReader``) for incrementally
+reading the file.  The reader objects also have attributes that
+contain additional information about the file and its variables.
+
+Read a SAS7BDAT file:
+
+.. code-block:: python
+
+    df = pd.read_sas('sas_data.sas7bdat')
+
+Obtain an iterator and read an XPORT file 100,000 lines at a time:
+
+.. code-block:: python
+
+    rdr = pd.read_sas('sas_xport.xpt', chunk=100000)
+    for chunk in rdr:
+        do_something(chunk)
+
+The specification_ for the xport file format is available from the SAS
+web site.
+
+.. _specification: https://support.sas.com/techsup/technote/ts140.pdf
+
+No official documentation is available for the SAS7BDAT format.
