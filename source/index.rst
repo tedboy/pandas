@@ -14,6 +14,7 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    :numbered:
    :caption: Table of Contents
 
+   api.rst
    10min/10min.rst
    cookbook/cookbook.rst
    dsintro/dsintro.rst
@@ -30,3 +31,4 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    timeseries/timeseries.rst
    timedeltas/timedeltas.rst
    categorical/categorical.rst
+   visualization/visualization.rst
