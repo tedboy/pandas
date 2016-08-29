@@ -15,7 +15,7 @@ Simplified, condensed, new-user friendly, in-line examples have been inserted wh
 These examples are written for python 3.4.  Minor tweaks might be necessary for earlier python versions.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: cookbook
 

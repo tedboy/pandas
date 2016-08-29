@@ -20,7 +20,7 @@ pandas.
 See the :ref:`cookbook<cookbook.missing_data>` for some advanced strategies
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: missing
 

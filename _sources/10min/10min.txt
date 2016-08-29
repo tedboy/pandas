@@ -8,7 +8,7 @@ This is a short introduction to pandas, geared mainly for new users.
 You can see more complex recipes in the :ref:`Cookbook<cookbook>`
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: 10min
 

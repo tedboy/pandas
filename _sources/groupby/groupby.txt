@@ -5,7 +5,7 @@
 Group By: split-apply-combine
 *****************************
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents
     :name: groubpy
 
