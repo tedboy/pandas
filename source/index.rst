@@ -16,30 +16,8 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
 
    api.rst
    10min/10min.rst
-   cookbook/cookbook.rst
    dsintro/dsintro.rst
    basics/basics.rst
-   text/text.rst
-   options/options.rst
-   indexing/indexing.rst
-   advanced/advanced.rst
-   computation/computation.rst
-   missing/missing.rst
-   groupby/groupby.rst
-   merging/merging.rst
-   reshaping/reshaping.rst
-   timeseries/timeseries.rst
-   timedeltas/timedeltas.rst
-   categorical/categorical.rst
-   visualization/visualization.rst
-   io/io.rst
-   remote_data/remote_data.rst
-   enhancingperf/enhancingperf.rst
-   sparse/sparse.rst
-   gotchas/gotchas.rst
-   r_interface/r_interface.rst
-   ecosystem/ecosystem.rst
-   comparison_with_r/comparison_with_r.rst
-   comparison_with_sql/comparison_with_sql.rst
-   comparison_with_sas/comparison_with_sas.rst
-   internals/internals.rst
+   part1.rst
+   part2.rst
+   part3.rst
