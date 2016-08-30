@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>14.10. Resampling &mdash; Pandas Doc</title>
+  <title>15.10. Resampling &mdash; Pandas Doc</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="Pandas Doc" href="../index.html"/>
-        <link rel="up" title="14. Time Series / Date functionality" href="timeseries.html"/>
-        <link rel="next" title="14.11. Time Span Representation" href="timeseries11.html"/>
-        <link rel="prev" title="14.9. Time series-related instance methods" href="timeseries9.html"/> 
+        <link rel="up" title="15. Time Series / Date functionality" href="timeseries.html"/>
+        <link rel="next" title="15.11. Time Span Representation" href="timeseries11.html"/>
+        <link rel="prev" title="15.9. Time series-related instance methods" href="timeseries9.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -1679,245 +1679,730 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../missing/missing.html">10. Working with missing data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing1.html">10.1. Missing data basics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#when-why-does-data-become-missing">10.1.1. When / why does data become missing?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#values-considered-missing">10.1.2. Values considered &#8220;missing&#8221;</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computation/computation.html">10. Computational tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../computation/computation1.html">10.1. Statistical Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation1.html#percent-change">10.1.1. Percent Change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation1.html#covariance">10.1.2. Covariance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation1.html#correlation">10.1.3. Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation1.html#data-ranking">10.1.4. Data ranking</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing2.html">10.2. Datetimes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing3.html">10.3. Inserting missing data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing4.html">10.4. Calculations with missing data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing4.html#na-values-in-groupby">10.4.1. NA values in GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computation/computation2.html">10.2. Window Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#method-summary">10.2.1. Method Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#rolling-windows">10.2.2. Rolling Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#time-aware-rolling">10.2.3. Time-aware Rolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#time-aware-rolling-vs-resampling">10.2.4. Time-aware Rolling vs. Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#centering-windows">10.2.5. Centering Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#binary-window-functions">10.2.6. Binary Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation2.html#computing-rolling-pairwise-covariances-and-correlations">10.2.7. Computing rolling pairwise covariances and correlations</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing5.html">10.5. Cleaning / filling missing data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-missing-values-fillna">10.5.1. Filling missing values: fillna</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-with-a-pandasobject">10.5.2. Filling with a PandasObject</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#dropping-axis-labels-with-missing-data-dropna">10.5.3. Dropping axis labels with missing data: dropna</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#interpolation">10.5.4. Interpolation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../missing/missing5.html#interpolation-limits">10.5.4.1. Interpolation Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computation/computation3.html">10.3. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation3.html#applying-multiple-functions-at-once">10.3.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation3.html#applying-different-functions-to-dataframe-columns">10.3.2. Applying different functions to DataFrame columns</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#replacing-generic-values">10.5.5. Replacing Generic Values</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#string-regular-expression-replacement">10.5.6. String/Regular Expression Replacement</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#numeric-replacement">10.5.7. Numeric Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computation/computation4.html">10.4. Expanding Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../computation/computation4.html#method-summary">10.4.1. Method Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../missing/missing6.html">10.6. Missing data casting rules and indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computation/computation5.html">10.5. Exponentially Weighted Windows</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../groupby/groupby.html">11. Group By: split-apply-combine</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby1.html">11.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby2.html">11.2. Splitting an object into groups</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-sorting">11.2.1. GroupBy sorting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-object-attributes">11.2.2. GroupBy object attributes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-with-multiindex">11.2.3. GroupBy with MultiIndex</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#dataframe-column-selection-in-groupby">11.2.4. DataFrame column selection in GroupBy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../missing/missing.html">11. Working with missing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing1.html">11.1. Missing data basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#when-why-does-data-become-missing">11.1.1. When / why does data become missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing1.html#values-considered-missing">11.1.2. Values considered &#8220;missing&#8221;</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html">11.3. Iterating through groups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html#selecting-a-group">11.4. Selecting a group</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby4.html">11.5. Aggregation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-multiple-functions-at-once">11.5.1. Applying multiple functions at once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-different-functions-to-dataframe-columns">11.5.2. Applying different functions to DataFrame columns</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#cython-optimized-aggregation-functions">11.5.3. Cython-optimized aggregation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing2.html">11.2. Datetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing3.html">11.3. Inserting missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing4.html">11.4. Calculations with missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing4.html#na-values-in-groupby">11.4.1. NA values in GroupBy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby5.html">11.6. Transformation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby6.html">11.7. Filtration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby7.html">11.8. Dispatching to instance methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby8.html">11.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby9.html">11.10. Other useful features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#automatic-exclusion-of-nuisance-columns">11.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#na-and-nat-group-handling">11.10.2. NA and NaT group handling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-ordered-factors">11.10.3. Grouping with ordered factors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-a-grouper-specification">11.10.4. Grouping with a Grouper specification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-first-rows-of-each-group">11.10.5. Taking the first rows of each group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-nth-row-of-each-group">11.10.6. Taking the nth row of each group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#enumerate-group-items">11.10.7. Enumerate group items</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#plotting">11.10.8. Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing5.html">11.5. Cleaning / filling missing data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-missing-values-fillna">11.5.1. Filling missing values: fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#filling-with-a-pandasobject">11.5.2. Filling with a PandasObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#dropping-axis-labels-with-missing-data-dropna">11.5.3. Dropping axis labels with missing data: dropna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#interpolation">11.5.4. Interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../missing/missing5.html#interpolation-limits">11.5.4.1. Interpolation Limits</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby10.html">11.11. Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#regrouping-by-factor">11.11.1. Regrouping by factor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#groupby-by-indexer-to-resample-data">11.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#returning-a-series-to-propagate-names">11.11.3. Returning a Series to propagate names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#replacing-generic-values">11.5.5. Replacing Generic Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#string-regular-expression-replacement">11.5.6. String/Regular Expression Replacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../missing/missing5.html#numeric-replacement">11.5.7. Numeric Replacement</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../missing/missing6.html">11.6. Missing data casting rules and indexing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../merging/merging.html">12. Merge, join, and concatenate</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../merging/merging1.html">12.1. Concatenating objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#set-logic-on-the-other-axes">12.1.1. Set logic on the other axes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-using-append">12.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#ignoring-indexes-on-the-concatenation-axis">12.1.3. Ignoring indexes on the concatenation axis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-with-mixed-ndims">12.1.4. Concatenating with mixed ndims</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#more-concatenating-with-group-keys">12.1.5. More concatenating with group keys</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#appending-rows-to-a-dataframe">12.1.6. Appending rows to a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupby/groupby.html">12. Group By: split-apply-combine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby1.html">12.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby2.html">12.2. Splitting an object into groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-sorting">12.2.1. GroupBy sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-object-attributes">12.2.2. GroupBy object attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#groupby-with-multiindex">12.2.3. GroupBy with MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby2.html#dataframe-column-selection-in-groupby">12.2.4. DataFrame column selection in GroupBy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../merging/merging2.html">12.2. Database-style DataFrame joining/merging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#brief-primer-on-merge-methods-relational-algebra">12.2.1. Brief primer on merge methods (relational algebra)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#the-merge-indicator">12.2.2. The merge indicator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-on-index">12.2.3. Joining on index</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-key-columns-on-an-index">12.2.4. Joining key columns on an index</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-a-single-index-to-a-multi-index">12.2.5. Joining a single Index to a Multi-index</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-with-two-multi-indexes">12.2.6. Joining with two multi-indexes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#overlapping-value-columns">12.2.7. Overlapping value columns</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-multiple-dataframe-or-panel-objects">12.2.8. Joining multiple DataFrame or Panel objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#merging-together-values-within-series-or-dataframe-columns">12.2.9. Merging together values within Series or DataFrame columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html">12.3. Iterating through groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby3.html#selecting-a-group">12.4. Selecting a group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby4.html">12.5. Aggregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-multiple-functions-at-once">12.5.1. Applying multiple functions at once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#applying-different-functions-to-dataframe-columns">12.5.2. Applying different functions to DataFrame columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby4.html#cython-optimized-aggregation-functions">12.5.3. Cython-optimized aggregation functions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../merging/merging3.html">12.3. Timeseries friendly merging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-ordered-data">12.3.1. Merging Ordered Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-asof">12.3.2. Merging AsOf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby5.html">12.6. Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby6.html">12.7. Filtration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby7.html">12.8. Dispatching to instance methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby8.html">12.9. Flexible <code class="docutils literal"><span class="pre">apply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby9.html">12.10. Other useful features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#automatic-exclusion-of-nuisance-columns">12.10.1. Automatic exclusion of &#8220;nuisance&#8221; columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#na-and-nat-group-handling">12.10.2. NA and NaT group handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-ordered-factors">12.10.3. Grouping with ordered factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#grouping-with-a-grouper-specification">12.10.4. Grouping with a Grouper specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-first-rows-of-each-group">12.10.5. Taking the first rows of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#taking-the-nth-row-of-each-group">12.10.6. Taking the nth row of each group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#enumerate-group-items">12.10.7. Enumerate group items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby9.html#plotting">12.10.8. Plotting</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../reshaping/reshaping.html">13. Reshaping and Pivot Tables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping1.html">13.1. Reshaping by pivoting DataFrame objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping2.html">13.2. Reshaping by stacking and unstacking</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#multiple-levels">13.2.1. Multiple Levels</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#missing-data">13.2.2. Missing Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#with-a-multiindex">13.2.3. With a MultiIndex</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping3.html">13.3. Reshaping by Melt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping4.html">13.4. Combining with stats and GroupBy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping5.html">13.5. Pivot tables</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping5.html#adding-margins">13.5.1. Adding margins</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping6.html">13.6. Cross tabulations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping6.html#normalization">13.6.1. Normalization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping6.html#adding-margins">13.6.2. Adding Margins</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping7.html">13.7. Tiling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping8.html">13.8. Computing indicator / dummy variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping9.html">13.9. Factorizing values</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="timeseries.html">14. Time Series / Date functionality</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="timeseries1.html">14.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries2.html">14.2. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries3.html">14.3. Time Stamps vs. Time Spans</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries4.html">14.4. Converting to Timestamps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries4.html#invalid-data">14.4.1. Invalid Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries4.html#epoch-timestamps">14.4.2. Epoch Timestamps</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries5.html">14.5. Generating Ranges of Timestamps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries6.html">14.6. Timestamp limitations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries7.html">14.7. DatetimeIndex</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#datetimeindex-partial-string-indexing">14.7.1. DatetimeIndex Partial String Indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#datetime-indexing">14.7.2. Datetime Indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#truncating-fancy-indexing">14.7.3. Truncating &amp; Fancy Indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#time-date-components">14.7.4. Time/Date Components</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries8.html">14.8. DateOffset objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#parametric-offsets">14.8.1. Parametric offsets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#using-offsets-with-series-datetimeindex">14.8.2. Using offsets with <code class="docutils literal"><span class="pre">Series</span></code> / <code class="docutils literal"><span class="pre">DatetimeIndex</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#custom-business-days-experimental">14.8.3. Custom Business Days (Experimental)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#business-hour">14.8.4. Business Hour</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#custom-business-hour">14.8.5. Custom Business Hour</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#offset-aliases">14.8.6. Offset Aliases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#combining-aliases">14.8.7. Combining Aliases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#anchored-offsets">14.8.8. Anchored Offsets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#anchored-offset-semantics">14.8.9. Anchored Offset Semantics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#holidays-holiday-calendars">14.8.10. Holidays / Holiday Calendars</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries9.html">14.9. Time series-related instance methods</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#shifting-lagging">14.9.1. Shifting / lagging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#frequency-conversion">14.9.2. Frequency conversion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#filling-forward-backward">14.9.3. Filling forward / backward</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#converting-to-python-datetimes">14.9.4. Converting to Python datetimes</a></li>
-</ul>
-</li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">14.10. Resampling</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#up-sampling">14.10.1. Up Sampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sparse-resampling">14.10.2. Sparse Resampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#aggregation">14.10.3. Aggregation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries11.html">14.11. Time Span Representation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#period">14.11.1. Period</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#periodindex-and-period-range">14.11.2. PeriodIndex and period_range</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#period-dtypes">14.11.3. Period Dtypes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#periodindex-partial-string-indexing">14.11.4. PeriodIndex Partial String Indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#frequency-conversion-and-resampling-with-periodindex">14.11.5. Frequency Conversion and Resampling with PeriodIndex</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries12.html">14.12. Converting between Representations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries13.html">14.13. Representing out-of-bounds spans</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timeseries14.html">14.14. Time Zone Handling</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#working-with-time-zones">14.14.1. Working with Time Zones</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#ambiguous-times-when-localizing">14.14.2. Ambiguous Times when Localizing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#tz-aware-dtypes">14.14.3. TZ aware Dtypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groupby/groupby10.html">12.11. Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#regrouping-by-factor">12.11.1. Regrouping by factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#groupby-by-indexer-to-resample-data">12.11.2. Groupby by Indexer to &#8216;resample&#8217; data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groupby/groupby10.html#returning-a-series-to-propagate-names">12.11.3. Returning a Series to propagate names</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../timedeltas/timedeltas.html">15. Time Deltas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#parsing">15.1. Parsing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#to-timedelta">15.1.1. to_timedelta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#timedelta-limitations">15.1.2. Timedelta limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../merging/merging.html">13. Merge, join, and concatenate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging1.html">13.1. Concatenating objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#set-logic-on-the-other-axes">13.1.1. Set logic on the other axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-using-append">13.1.2. Concatenating using <code class="docutils literal"><span class="pre">append</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#ignoring-indexes-on-the-concatenation-axis">13.1.3. Ignoring indexes on the concatenation axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#concatenating-with-mixed-ndims">13.1.4. Concatenating with mixed ndims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#more-concatenating-with-group-keys">13.1.5. More concatenating with group keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging1.html#appending-rows-to-a-dataframe">13.1.6. Appending rows to a DataFrame</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#operations">15.2. Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#reductions">15.3. Reductions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#frequency-conversion">15.4. Frequency Conversion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#attributes">15.5. Attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#timedeltaindex">15.6. TimedeltaIndex</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#using-the-timedeltaindex">15.6.1. Using the TimedeltaIndex</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#id1">15.6.2. Operations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#conversions">15.6.3. Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging2.html">13.2. Database-style DataFrame joining/merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#brief-primer-on-merge-methods-relational-algebra">13.2.1. Brief primer on merge methods (relational algebra)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#the-merge-indicator">13.2.2. The merge indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-on-index">13.2.3. Joining on index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-key-columns-on-an-index">13.2.4. Joining key columns on an index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-a-single-index-to-a-multi-index">13.2.5. Joining a single Index to a Multi-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-with-two-multi-indexes">13.2.6. Joining with two multi-indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#overlapping-value-columns">13.2.7. Overlapping value columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#joining-multiple-dataframe-or-panel-objects">13.2.8. Joining multiple DataFrame or Panel objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging2.html#merging-together-values-within-series-or-dataframe-columns">13.2.9. Merging together values within Series or DataFrame columns</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#resampling">15.7. Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/merging3.html">13.3. Timeseries friendly merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-ordered-data">13.3.1. Merging Ordered Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../merging/merging3.html#merging-asof">13.3.2. Merging AsOf</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../categorical/categorical.html">16. Categorical Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical1.html">16.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical2.html">16.2. Object Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical3.html">16.3. Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical4.html">16.4. Working with categories</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#renaming-categories">16.4.1. Renaming categories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#appending-new-categories">16.4.2. Appending new categories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#removing-categories">16.4.3. Removing categories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#removing-unused-categories">16.4.4. Removing unused categories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#setting-categories">16.4.5. Setting categories</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical5.html">16.5. Sorting and Order</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical5.html#reordering">16.5.1. Reordering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical5.html#multi-column-sorting">16.5.2. Multi Column Sorting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reshaping/reshaping.html">14. Reshaping and Pivot Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping1.html">14.1. Reshaping by pivoting DataFrame objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping2.html">14.2. Reshaping by stacking and unstacking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#multiple-levels">14.2.1. Multiple Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#missing-data">14.2.2. Missing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping2.html#with-a-multiindex">14.2.3. With a MultiIndex</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical6.html">16.6. Comparisons</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical7.html">16.7. Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical8.html">16.8. Data munging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#getting">16.8.1. Getting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#string-and-datetime-accessors">16.8.2. String and datetime accessors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#setting">16.8.3. Setting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#merging">16.8.4. Merging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#unioning">16.8.5. Unioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping3.html">14.3. Reshaping by Melt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping4.html">14.4. Combining with stats and GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping5.html">14.5. Pivot tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping5.html#adding-margins">14.5.1. Adding margins</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical9.html">16.9. Getting Data In/Out</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical10.html">16.10. Missing Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical11.html">16.11. Differences to R&#8217;s <cite>factor</cite></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical12.html">16.12. Gotchas</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#memory-usage">16.12.1. Memory Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#old-style-constructor-usage">16.12.2. Old style constructor usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#categorical-is-not-a-numpy-array">16.12.3. <cite>Categorical</cite> is not a <cite>numpy</cite> array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#dtype-in-apply">16.12.4. dtype in apply</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#categorical-index">16.12.5. Categorical Index</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#side-effects">16.12.6. Side Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping6.html">14.6. Cross tabulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping6.html#normalization">14.6.1. Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reshaping/reshaping6.html#adding-margins">14.6.2. Adding Margins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping7.html">14.7. Tiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping8.html">14.8. Computing indicator / dummy variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reshaping/reshaping9.html">14.9. Factorizing values</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="timeseries.html">15. Time Series / Date functionality</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="timeseries1.html">15.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries2.html">15.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries3.html">15.3. Time Stamps vs. Time Spans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries4.html">15.4. Converting to Timestamps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries4.html#invalid-data">15.4.1. Invalid Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries4.html#epoch-timestamps">15.4.2. Epoch Timestamps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries5.html">15.5. Generating Ranges of Timestamps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries6.html">15.6. Timestamp limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries7.html">15.7. DatetimeIndex</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#datetimeindex-partial-string-indexing">15.7.1. DatetimeIndex Partial String Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#datetime-indexing">15.7.2. Datetime Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#truncating-fancy-indexing">15.7.3. Truncating &amp; Fancy Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries7.html#time-date-components">15.7.4. Time/Date Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries8.html">15.8. DateOffset objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#parametric-offsets">15.8.1. Parametric offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#using-offsets-with-series-datetimeindex">15.8.2. Using offsets with <code class="docutils literal"><span class="pre">Series</span></code> / <code class="docutils literal"><span class="pre">DatetimeIndex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#custom-business-days-experimental">15.8.3. Custom Business Days (Experimental)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#business-hour">15.8.4. Business Hour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#custom-business-hour">15.8.5. Custom Business Hour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#offset-aliases">15.8.6. Offset Aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#combining-aliases">15.8.7. Combining Aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#anchored-offsets">15.8.8. Anchored Offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#anchored-offset-semantics">15.8.9. Anchored Offset Semantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries8.html#holidays-holiday-calendars">15.8.10. Holidays / Holiday Calendars</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries9.html">15.9. Time series-related instance methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#shifting-lagging">15.9.1. Shifting / lagging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#frequency-conversion">15.9.2. Frequency conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#filling-forward-backward">15.9.3. Filling forward / backward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries9.html#converting-to-python-datetimes">15.9.4. Converting to Python datetimes</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">15.10. Resampling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#up-sampling">15.10.1. Up Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sparse-resampling">15.10.2. Sparse Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aggregation">15.10.3. Aggregation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries11.html">15.11. Time Span Representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#period">15.11.1. Period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#periodindex-and-period-range">15.11.2. PeriodIndex and period_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#period-dtypes">15.11.3. Period Dtypes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#periodindex-partial-string-indexing">15.11.4. PeriodIndex Partial String Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries11.html#frequency-conversion-and-resampling-with-periodindex">15.11.5. Frequency Conversion and Resampling with PeriodIndex</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries12.html">15.12. Converting between Representations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries13.html">15.13. Representing out-of-bounds spans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries14.html">15.14. Time Zone Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#working-with-time-zones">15.14.1. Working with Time Zones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#ambiguous-times-when-localizing">15.14.2. Ambiguous Times when Localizing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timeseries14.html#tz-aware-dtypes">15.14.3. TZ aware Dtypes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../timedeltas/timedeltas.html">16. Time Deltas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#parsing">16.1. Parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#to-timedelta">16.1.1. to_timedelta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#timedelta-limitations">16.1.2. Timedelta limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#operations">16.2. Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#reductions">16.3. Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#frequency-conversion">16.4. Frequency Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#attributes">16.5. Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#timedeltaindex">16.6. TimedeltaIndex</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#using-the-timedeltaindex">16.6.1. Using the TimedeltaIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#id1">16.6.2. Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../timedeltas/timedeltas.html#conversions">16.6.3. Conversions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../timedeltas/timedeltas.html#resampling">16.7. Resampling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../categorical/categorical.html">17. Categorical Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical1.html">17.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical2.html">17.2. Object Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical3.html">17.3. Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical4.html">17.4. Working with categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#renaming-categories">17.4.1. Renaming categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#appending-new-categories">17.4.2. Appending new categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#removing-categories">17.4.3. Removing categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#removing-unused-categories">17.4.4. Removing unused categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical4.html#setting-categories">17.4.5. Setting categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical5.html">17.5. Sorting and Order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical5.html#reordering">17.5.1. Reordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical5.html#multi-column-sorting">17.5.2. Multi Column Sorting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical6.html">17.6. Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical7.html">17.7. Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical8.html">17.8. Data munging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#getting">17.8.1. Getting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#string-and-datetime-accessors">17.8.2. String and datetime accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#setting">17.8.3. Setting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#merging">17.8.4. Merging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical8.html#unioning">17.8.5. Unioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical9.html">17.9. Getting Data In/Out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical10.html">17.10. Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical11.html">17.11. Differences to R&#8217;s <cite>factor</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../categorical/categorical12.html">17.12. Gotchas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#memory-usage">17.12.1. Memory Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#old-style-constructor-usage">17.12.2. Old style constructor usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#categorical-is-not-a-numpy-array">17.12.3. <cite>Categorical</cite> is not a <cite>numpy</cite> array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#dtype-in-apply">17.12.4. dtype in apply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#categorical-index">17.12.5. Categorical Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../categorical/categorical12.html#side-effects">17.12.6. Side Effects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/visualization.html">18. Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization1.html">18.1. Basic Plotting: <code class="docutils literal"><span class="pre">plot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization2.html">18.2. Other Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#bar-plots">18.2.1. Bar plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#histograms">18.2.2. Histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#box-plots">18.2.3. Box Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#area-plot">18.2.4. Area Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#scatter-plot">18.2.5. Scatter Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#hexagonal-bin-plot">18.2.6. Hexagonal Bin Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization2.html#pie-plot">18.2.7. Pie plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization3.html">18.3. Plotting with Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization4.html">18.4. Plotting Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#scatter-matrix-plot">18.4.1. Scatter Matrix Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#density-plot">18.4.2. Density Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#andrews-curves">18.4.3. Andrews Curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#parallel-coordinates">18.4.4. Parallel Coordinates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#lag-plot">18.4.5. Lag Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#autocorrelation-plot">18.4.6. Autocorrelation Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#bootstrap-plot">18.4.7. Bootstrap Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization4.html#radviz">18.4.8. RadViz</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization5.html">18.5. Plot Formatting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#controlling-the-legend">18.5.1. Controlling the Legend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#scales">18.5.2. Scales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#plotting-on-a-secondary-y-axis">18.5.3. Plotting on a Secondary Y-axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#suppressing-tick-resolution-adjustment">18.5.4. Suppressing Tick Resolution Adjustment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#subplots">18.5.5. Subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#using-layout-and-targeting-multiple-axes">18.5.6. Using Layout and Targeting Multiple Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#plotting-with-error-bars">18.5.7. Plotting With Error Bars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#plotting-tables">18.5.8. Plotting Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/visualization5.html#colormaps">18.5.9. Colormaps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization6.html">18.6. Plotting directly with matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization7.html">18.7. Trellis plotting interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../io/io.html">19. IO Tools (Text, CSV, HDF5, ...)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../io/io1.html">19.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io2.html">19.2. CSV &amp; Text files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#parsing-options">19.2.1. Parsing options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#basic">19.2.1.1. Basic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#column-and-index-locations-and-names">19.2.1.2. Column and Index Locations and Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#general-parsing-configuration">19.2.1.3. General Parsing Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#na-and-missing-data-handling">19.2.1.4. NA and Missing Data Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#datetime-handling">19.2.1.5. Datetime Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#iteration">19.2.1.6. Iteration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#quoting-compression-and-file-format">19.2.1.7. Quoting, Compression, and File Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#error-handling">19.2.1.8. Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#specifying-column-data-types">19.2.2. Specifying column data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#naming-and-using-columns">19.2.3. Naming and Using Columns</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#handling-column-names">19.2.3.1. Handling column names</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#duplicate-names-parsing">19.2.4. Duplicate names parsing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#filtering-columns-usecols">19.2.4.1. Filtering columns (<code class="docutils literal"><span class="pre">usecols</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#comments-and-empty-lines">19.2.5. Comments and Empty Lines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#ignoring-line-comments-and-empty-lines">19.2.5.1. Ignoring line comments and empty lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#comments">19.2.5.2. Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#dealing-with-unicode-data">19.2.6. Dealing with Unicode Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#index-columns-and-trailing-delimiters">19.2.7. Index columns and trailing delimiters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#date-handling">19.2.8. Date Handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#specifying-date-columns">19.2.8.1. Specifying Date Columns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#date-parsing-functions">19.2.8.2. Date Parsing Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#inferring-datetime-format">19.2.8.3. Inferring Datetime Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#international-date-formats">19.2.8.4. International Date Formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#specifying-method-for-floating-point-conversion">19.2.9. Specifying method for floating-point conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#thousand-separators">19.2.10. Thousand Separators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#na-values">19.2.11. NA Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#infinity">19.2.12. Infinity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#returning-series">19.2.13. Returning Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#boolean-values">19.2.14. Boolean values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#handling-bad-lines">19.2.15. Handling &#8220;bad&#8221; lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#quoting-and-escape-characters">19.2.16. Quoting and Escape Characters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#files-with-fixed-width-columns">19.2.17. Files with Fixed Width Columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#indexes">19.2.18. Indexes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#files-with-an-implicit-index-column">19.2.18.1. Files with an &#8220;implicit&#8221; index column</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#reading-an-index-with-a-multiindex">19.2.18.2. Reading an index with a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#reading-columns-with-a-multiindex">19.2.18.3. Reading columns with a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#automatically-sniffing-the-delimiter">19.2.19. Automatically &#8220;sniffing&#8221; the delimiter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#iterating-through-files-chunk-by-chunk">19.2.20. Iterating through files chunk by chunk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#specifying-the-parser-engine">19.2.21. Specifying the parser engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io2.html#writing-out-data">19.2.22. Writing out Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#writing-to-csv-format">19.2.22.1. Writing to CSV format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io2.html#writing-a-formatted-string">19.2.22.2. Writing a formatted string</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io3.html">19.3. JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io3.html#writing-json">19.3.1. Writing JSON</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io3.html#orient-options">19.3.1.1. Orient Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io3.html#date-handling">19.3.1.2. Date Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io3.html#fallback-behavior">19.3.1.3. Fallback Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io3.html#reading-json">19.3.2. Reading JSON</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io3.html#data-conversion">19.3.2.1. Data Conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io3.html#the-numpy-parameter">19.3.2.2. The Numpy Parameter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io3.html#normalization">19.3.3. Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io3.html#line-delimited-json">19.3.4. Line delimited json</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io4.html">19.4. HTML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io4.html#reading-html-content">19.4.1. Reading HTML Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io4.html#writing-to-html-files">19.4.2. Writing to HTML files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io5.html">19.5. Excel files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io5.html#reading-excel-files">19.5.1. Reading Excel Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#excelfile-class">19.5.1.1. <code class="docutils literal"><span class="pre">ExcelFile</span></code> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#specifying-sheets">19.5.1.2. Specifying Sheets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#reading-a-multiindex">19.5.1.3. Reading a <code class="docutils literal"><span class="pre">MultiIndex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#parsing-specific-columns">19.5.1.4. Parsing Specific Columns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#cell-converters">19.5.1.5. Cell Converters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io5.html#writing-excel-files">19.5.2. Writing Excel Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#writing-excel-files-to-disk">19.5.2.1. Writing Excel Files to Disk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io5.html#writing-excel-files-to-memory">19.5.2.2. Writing Excel Files to Memory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io5.html#excel-writer-engines">19.5.3. Excel writer engines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io6.html">19.6. Clipboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io7.html">19.7. Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io8.html">19.8. msgpack (experimental)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io8.html#read-write-api">19.8.1. Read/Write API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io9.html">19.9. HDF5 (PyTables)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#read-write-api">19.9.1. Read/Write API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#fixed-format">19.9.2. Fixed Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#table-format">19.9.3. Table Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#hierarchical-keys">19.9.4. Hierarchical Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#storing-types">19.9.5. Storing Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#storing-mixed-types-in-a-table">19.9.5.1. Storing Mixed Types in a Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#storing-multi-index-dataframes">19.9.5.2. Storing Multi-Index DataFrames</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#querying">19.9.6. Querying</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#querying-a-table">19.9.6.1. Querying a Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#using-timedelta64-ns">19.9.6.2. Using timedelta64[ns]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#indexing">19.9.6.3. Indexing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#query-via-data-columns">19.9.6.4. Query via Data Columns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#iterator">19.9.6.5. Iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#advanced-queries">19.9.6.6. Advanced Queries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#multiple-table-queries">19.9.6.7. Multiple Table Queries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#delete-from-a-table">19.9.7. Delete from a Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#notes-caveats">19.9.8. Notes &amp; Caveats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#compression">19.9.8.1. Compression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#ptrepack">19.9.8.2. ptrepack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#caveats">19.9.8.3. Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#datatypes">19.9.9. DataTypes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#categorical-data">19.9.9.1. Categorical Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../io/io9.html#string-columns">19.9.9.2. String Columns</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#external-compatibility">19.9.10. External Compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#backwards-compatibility">19.9.11. Backwards Compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#performance">19.9.12. Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io9.html#experimental">19.9.13. Experimental</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io10.html">19.10. SQL Queries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.read_sql_table.html">19.10.1. pandas.read_sql_table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.read_sql_query.html">19.10.2. pandas.read_sql_query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.read_sql.html">19.10.3. pandas.read_sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.DataFrame.to_sql.html">19.10.4. pandas.DataFrame.to_sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#writing-dataframes">19.10.5. Writing DataFrames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io10.html#sql-data-types">19.10.5.1. SQL data types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#reading-tables">19.10.6. Reading Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#schema-support">19.10.7. Schema support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#querying">19.10.8. Querying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#engine-connection-examples">19.10.9. Engine connection examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#advanced-sqlalchemy-queries">19.10.10. Advanced SQLAlchemy queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io10.html#sqlite-fallback">19.10.11. Sqlite fallback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io11.html">19.11. Google BigQuery (Experimental)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.io.gbq.read_gbq.html">19.11.1. pandas.io.gbq.read_gbq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/generated/pandas.io.gbq.to_gbq.html">19.11.2. pandas.io.gbq.to_gbq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io11.html#authentication">19.11.3. Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io11.html#querying">19.11.4. Querying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io11.html#writing-dataframes">19.11.5. Writing DataFrames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io11.html#creating-bigquery-tables">19.11.6. Creating BigQuery Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io12.html">19.12. Stata Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io12.html#writing-to-stata-format">19.12.1. Writing to Stata format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../io/io12.html#reading-from-stata-format">19.12.2. Reading from Stata format</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../io/io12.html#categorical-data">19.12.2.1. Categorical Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io13.html">19.13. SAS Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io14.html">19.14. Other file formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../io/io14.html#netcdf">19.14.1. netCDF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../io/io15.html">19.15. Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../remote_data/remote_data.html">20. Remote Data Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../remote_data/remote_data.html#datareader">20.1. DataReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../remote_data/remote_data.html#google-analytics">20.2. Google Analytics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../remote_data/remote_data.html#configuring-access-to-google-analytics">20.2.1. Configuring Access to Google Analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../remote_data/remote_data.html#using-the-google-analytics-api">20.2.2. Using the Google Analytics API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../enhancingperf/enhancingperf.html">21. Enhancing Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../enhancingperf/enhancingperf1.html">21.1. Cython (Writing C extensions for pandas)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf1.html#pure-python">21.1.1. Pure python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf1.html#plain-cython">21.1.2. Plain cython</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf1.html#adding-type">21.1.3. Adding type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf1.html#using-ndarray">21.1.4. Using ndarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf1.html#more-advanced-techniques">21.1.5. More advanced techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../enhancingperf/enhancingperf2.html">21.2. Using numba</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf2.html#jit">21.2.1. Jit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf2.html#vectorize">21.2.2. Vectorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf2.html#caveats">21.2.3. Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../enhancingperf/enhancingperf3.html">21.3. Expression Evaluation via <code class="docutils literal"><span class="pre">eval()</span></code> (Experimental)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#supported-syntax">21.3.1. Supported Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#eval-examples">21.3.2. <code class="docutils literal"><span class="pre">eval()</span></code> Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#the-dataframe-eval-method-experimental">21.3.3. The <code class="docutils literal"><span class="pre">DataFrame.eval</span></code> method (Experimental)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#local-variables">21.3.4. Local Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#pandas-eval-parsers">21.3.5. <code class="docutils literal"><span class="pre">pandas.eval()</span></code> Parsers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#pandas-eval-backends">21.3.6. <code class="docutils literal"><span class="pre">pandas.eval()</span></code> Backends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#pandas-eval-performance">21.3.7. <code class="docutils literal"><span class="pre">pandas.eval()</span></code> Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enhancingperf/enhancingperf3.html#technical-minutia-regarding-expression-evaluation">21.3.8. Technical Minutia Regarding Expression Evaluation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sparse/sparse.html">22. Sparse data structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sparse.html#sparsearray">22.1. SparseArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sparse.html#sparselist">22.2. SparseList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sparse.html#sparseindex-objects">22.3. SparseIndex objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sparse.html#sparse-calculation">22.4. Sparse Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sparse.html#interaction-with-scipy-sparse">22.5. Interaction with scipy.sparse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gotchas/gotchas.html">23. Caveats and Gotchas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas1.html">23.1. Using If/Truth Statements with pandas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas1.html#bitwise-boolean">23.1.1. Bitwise boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas1.html#using-the-in-operator">23.1.2. Using the <code class="docutils literal"><span class="pre">in</span></code> operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas2.html">23.2. <code class="docutils literal"><span class="pre">NaN</span></code>, Integer <code class="docutils literal"><span class="pre">NA</span></code> values and <code class="docutils literal"><span class="pre">NA</span></code> type promotions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas2.html#choice-of-na-representation">23.2.1. Choice of <code class="docutils literal"><span class="pre">NA</span></code> representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas2.html#support-for-integer-na">23.2.2. Support for integer <code class="docutils literal"><span class="pre">NA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas2.html#na-type-promotions">23.2.3. <code class="docutils literal"><span class="pre">NA</span></code> type promotions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas2.html#why-not-make-numpy-like-r">23.2.4. Why not make NumPy like R?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas3.html">23.3. Integer indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas4.html">23.4. Label-based slicing conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas4.html#non-monotonic-indexes-require-exact-matches">23.4.1. Non-monotonic indexes require exact matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas4.html#endpoints-are-inclusive">23.4.2. Endpoints are inclusive</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas5.html">23.5. Miscellaneous indexing gotchas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas5.html#reindex-versus-ix-gotchas">23.5.1. Reindex versus ix gotchas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gotchas/gotchas5.html#reindex-potentially-changes-underlying-series-dtype">23.5.2. Reindex potentially changes underlying Series dtype</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas6.html">23.6. Parsing Dates from Text Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas7.html">23.7. Differences with NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas8.html">23.8. Thread-safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas9.html">23.9. HTML Table Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/gotchas10.html">23.10. Byte-Ordering Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../r_interface/r_interface.html">24. rpy2 / R interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#updating-your-code-to-use-rpy2-functions">24.1. Updating your code to use rpy2 functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#r-interface-with-rpy2">24.2. R interface with rpy2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#transferring-r-data-sets-into-python">24.3. Transferring R data sets into Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#converting-dataframes-into-r-objects">24.4. Converting DataFrames into R objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#calling-r-functions-with-pandas-objects">24.5. Calling R functions with pandas objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_interface/r_interface.html#high-level-interface-to-r-estimators">24.6. High-level interface to R estimators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem/ecosystem.html">25. pandas Ecosystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#statistics-and-machine-learning">25.1. Statistics and Machine Learning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#statsmodels">25.1.1. Statsmodels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#sklearn-pandas">25.1.2. sklearn-pandas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#visualization">25.2. Visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#bokeh">25.2.1. Bokeh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#yhat-ggplot">25.2.2. yhat/ggplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#seaborn">25.2.3. Seaborn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#vincent">25.2.4. Vincent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#ipython-vega">25.2.5. IPython Vega</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#plotly">25.2.6. Plotly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#pandas-qt">25.2.7. Pandas-Qt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#ecosystem-ide">25.3. IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#ipython">25.3.1. IPython</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#quantopian-qgrid">25.3.2. quantopian/qgrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#spyder">25.3.3. Spyder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#api">25.4. API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#pandas-datareader">25.4.1. pandas-datareader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#quandl-python">25.4.2. quandl/Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#pydatastream">25.4.3. pydatastream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#pandasdmx">25.4.4. pandaSDMX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#fredapi">25.4.5. fredapi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#domain-specific">25.5. Domain Specific</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#geopandas">25.5.1. Geopandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#xarray">25.5.2. xarray</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ecosystem/ecosystem.html#out-of-core">25.6. Out-of-core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#dask">25.6.1. Dask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#blaze">25.6.2. Blaze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ecosystem/ecosystem.html#odo">25.6.3. Odo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comparison_with_r/comparison_with_r.html">26. Comparison with R / R libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_r/comparison_with_r1.html">26.1. Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r1.html#querying-filtering-sampling">26.1.1. Querying, Filtering, Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r1.html#sorting">26.1.2. Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r1.html#transforming">26.1.3. Transforming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r1.html#grouping-and-summarizing">26.1.4. Grouping and Summarizing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html">26.2. Base R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#slicing-with-r-s-c">26.2.1. Slicing with R&#8217;s |c|_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#aggregate">26.2.2. |aggregate|_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#match">26.2.3. |match|_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#tapply">26.2.4. |tapply|_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#subset">26.2.5. |subset|_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r2.html#with">26.2.6. |with|_</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_r/comparison_with_r3.html">26.3. plyr</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r3.html#ddply">26.3.1. |ddply|_</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html">26.4. reshape / reshape2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html#meltarray">26.4.1. <code class="docutils literal"><span class="pre">melt.array</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html#meltlist">26.4.2. <code class="docutils literal"><span class="pre">melt.list</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html#meltdf">26.4.3. <code class="docutils literal"><span class="pre">melt.data.frame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html#cast">26.4.4. <code class="docutils literal"><span class="pre">cast</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_r/comparison_with_r4.html#factor">26.4.5. <code class="docutils literal"><span class="pre">factor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql.html">27. Comparison with SQL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql1.html">27.1. SELECT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql2.html">27.2. WHERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql3.html">27.3. GROUP BY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql4.html">27.4. JOIN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql4.html#inner-join">27.4.1. INNER JOIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql4.html#left-outer-join">27.4.2. LEFT OUTER JOIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql4.html#right-join">27.4.3. RIGHT JOIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql4.html#full-join">27.4.4. FULL JOIN</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql5.html">27.5. UNION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql6.html">27.6. Pandas equivalents for some SQL analytic and aggregate functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql6.html#top-n-rows-with-offset">27.6.1. Top N rows with offset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql6.html#top-n-rows-per-group">27.6.2. Top N rows per group</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql7.html">27.7. UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sql/comparison_with_sql8.html">27.8. DELETE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html">28. Comparison with SAS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#data-structures">28.1. Data Structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#general-terminology-translation">28.1.1. General Terminology Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#dataframe-series">28.1.2. <code class="docutils literal"><span class="pre">DataFrame</span></code> / <code class="docutils literal"><span class="pre">Series</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#index">28.1.3. <code class="docutils literal"><span class="pre">Index</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#data-input-output">28.2. Data Input / Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#constructing-a-dataframe-from-values">28.2.1. Constructing a DataFrame from Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#reading-external-data">28.2.2. Reading External Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#exporting-data">28.2.3. Exporting Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#data-operations">28.3. Data Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#operations-on-columns">28.3.1. Operations on Columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#filtering">28.3.2. Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#if-then-logic">28.3.3. If/Then Logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#date-functionality">28.3.4. Date Functionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#selection-of-columns">28.3.5. Selection of Columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#sorting-by-values">28.3.6. Sorting by Values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#merging">28.4. Merging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#missing-data">28.5. Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#groupby">28.6. GroupBy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#aggregation">28.6.1. Aggregation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#transformation">28.6.2. Transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#by-group-processing">28.6.3. By Group Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#other-considerations">28.7. Other Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#disk-vs-memory">28.7.1. Disk vs Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comparison_with_sas/comparison_with_sas.html#data-interop">28.7.2. Data Interop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html">29. Internals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../internals/internals.html#indexing">29.1. Indexing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../internals/internals.html#multiindex">29.1.1. MultiIndex</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../internals/internals.html#subclassing-pandas-data-structures">29.2. Subclassing pandas Data Structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../internals/internals.html#override-constructor-properties">29.2.1. Override Constructor Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../internals/internals.html#define-original-properties">29.2.2. Define Original Properties</a></li>
 </ul>
 </li>
 </ul>
@@ -1963,9 +2448,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="timeseries.html">14. Time Series / Date functionality</a> &raquo;</li>
+          <li><a href="timeseries.html">15. Time Series / Date functionality</a> &raquo;</li>
         
-      <li>14.10. Resampling</li>
+      <li>15.10. Resampling</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -1983,7 +2468,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="resampling">
-<span id="timeseries-resampling"></span><h1>14.10. Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h1>
+<span id="timeseries-resampling"></span><h1>15.10. Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The interface to <code class="docutils literal"><span class="pre">.resample</span></code> has changed in 0.18.0 to be more groupby-like and hence more flexible.
@@ -2076,7 +2561,7 @@ retains the input representation.</p>
 (detail below). It specifies how low frequency periods are converted to higher
 frequency periods.</p>
 <div class="section" id="up-sampling">
-<h2>14.10.1. Up Sampling<a class="headerlink" href="#up-sampling" title="Permalink to this headline">¶</a></h2>
+<h2>15.10.1. Up Sampling<a class="headerlink" href="#up-sampling" title="Permalink to this headline">¶</a></h2>
 <p>For upsampling, you can specify a way to upsample and the <code class="docutils literal"><span class="pre">limit</span></code> parameter to interpolate over the gaps that are created:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># from secondly to every 250 milliseconds</span>
 <span class="gp">In [12]: </span><span class="n">ts</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;250L&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">asfreq</span><span class="p">()</span>
@@ -2109,7 +2594,7 @@ frequency periods.</p>
 </div>
 </div>
 <div class="section" id="sparse-resampling">
-<h2>14.10.2. Sparse Resampling<a class="headerlink" href="#sparse-resampling" title="Permalink to this headline">¶</a></h2>
+<h2>15.10.2. Sparse Resampling<a class="headerlink" href="#sparse-resampling" title="Permalink to this headline">¶</a></h2>
 <p>Sparse timeseries are ones where you have a lot fewer points relative
 to the amount of time you are looking to resample. Naively upsampling a sparse series can potentially
 generate lots of intermediate values. When you don&#8217;t want to use a method to fill these values, e.g. <code class="docutils literal"><span class="pre">fill_method</span></code> is <code class="docutils literal"><span class="pre">None</span></code>,
@@ -2162,7 +2647,7 @@ resample only the groups that are not all <code class="docutils literal"><span c
 </div>
 </div>
 <div class="section" id="aggregation">
-<h2>14.10.3. Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
+<h2>15.10.3. Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
 <p>Similar to <a class="reference internal" href="../groupby/groupby4.html#groupby-aggregate"><span>groupby aggregates</span></a> and the <a class="reference internal" href="../computation/computation3.html#stats-aggregate"><span>window functions</span></a>, a <code class="docutils literal"><span class="pre">Resampler</span></code> can be selectively
 resampled.</p>
 <p>Resampling a <code class="docutils literal"><span class="pre">DataFrame</span></code>, the default will be to act on all columns with the same function.</p>
@@ -2307,10 +2792,10 @@ must be implemented on the Resampled object</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="timeseries11.html" class="btn btn-neutral float-right" title="14.11. Time Span Representation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="timeseries11.html" class="btn btn-neutral float-right" title="15.11. Time Span Representation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="timeseries9.html" class="btn btn-neutral" title="14.9. Time series-related instance methods" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="timeseries9.html" class="btn btn-neutral" title="15.9. Time series-related instance methods" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

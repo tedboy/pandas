@@ -1,0 +1,41 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import os
+   import csv
+   from pandas.compat import StringIO, BytesIO
+   import pandas as pd
+   ExcelWriter = pd.ExcelWriter
+
+   import numpy as np
+   np.random.seed(123456)
+   randn = np.random.randn
+   np.set_printoptions(precision=4, suppress=True)
+
+   import matplotlib.pyplot as plt
+   plt.close('all')
+
+   import pandas.util.testing as tm
+   pd.options.display.max_rows=15
+   clipdf = pd.DataFrame({'A':[1,2,3],'B':[4,5,6],'C':['p','q','r']},
+                         index=['x','y','z'])
+
+.. _io.other:
+
+Other file formats
+------------------
+
+pandas itself only supports IO with a limited set of file formats that map
+cleanly to its tabular data model. For reading and writing other file formats
+into and from pandas, we recommend these packages from the broader community.
+
+netCDF
+''''''
+
+xarray_ provides data structures inspired by the pandas DataFrame for working
+with multi-dimensional datasets, with a focus on the netCDF file format and
+easy conversion to and from pandas.
+
+.. _xarray: http://xarray.pydata.org/

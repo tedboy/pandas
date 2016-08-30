@@ -1,0 +1,348 @@
+.. currentmodule:: pandas
+
+.. ipython:: python
+   :suppress:
+
+   import os
+   import csv
+   from pandas.compat import StringIO, BytesIO
+   import pandas as pd
+   ExcelWriter = pd.ExcelWriter
+
+   import numpy as np
+   np.random.seed(123456)
+   randn = np.random.randn
+   np.set_printoptions(precision=4, suppress=True)
+
+   import matplotlib.pyplot as plt
+   plt.close('all')
+
+   import pandas.util.testing as tm
+   pd.options.display.max_rows=15
+   clipdf = pd.DataFrame({'A':[1,2,3],'B':[4,5,6],'C':['p','q','r']},
+                         index=['x','y','z'])
+
+.. _io.sql:
+
+SQL Queries
+-----------
+
+The :mod:`pandas.io.sql` module provides a collection of query wrappers to both
+facilitate data retrieval and to reduce dependency on DB-specific API. Database abstraction
+is provided by SQLAlchemy if installed. In addition you will need a driver library for
+your database. Examples of such drivers are `psycopg2 <http://initd.org/psycopg/>`__
+for PostgreSQL or `pymysql <https://github.com/PyMySQL/PyMySQL>`__ for MySQL.
+For `SQLite <https://docs.python.org/3.5/library/sqlite3.html>`__ this is
+included in Python's standard library by default.
+You can find an overview of supported drivers for each SQL dialect in the
+`SQLAlchemy docs <http://docs.sqlalchemy.org/en/latest/dialects/index.html>`__.
+
+.. versionadded:: 0.14.0
+
+If SQLAlchemy is not installed, a fallback is only provided for sqlite (and
+for mysql for backwards compatibility, but this is deprecated and will be
+removed in a future version).
+This mode requires a Python database adapter which respect the `Python
+DB-API <http://www.python.org/dev/peps/pep-0249/>`__.
+
+See also some :ref:`cookbook examples <cookbook.sql>` for some advanced strategies.
+
+The key functions are:
+
+.. autosummary::
+    :toctree: generated/
+
+    read_sql_table
+    read_sql_query
+    read_sql
+    DataFrame.to_sql
+
+.. note::
+
+    The function :func:`~pandas.read_sql` is a convenience wrapper around
+    :func:`~pandas.read_sql_table` and :func:`~pandas.read_sql_query` (and for
+    backward compatibility) and will delegate to specific function depending on
+    the provided input (database table name or sql query).
+    Table names do not need to be quoted if they have special characters.
+
+In the following example, we use the `SQlite <http://www.sqlite.org/>`__ SQL database
+engine. You can use a temporary SQLite database where data are stored in
+"memory".
+
+To connect with SQLAlchemy you use the :func:`create_engine` function to create an engine
+object from database URI. You only need to create the engine once per database you are
+connecting to.
+For more information on :func:`create_engine` and the URI formatting, see the examples
+below and the SQLAlchemy `documentation <http://docs.sqlalchemy.org/en/latest/core/engines.html>`__
+
+.. ipython:: python
+
+   from sqlalchemy import create_engine
+   # Create your engine.
+   engine = create_engine('sqlite:///:memory:')
+
+If you want to manage your own connections you can pass one of those instead:
+
+.. code-block:: python
+
+   with engine.connect() as conn, conn.begin():
+       data = pd.read_sql_table('data', conn)
+
+Writing DataFrames
+''''''''''''''''''
+
+Assuming the following data is in a DataFrame ``data``, we can insert it into
+the database using :func:`~pandas.DataFrame.to_sql`.
+
++-----+------------+-------+-------+-------+
+| id  |    Date    | Col_1 | Col_2 | Col_3 |
++=====+============+=======+=======+=======+
+| 26  | 2012-10-18 |   X   |  25.7 | True  |
++-----+------------+-------+-------+-------+
+| 42  | 2012-10-19 |   Y   | -12.4 | False |
++-----+------------+-------+-------+-------+
+| 63  | 2012-10-20 |   Z   |  5.73 | True  |
++-----+------------+-------+-------+-------+
+
+
+.. ipython:: python
+   :suppress:
+
+   import datetime
+   c = ['id', 'Date', 'Col_1', 'Col_2', 'Col_3']
+   d = [(26, datetime.datetime(2010,10,18), 'X', 27.5, True),
+   (42, datetime.datetime(2010,10,19), 'Y', -12.5, False),
+   (63, datetime.datetime(2010,10,20), 'Z', 5.73, True)]
+
+   data  = pd.DataFrame(d, columns=c)
+
+.. ipython:: python
+
+    data.to_sql('data', engine)
+
+With some databases, writing large DataFrames can result in errors due to
+packet size limitations being exceeded. This can be avoided by setting the
+``chunksize`` parameter when calling ``to_sql``.  For example, the following
+writes ``data`` to the database in batches of 1000 rows at a time:
+
+.. ipython:: python
+
+    data.to_sql('data_chunked', engine, chunksize=1000)
+
+SQL data types
+++++++++++++++
+
+:func:`~pandas.DataFrame.to_sql` will try to map your data to an appropriate
+SQL data type based on the dtype of the data. When you have columns of dtype
+``object``, pandas will try to infer the data type.
+
+You can always override the default type by specifying the desired SQL type of
+any of the columns by using the ``dtype`` argument. This argument needs a
+dictionary mapping column names to SQLAlchemy types (or strings for the sqlite3
+fallback mode).
+For example, specifying to use the sqlalchemy ``String`` type instead of the
+default ``Text`` type for string columns:
+
+.. ipython:: python
+
+    from sqlalchemy.types import String
+    data.to_sql('data_dtype', engine, dtype={'Col_1': String})
+
+.. note::
+
+    Due to the limited support for timedelta's in the different database
+    flavors, columns with type ``timedelta64`` will be written as integer
+    values as nanoseconds to the database and a warning will be raised.
+
+.. note::
+
+    Columns of ``category`` dtype will be converted to the dense representation
+    as you would get with ``np.asarray(categorical)`` (e.g. for string categories
+    this gives an array of strings).
+    Because of this, reading the database table back in does **not** generate
+    a categorical.
+
+Reading Tables
+''''''''''''''
+
+:func:`~pandas.read_sql_table` will read a database table given the
+table name and optionally a subset of columns to read.
+
+.. note::
+
+    In order to use :func:`~pandas.read_sql_table`, you **must** have the
+    SQLAlchemy optional dependency installed.
+
+.. ipython:: python
+
+   pd.read_sql_table('data', engine)
+
+You can also specify the name of the column as the DataFrame index,
+and specify a subset of columns to be read.
+
+.. ipython:: python
+
+   pd.read_sql_table('data', engine, index_col='id')
+   pd.read_sql_table('data', engine, columns=['Col_1', 'Col_2'])
+
+And you can explicitly force columns to be parsed as dates:
+
+.. ipython:: python
+
+   pd.read_sql_table('data', engine, parse_dates=['Date'])
+
+If needed you can explicitly specify a format string, or a dict of arguments
+to pass to :func:`pandas.to_datetime`:
+
+.. code-block:: python
+
+   pd.read_sql_table('data', engine, parse_dates={'Date': '%Y-%m-%d'})
+   pd.read_sql_table('data', engine, parse_dates={'Date': {'format': '%Y-%m-%d %H:%M:%S'}})
+
+
+You can check if a table exists using :func:`~pandas.io.sql.has_table`
+
+Schema support
+''''''''''''''
+
+.. versionadded:: 0.15.0
+
+Reading from and writing to different schema's is supported through the ``schema``
+keyword in the :func:`~pandas.read_sql_table` and :func:`~pandas.DataFrame.to_sql`
+functions. Note however that this depends on the database flavor (sqlite does not
+have schema's). For example:
+
+.. code-block:: python
+
+   df.to_sql('table', engine, schema='other_schema')
+   pd.read_sql_table('table', engine, schema='other_schema')
+
+Querying
+''''''''
+
+You can query using raw SQL in the :func:`~pandas.read_sql_query` function.
+In this case you must use the SQL variant appropriate for your database.
+When using SQLAlchemy, you can also pass SQLAlchemy Expression language constructs,
+which are database-agnostic.
+
+.. ipython:: python
+
+   pd.read_sql_query('SELECT * FROM data', engine)
+
+Of course, you can specify a more "complex" query.
+
+.. ipython:: python
+
+   pd.read_sql_query("SELECT id, Col_1, Col_2 FROM data WHERE id = 42;", engine)
+
+The :func:`~pandas.read_sql_query` function supports a ``chunksize`` argument.
+Specifying this will return an iterator through chunks of the query result:
+
+.. ipython:: python
+
+    df = pd.DataFrame(np.random.randn(20, 3), columns=list('abc'))
+    df.to_sql('data_chunks', engine, index=False)
+
+.. ipython:: python
+
+    for chunk in pd.read_sql_query("SELECT * FROM data_chunks", engine, chunksize=5):
+        print(chunk)
+
+You can also run a plain query without creating a dataframe with
+:func:`~pandas.io.sql.execute`. This is useful for queries that don't return values,
+such as INSERT. This is functionally equivalent to calling ``execute`` on the
+SQLAlchemy engine or db connection object. Again, you must use the SQL syntax
+variant appropriate for your database.
+
+.. code-block:: python
+
+   from pandas.io import sql
+   sql.execute('SELECT * FROM table_name', engine)
+   sql.execute('INSERT INTO table_name VALUES(?, ?, ?)', engine, params=[('id', 1, 12.2, True)])
+
+
+Engine connection examples
+''''''''''''''''''''''''''
+
+To connect with SQLAlchemy you use the :func:`create_engine` function to create an engine
+object from database URI. You only need to create the engine once per database you are
+connecting to.
+
+.. code-block:: python
+
+   from sqlalchemy import create_engine
+
+   engine = create_engine('postgresql://scott:tiger@localhost:5432/mydatabase')
+
+   engine = create_engine('mysql+mysqldb://scott:tiger@localhost/foo')
+
+   engine = create_engine('oracle://scott:tiger@127.0.0.1:1521/sidname')
+
+   engine = create_engine('mssql+pyodbc://mydsn')
+
+   # sqlite://<nohostname>/<path>
+   # where <path> is relative:
+   engine = create_engine('sqlite:///foo.db')
+
+   # or absolute, starting with a slash:
+   engine = create_engine('sqlite:////absolute/path/to/foo.db')
+
+For more information see the examples the SQLAlchemy `documentation <http://docs.sqlalchemy.org/en/latest/core/engines.html>`__
+
+
+Advanced SQLAlchemy queries
+'''''''''''''''''''''''''''
+
+You can use SQLAlchemy constructs to describe your query.
+
+Use :func:`sqlalchemy.text` to specify query parameters in a backend-neutral way
+
+.. ipython:: python
+
+   import sqlalchemy as sa
+   pd.read_sql(sa.text('SELECT * FROM data where Col_1=:col1'), engine, params={'col1': 'X'})
+
+If you have an SQLAlchemy description of your database you can express where conditions using SQLAlchemy expressions
+
+.. ipython:: python
+
+   metadata = sa.MetaData()
+   data_table = sa.Table('data', metadata,
+       sa.Column('index', sa.Integer),
+       sa.Column('Date', sa.DateTime),
+       sa.Column('Col_1', sa.String),
+       sa.Column('Col_2', sa.Float),
+       sa.Column('Col_3', sa.Boolean),
+   )
+
+   pd.read_sql(sa.select([data_table]).where(data_table.c.Col_3 == True), engine)
+
+You can combine SQLAlchemy expressions with parameters passed to :func:`read_sql` using :func:`sqlalchemy.bindparam`
+
+.. ipython:: python
+
+    import datetime as dt
+    expr = sa.select([data_table]).where(data_table.c.Date > sa.bindparam('date'))
+    pd.read_sql(expr, engine, params={'date': dt.datetime(2010, 10, 18)})
+
+
+Sqlite fallback
+'''''''''''''''
+
+The use of sqlite is supported without using SQLAlchemy.
+This mode requires a Python database adapter which respect the `Python
+DB-API <http://www.python.org/dev/peps/pep-0249/>`__.
+
+You can create connections like so:
+
+.. code-block:: python
+
+   import sqlite3
+   con = sqlite3.connect(':memory:')
+
+And then issue the following queries:
+
+.. code-block:: python
+
+   data.to_sql('data', cnx)
+   pd.read_sql_query("SELECT * FROM data", con)

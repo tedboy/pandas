@@ -23,7 +23,7 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    options/options.rst
    indexing/indexing.rst
    advanced/advanced.rst
-   compututatin/computation.rst
+   computation/computation.rst
    missing/missing.rst
    groupby/groupby.rst
    merging/merging.rst
@@ -32,3 +32,14 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    timedeltas/timedeltas.rst
    categorical/categorical.rst
    visualization/visualization.rst
+   io/io.rst
+   remote_data/remote_data.rst
+   enhancingperf/enhancingperf.rst
+   sparse/sparse.rst
+   gotchas/gotchas.rst
+   r_interface/r_interface.rst
+   ecosystem/ecosystem.rst
+   comparison_with_r/comparison_with_r.rst
+   comparison_with_sql/comparison_with_sql.rst
+   comparison_with_sas/comparison_with_sas.rst
+   internals/internals.rst
