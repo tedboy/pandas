@@ -41,3 +41,5 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
    ecosystem/ecosystem.rst
    comparison_with_r/comparison_with_r.rst
    comparison_with_sql/comparison_with_sql.rst
+   comparison_with_sas/comparison_with_sas.rst
+   internals/internals.rst

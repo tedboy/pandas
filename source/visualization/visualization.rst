@@ -20,7 +20,13 @@ Visualization
 
 .. toctree::
    :maxdepth: 1
-   :numbered:
-   :caption: visualization
+   :caption: Contents
+   :name: visualization
 
    visualization1
+   visualization2
+   visualization3
+   visualization4
+   visualization5
+   visualization6
+   visualization7

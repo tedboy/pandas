@@ -13,6 +13,14 @@
    import matplotlib.pyplot as plt
    plt.close('all')
 
+.. ipython:: python
+
+   import matplotlib as mpl
+   #mpl.rcParams['legend.fontsize']=20.0
+   #print mpl.matplotlib_fname() # location of the rc file
+   #print mpl.rcParams # current config
+   print mpl.get_backend()
+
 .. _visualization.basic:
 
 Basic Plotting: ``plot``
