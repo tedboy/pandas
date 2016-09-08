@@ -21,6 +21,7 @@ the previous section:
 .. toctree::
     :maxdepth: 1
     :caption: Contents
+    :numbered:
     :name: basics
 
     basics1

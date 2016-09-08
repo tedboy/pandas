@@ -11,7 +11,6 @@ Pandas Doc re-rendered using RTD theme, and html's structured to my own liking.
 
 .. toctree::
    :maxdepth: 1
-   :numbered:
    :caption: Table of Contents
 
    api.rst

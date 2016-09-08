@@ -9,6 +9,10 @@
    import pandas as pd
    ExcelWriter = pd.ExcelWriter
 
+   import sys
+   reload(sys)  # Reload does the trick!
+   sys.setdefaultencoding('UTF8')
+
    import numpy as np
    np.random.seed(123456)
    randn = np.random.randn

@@ -14,6 +14,10 @@
    randn = np.random.randn
    np.set_printoptions(precision=4, suppress=True)
 
+   import sys
+   reload(sys)  # Reload does the trick!
+   sys.setdefaultencoding('UTF8')
+   
    import matplotlib.pyplot as plt
    plt.close('all')
 

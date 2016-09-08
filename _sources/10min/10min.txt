@@ -11,6 +11,7 @@ You can see more complex recipes in the :ref:`Cookbook<cookbook>`
     :maxdepth: 1
     :caption: Contents
     :name: 10min
+    :numbered:
 
     10min1
     10min2

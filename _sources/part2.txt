@@ -2,6 +2,7 @@ Part 2
 ======
 .. toctree::
    :maxdepth: 1
+   :numbered:
    :caption: Table of Contents
    :name: part2
 

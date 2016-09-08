@@ -17,6 +17,7 @@ categories of functionality and methods in separate sections.
 
 .. toctree::
     :maxdepth: 1
+    :numbered:
     :caption: Contents
     :name: dsintro
 
